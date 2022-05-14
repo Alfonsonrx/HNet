@@ -18,6 +18,9 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="./recursos/js/iniciosesion.js"></script>
+
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
@@ -51,7 +54,7 @@
                                             <input type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password">
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
+                                        <a href="#" id="btnLogin" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </a>
                                     </form>

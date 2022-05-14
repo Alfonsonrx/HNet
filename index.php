@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+include './modelo/validador.php';
+?>
+
 <head>
 
     <meta charset="utf-8">

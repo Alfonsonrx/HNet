@@ -6,7 +6,7 @@ class Database{
         $host = 'localhost';
         $u = 'root';
         $pw = '';
-        $database = 'evfinal';
+        $database = 'testeo';
         $this->db = new mysqli($host, $u, $pw, $database);
         $this->sentence = $this->db->stmt_init();
     }

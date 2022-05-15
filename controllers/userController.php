@@ -14,7 +14,8 @@ switch($do) {
             require('../modelo/empleado.php');
             $empleado = new Empleado();
             $empleado->__set("rut", $rut);
-            $empleado->__set("pw", $pass);
+            $encryptpw = md5($pass);
+            $empleado->__set("pw", $encryptpw);
 
             $resul = $empleado->iniciarSesion();
 

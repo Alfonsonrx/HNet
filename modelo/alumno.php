@@ -4,21 +4,80 @@
 
 class Alumnos {
     private $db;
-    private $aID;
+    private $id_alumno;
+    private $id_curso;
+    private $run;
+    private $nombre;
+    private $apellido_paterno;
+    private $apellido_materno;
+    private $fecha_nacimiento;
+    private $email;
+    private $direccion;
+    private $celular;
 
     public function __construct(){
         include_once 'Conexion.php';
         $this->db = new Database();
     }
+    public function __get($key){
+        return $this->$key;
+    }
+
+    public function __set($key, $value) {
+        $this->$key = $value;
+    }
+
+    public function crearAlumno($alumno) {
+        $sql = "INSERT INTO `alumno` 
+        (`IDALUMNO`, `IDCURSO`, `RUNALUMNO`, `NOMBREIDALUMNO`, `PATERNOIDALUMNO`, 
+        `MATERNOIDALUMNO`, `FECHANACIMIENTOIDALUMNO`, `EMAILALUMNO`, `DIRECCIONALUMNO`, `CELULARALUMNO`) 
+        VALUES ('$alumno->id_alumno', '$alumno->id_curso', '$alumno->run', '$alumno->nombre', '$alumno->apellido_paterno', 
+        '$alumno->apellido_materno', '$alumno->fecha_nacimiento', '$alumno->email', '$alumno->direccion', '$alumno->celular')";
+        $res = $this->db->execute($sql);
+        if ($res) {
+            echo "Guardado";
+        } else {
+            echo "error";
+        }
+    }
 
     public function obtenerAlumno($id_alumno) {
-        $sql = "SELECT * FROM alumno WHERE IDALUMNO='$id_alumno'";
-        $res = $this->db->getAll($sql);
+        $sql = "SELECT * FROM `alumno` WHERE IDALUMNO='$id_alumno' LIMIT 1";
+        $res = $this->db->execute($sql);
+
+        foreach ($res as $fila) {
+            
+            $salida[] = $fila["IDALUMNO"];
+            $salida[] = $fila["IDCURSO"];
+            $salida[] = $fila["RUNALUMNO"];
+            $salida[] = $fila["NOMBREIDALUMNO"];
+            $salida[] = $fila["PATERNOIDALUMNO"];
+            $salida[] = $fila["MATERNOIDALUMNO"];
+            $salida[] = $fila["FECHANACIMIENTOIDALUMNO"];
+            $salida[] = $fila["EMAILALUMNO"];
+            $salida[] = $fila["DIRECCIONALUMNO"];
+            $salida[] = $fila["CELULARALUMNO"];
+
+            echo json_encode($salida);
+        }
         return $res;
     }
 
     public function borrarAlumno($id_alumno) {
         $sql = "DELETE FROM alumno WHERE `alumno`.`IDALUMNO` = '$id_alumno'";
+        $res = $this->db->execute($sql);
+        if ($res) {
+            echo "borrado";
+        } else {
+            echo "error";
+        }
+    }
+
+    public function editarAlumno($alumno) {
+        $sql = "UPDATE `alumno` SET `IDCURSO` = `0`, `RUNALUMNO` = '20236632-8',
+        `NOMBREIDALUMNO` = 'Damiann', `PATERNOIDALUMNO` = 'Contreras', `MATERNOIDALUMNO` = 'Orellana', 
+        `FECHANACIMIENTOIDALUMNO` = '2015-11-12', `EMAILALUMNO` = 'd@hnet.cl', `DIRECCIONALUMNO` = '123', 
+        `CELULARALUMNO` = '1323' WHERE `alumno`.`IDALUMNO` = '$alumno->id_alumno'";
         $res = $this->db->execute($sql);
         if ($res) {
             echo "borrado";

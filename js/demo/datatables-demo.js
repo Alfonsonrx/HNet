@@ -6,24 +6,74 @@ $(document).ready(function() {
     },
   });
 
+  $(document).on('submit', '#formulario', function(event){
+    event.preventDefault();
+    var id_alumno = $('#id_alumno').val();
+    var id_curso = $('#id_curso').val();
+    var run = $('#run').val();
+    var nombre = $('#nombre').val();
+    var apellido_paterno = $('#apellido_paterno').val();
+    var apellido_materno = $('#apellido_materno').val();
+    var fecha_nacimiento = $('#fecha_nacimiento').val();
+    var email = $('#email').val();
+    var direccion = $('#direccion').val();
+    var celular = $('#celular').val();
+    if(id_curso != '' && nombre != '' && email != '') {
+      $.ajax({
+        url:"controllers/tableController.php?do=ingresar",
+        method:'POST',
+        data:new FormData(this),
+        contentType:false,
+        processData:false,
+        success:function(data)
+        {
+          console.log(data);
+          $('#formulario')[0].reset();
+          $('#modalUsuario').modal('hide');
+          dataTable.ajax.reload();
+        }
+      });
+    }
+    else {
+        alert("Algunos campos son obligatorios");
+    }
+  });
+
+  $(document).on('click', '#botonCrear', function(){
+    $('#formulario')[0].reset()
+
+    $('#modalAlumno').modal('show');
+    $('.modal-title').text("Crear Usuario");
+    $('#action').val("Crear");
+    $('#operacion').val("Crear");
+  });
+  
   $(document).on('click', '.editar', function(){		
-    var id_usuario = $(this).attr("id");		
+    var id_alumno = $(this).attr("id");		
     $.ajax({
-        url:"obtener_registro.php",
+        url:"controllers/tableController.php?do=obtenerAlumno",
         method:"POST",
-        data:{id_usuario:id_usuario},
+        data:{id_alumno:id_alumno},
         dataType:"json",
         success:function(data)
             {
-                //console.log(data);				
-                $('#modalUsuario').modal('show');
-                $('#nombre').val(data.nombre);
-                $('#apellidos').val(data.apellidos);
-                $('#telefono').val(data.telefono);
-                $('#email').val(data.email);
+                console.log(data);	
+                $('#modalAlumno').modal('show');
+
+                $('#lbl_id_alumno').hide();
+                $('#id_alumno').hide();
+
+                $('#id_curso').val(data[1]);
+                $('#run').val(data[2]);
+                $('#nombre').val(data[3]);
+                $('#apellido_paterno').val(data[4]);
+                $('#apellido_materno').val(data[5]);
+                $('#fecha_nacimiento').val(data[6]);
+                $('#email').val(data[7]);
+                $('#direccion').val(data[8]);
+                $('#celular').val(data[9]);
                 $('.modal-title').text("Editar Usuario");
-                $('#id_usuario').val(id_usuario);
-                $('#imagen_subida').html(data.imagen_usuario);
+                $('#id_usuario').val(id_alumno);
                 $('#action').val("Editar");
                 $('#operacion').val("Editar");
             },
@@ -43,7 +93,6 @@ $(document).ready(function() {
             data:{id_alumno:id_alumno},
             success:function(data)
             {
-                alert(data);
                 dataTable.ajax.reload();
             }
         });

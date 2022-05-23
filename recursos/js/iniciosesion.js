@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#btnLogin").click((e) => {
+    $("#btnLogin").on("click",(e) => {
         e.preventDefault();
 
         let inptRut = $('#inptRut').val();
@@ -8,7 +8,7 @@ $(document).ready(function() {
 
         formData.append("rut", inptRut);
         formData.append("password", inptPw);
-
+        
         setTimeout(function () {
             $.ajax({
                 url: "controllers/userController.php?do=login",
@@ -20,7 +20,7 @@ $(document).ready(function() {
                 processData: false
             }).done(function(json) {
                 if (json['ans']) {
-                    let mensaje = json['message'];
+                    let mensaje = json['detalles'];
                     document.cookie ='auth='+true;
                     alert(mensaje);
                     setTimeout(function() {

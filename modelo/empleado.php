@@ -17,9 +17,10 @@ class Empleado{
     }
 
     public function iniciarSesion() {
-        $sql = "SELECT * FROM usuarios WHERE rut='".$this->rut."' AND password='".$this->pw."'";
+        $sql = "SELECT * FROM empleado WHERE RUNEMPLEADO='".$this->rut."' AND PASSWORD='".$this->pw."'";
         $res = $this->db->consult($sql);
         return $res;
     }
+    
 }
 ?>

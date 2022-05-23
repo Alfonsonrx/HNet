@@ -21,7 +21,11 @@ switch($do) {
 
             if($resul) {
                 $_SESSION["empleado"] = array(
-                    "empRut"=>$resul["rut"],
+                    "auth"=>true,
+                    "empId"=>$resul["IDEMPLEADO"],
+                    "empRol"=>$resul["ROLEMPLEADO"],
+                    "nombre"=>$resul['NOMBREEMPLEADO'],
+                    "apellido"=>$resul['PATERNOEMPLEADO'],
                 );
 
                 $r["ans"] = true;

@@ -9,6 +9,7 @@ $(document).ready(function() {
   $(document).on('submit', '#formulario', function(event){
     event.preventDefault();
     var id_alumno = $('#id_alumno').val();
+    console.log(id_alumno);
     var id_curso = $('#id_curso').val();
     var run = $('#run').val();
     var nombre = $('#nombre').val();
@@ -29,7 +30,7 @@ $(document).ready(function() {
         {
           console.log(data);
           $('#formulario')[0].reset();
-          $('#modalUsuario').modal('hide');
+          $('#modalAlumno').modal('hide');
           dataTable.ajax.reload();
         }
       });
@@ -40,8 +41,6 @@ $(document).ready(function() {
   });
 
   $(document).on('click', '#botonCrear', function(){
-    $('#formulario')[0].reset()
-
     $('#modalAlumno').modal('show');
     $('.modal-title').text("Crear Usuario");
     $('#action').val("Crear");
@@ -73,7 +72,7 @@ $(document).ready(function() {
                 $('#direccion').val(data[8]);
                 $('#celular').val(data[9]);
                 $('.modal-title').text("Editar Usuario");
-                $('#id_usuario').val(id_alumno);
+                $('#id_alumno').val(id_alumno);
                 $('#action').val("Editar");
                 $('#operacion').val("Editar");
             },

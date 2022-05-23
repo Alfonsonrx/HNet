@@ -368,7 +368,6 @@ require_once("modelo/alumno.php");
                             </div>
 
                             <div class="modal-footer">
-                                <input type="hidden" name="id_usuario" id="id_usuario">
                                 <input type="hidden" name="operacion" id="operacion">             
                                 <input type="submit" name="action" id="action" class="btn btn-success" value="Crear">
                             </div>

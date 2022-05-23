@@ -74,13 +74,10 @@ class Alumnos {
     }
 
     public function editarAlumno($alumno) {
-        $sql = "UPDATE `alumno` SET `IDCURSO` = `0`, `RUNALUMNO` = '20236632-8',
-        `NOMBREIDALUMNO` = 'Damiann', `PATERNOIDALUMNO` = 'Contreras', `MATERNOIDALUMNO` = 'Orellana', 
-        `FECHANACIMIENTOIDALUMNO` = '2015-11-12', `EMAILALUMNO` = 'd@hnet.cl', `DIRECCIONALUMNO` = '123', 
-        `CELULARALUMNO` = '1323' WHERE `alumno`.`IDALUMNO` = '$alumno->id_alumno'";
+        $sql = "UPDATE `alumno` SET `IDCURSO` = '$alumno->id_curso', `RUNALUMNO` = '$alumno->run',`NOMBREIDALUMNO` = '$alumno->nombre', `PATERNOIDALUMNO` = '$alumno->apellido_paterno', `MATERNOIDALUMNO` = '$alumno->apellido_materno', `FECHANACIMIENTOIDALUMNO` = '$alumno->fecha_nacimiento', `EMAILALUMNO` = '$alumno->email', `DIRECCIONALUMNO` = '$alumno->direccion', `CELULARALUMNO` = '$alumno->celular' WHERE `alumno`.`IDALUMNO` = '$alumno->id_alumno'";
         $res = $this->db->execute($sql);
         if ($res) {
-            echo "borrado";
+            echo "Modificado";
         } else {
             echo "error";
         }
@@ -88,8 +85,6 @@ class Alumnos {
 
     public function obtenerAlumnos() {
         $sql = "SELECT * FROM alumno";
-        
-        // $sql .= 'LIMIT ' . $_POST["start"] . ','. $_POST["length"];
         
         $res = $this->db->getAll($sql);
         

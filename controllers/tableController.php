@@ -20,19 +20,22 @@ switch ($do) {
             $al->crearAlumno($al);
         } elseif ($_POST["operacion"] == "Editar") {
             $al->editarAlumno($al);
-        }        
+        }
         break;
     case 'getTable':
         $al = new Alumnos();
-        $al->obtenerAlumnos();
+        $result = $al->obtenerAlumnos();
+        echo json_encode($result);
         break;
     case 'borrar':
         $al = new Alumnos();
-        $al->borrarAlumno($_POST["id_alumno"]);
+        $result = $al->borrarAlumno($_POST["id_alumno"]);
+        echo $result;
         break;
     case 'obtenerAlumno':
         $al = new Alumnos();
-        $al->obtenerAlumno($_POST["id_alumno"]);
+        $result = $al->obtenerAlumno($_POST["id_alumno"]);
+        echo json_encode($result);
         break;
 }
 ?>

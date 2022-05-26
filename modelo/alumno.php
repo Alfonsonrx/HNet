@@ -27,6 +27,12 @@ class Alumnos {
         $this->$key = $value;
     }
 
+    /**
+     * 
+     * @param mixed $alumno
+     * 
+     * @return [type]
+     */
     public function crearAlumno($alumno) {
         $sql = "INSERT INTO `alumno` 
         (`IDALUMNO`, `IDCURSO`, `RUNALUMNO`, `NOMBREIDALUMNO`, `PATERNOIDALUMNO`, 
@@ -37,7 +43,7 @@ class Alumnos {
         if ($res) {
             echo "Guardado";
         } else {
-            echo "error";
+            echo  "error";
         }
     }
 
@@ -58,18 +64,18 @@ class Alumnos {
             $salida[] = $fila["DIRECCIONALUMNO"];
             $salida[] = $fila["CELULARALUMNO"];
 
-            echo json_encode($salida);
+            $datos = $salida;
         }
-        return $res;
+        return $datos;
     }
 
     public function borrarAlumno($id_alumno) {
         $sql = "DELETE FROM alumno WHERE `alumno`.`IDALUMNO` = '$id_alumno'";
         $res = $this->db->execute($sql);
         if ($res) {
-            echo "borrado";
+            return "borrado";
         } else {
-            echo "error";
+            return "error";
         }
     }
 
@@ -111,7 +117,7 @@ class Alumnos {
         $salida = array(
             "data" => $datos
         );
-        echo json_encode($salida);
+        return $salida;
     }
 }
 ?>

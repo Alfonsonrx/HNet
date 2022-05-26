@@ -41,7 +41,23 @@ $(document).ready(function() {
   });
 
   $(document).on('click', '#botonCrear', function(){
+    
     $('#modalAlumno').modal('show');
+    
+    $('#lbl_id_alumno').show();
+    $('#id_alumno').show();
+
+    $('#id_alumno').val("");
+    $('#id_curso').val("");
+    $('#run').val("");
+    $('#nombre').val("");
+    $('#apellido_paterno').val("");
+    $('#apellido_materno').val("");
+    $('#fecha_nacimiento').val("");
+    $('#email').val("");
+    $('#direccion').val("");
+    $('#celular').val("");
+    
     $('.modal-title').text("Crear Usuario");
     $('#action').val("Crear");
     $('#operacion').val("Crear");
@@ -92,7 +108,8 @@ $(document).ready(function() {
             data:{id_alumno:id_alumno},
             success:function(data)
             {
-                dataTable.ajax.reload();
+              console.log(data);
+              dataTable.ajax.reload();
             }
         });
     }

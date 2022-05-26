@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -52,7 +52,7 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="inptCon" placeholder="Contraseña" required>
+                                                id="inptCon" placeholder="Contraseña" autocomplete="password" required>
                                         </div>
                                         <a id="btnLogin" class="btn btn-primary btn-user btn-block">
                                             Ingresar

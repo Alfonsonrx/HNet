@@ -44,10 +44,6 @@ $(document).ready(function() {
     
     $('#modalAlumno').modal('show');
     
-    $('#lbl_id_alumno').show();
-    $('#id_alumno').show();
-
-    $('#id_alumno').val("");
     $('#id_curso').val("");
     $('#run').val("");
     $('#nombre').val("");
@@ -74,9 +70,6 @@ $(document).ready(function() {
             {
                 console.log(data);	
                 $('#modalAlumno').modal('show');
-
-                $('#lbl_id_alumno').hide();
-                $('#id_alumno').hide();
 
                 $('#id_curso').val(data[1]);
                 $('#run').val(data[2]);

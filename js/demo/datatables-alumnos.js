@@ -8,8 +8,6 @@ $(document).ready(function() {
 
   $(document).on('submit', '#formulario', function(event){
     event.preventDefault();
-    var id_alumno = $('#id_alumno').val();
-    console.log(id_alumno);
     var id_curso = $('#id_curso').val();
     var run = $('#run').val();
     var nombre = $('#nombre').val();
@@ -43,20 +41,8 @@ $(document).ready(function() {
   $(document).on('click', '#botonCrear', function(){
     
     $('#modalAlumno').modal('show');
-    
-    $('#lbl_id_alumno').show();
-    $('#id_alumno').show();
 
-    $('#id_alumno').val("");
-    $('#id_curso').val("");
-    $('#run').val("");
-    $('#nombre').val("");
-    $('#apellido_paterno').val("");
-    $('#apellido_materno').val("");
-    $('#fecha_nacimiento').val("");
-    $('#email').val("");
-    $('#direccion').val("");
-    $('#celular').val("");
+    $('#formulario')[0].reset()
     
     $('.modal-title').text("Crear Usuario");
     $('#action').val("Crear");
@@ -74,9 +60,6 @@ $(document).ready(function() {
             {
                 console.log(data);	
                 $('#modalAlumno').modal('show');
-
-                $('#lbl_id_alumno').hide();
-                $('#id_alumno').hide();
 
                 $('#id_curso').val(data[1]);
                 $('#run').val(data[2]);

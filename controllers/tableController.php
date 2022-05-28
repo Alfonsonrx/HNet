@@ -1,10 +1,12 @@
 <?php
 include("../modelo/alumno.php");
 $do = (isset($_GET['do'])) ? $_GET['do'] : '';
+$id_alumno = (isset($_GET['do'])) ? $_GET['do'] : '';
 
 switch ($do) {
     case 'ingresar':
         $al = new Alumnos();
+        $al->__set("id_alumno", $_POST["id_alumno"]);
         $al->__set("id_curso", $_POST["id_curso"]);
         $al->__set("run", $_POST["run"]);
         $al->__set("nombre", $_POST["nombre"]);
@@ -15,11 +17,10 @@ switch ($do) {
         $al->__set("direccion", $_POST["direccion"]);
         $al->__set("celular", $_POST["celular"]);
         if($_POST["operacion"] == "Crear") {
-            $result = $al->crearAlumno($al);
+            $al->crearAlumno($al);
         } elseif ($_POST["operacion"] == "Editar") {
-            $result = $al->editarAlumno($al);
+            $al->editarAlumno($al);
         }
-        echo $result;
         break;
     case 'getTable':
         $al = new Alumnos();

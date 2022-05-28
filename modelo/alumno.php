@@ -41,9 +41,9 @@ class Alumnos {
         '$alumno->apellido_materno', '$alumno->fecha_nacimiento', '$alumno->email', '$alumno->direccion', '$alumno->celular')";
         $res = $this->db->execute($sql);
         if ($res) {
-            return "Guardado";
+            echo "Guardado";
         } else {
-            return  "error";
+            echo  "error";
         }
     }
 
@@ -83,9 +83,9 @@ class Alumnos {
         $sql = "UPDATE `alumno` SET `IDCURSO` = '$alumno->id_curso', `RUNALUMNO` = '$alumno->run',`NOMBREIDALUMNO` = '$alumno->nombre', `PATERNOIDALUMNO` = '$alumno->apellido_paterno', `MATERNOIDALUMNO` = '$alumno->apellido_materno', `FECHANACIMIENTOIDALUMNO` = '$alumno->fecha_nacimiento', `EMAILALUMNO` = '$alumno->email', `DIRECCIONALUMNO` = '$alumno->direccion', `CELULARALUMNO` = '$alumno->celular' WHERE `alumno`.`IDALUMNO` = '$alumno->id_alumno'";
         $res = $this->db->execute($sql);
         if ($res) {
-            return "Modificado";
+            echo "Modificado";
         } else {
-            return "error";
+            echo "error";
         }
     }
 

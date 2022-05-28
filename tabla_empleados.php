@@ -254,7 +254,7 @@ require_once("modelo/alumno.php");
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Almnos</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Empleados</h1>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -325,6 +325,9 @@ require_once("modelo/alumno.php");
                     <form method="POST" id="formulario" enctype="multipart/form-data">
                         <div class="modal-content">
                             <div class="modal-body">
+                                <label id="lbl_id_alumno" for="id_alumno">Ingrese el id del alumno</label>
+                                <input type="text" name="id_alumno" id="id_alumno" class="form-control">
+                                <br />
 
                                 <label for="id_curso">Ingrese el id del curso</label>
                                 <input type="text" name="id_curso" id="id_curso" class="form-control">

@@ -99,9 +99,16 @@
 
             <!-- Nav Item - Alumnos -->
             <li class="nav-item">
-                <a class="nav-link" href="alumnostabla.php">
+                <a class="nav-link" href="tabla_alumnos.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Alumnos</span></a>
+            </li>
+
+            <!-- Nav Item - Empleado -->
+            <li class="nav-item">
+                <a class="nav-link" href="tabla_empleados.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Empleado</span></a>
             </li>
 
             <!-- Divider -->

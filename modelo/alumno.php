@@ -37,16 +37,21 @@ class Alumnos {
         $sql = "INSERT INTO `alumno` 
         (`IDALUMNO`, `IDCURSO`, `RUNALUMNO`, `NOMBREIDALUMNO`, `PATERNOIDALUMNO`, 
         `MATERNOIDALUMNO`, `FECHANACIMIENTOIDALUMNO`, `EMAILALUMNO`, `DIRECCIONALUMNO`, `CELULARALUMNO`) 
-        VALUES ('$alumno->id_alumno', '$alumno->id_curso', '$alumno->run', '$alumno->nombre', '$alumno->apellido_paterno', 
+        VALUES (NULL, '$alumno->id_curso', '$alumno->run', '$alumno->nombre', '$alumno->apellido_paterno', 
         '$alumno->apellido_materno', '$alumno->fecha_nacimiento', '$alumno->email', '$alumno->direccion', '$alumno->celular')";
         $res = $this->db->execute($sql);
         if ($res) {
-            echo "Guardado";
+            return "Guardado";
         } else {
-            echo  "error";
+            return  "error";
         }
     }
 
+    /**
+     * @param mixed $id_alumno
+     * 
+     * @return [type]
+     */
     public function obtenerAlumno($id_alumno) {
         $sql = "SELECT * FROM `alumno` WHERE IDALUMNO='$id_alumno' LIMIT 1";
         $res = $this->db->execute($sql);
@@ -69,6 +74,11 @@ class Alumnos {
         return $datos;
     }
 
+    /**
+     * @param mixed $id_alumno
+     * 
+     * @return [type]
+     */
     public function borrarAlumno($id_alumno) {
         $sql = "DELETE FROM alumno WHERE `alumno`.`IDALUMNO` = '$id_alumno'";
         $res = $this->db->execute($sql);
@@ -79,16 +89,24 @@ class Alumnos {
         }
     }
 
+    /**
+     * @param mixed $alumno
+     * 
+     * @return [type]
+     */
     public function editarAlumno($alumno) {
         $sql = "UPDATE `alumno` SET `IDCURSO` = '$alumno->id_curso', `RUNALUMNO` = '$alumno->run',`NOMBREIDALUMNO` = '$alumno->nombre', `PATERNOIDALUMNO` = '$alumno->apellido_paterno', `MATERNOIDALUMNO` = '$alumno->apellido_materno', `FECHANACIMIENTOIDALUMNO` = '$alumno->fecha_nacimiento', `EMAILALUMNO` = '$alumno->email', `DIRECCIONALUMNO` = '$alumno->direccion', `CELULARALUMNO` = '$alumno->celular' WHERE `alumno`.`IDALUMNO` = '$alumno->id_alumno'";
         $res = $this->db->execute($sql);
         if ($res) {
-            echo "Modificado";
+            return "Modificado";
         } else {
-            echo "error";
+            return "error";
         }
     }
 
+    /**
+     * @return [type]
+     */
     public function obtenerAlumnos() {
         $sql = "SELECT * FROM alumno";
         
@@ -105,10 +123,7 @@ class Alumnos {
             $sub_array[] = $fila["NOMBREIDALUMNO"];
             $sub_array[] = $fila["PATERNOIDALUMNO"];
             $sub_array[] = $fila["MATERNOIDALUMNO"];
-            $sub_array[] = $fila["FECHANACIMIENTOIDALUMNO"];
-            $sub_array[] = $fila["EMAILALUMNO"];
-            $sub_array[] = $fila["DIRECCIONALUMNO"];
-            $sub_array[] = $fila["CELULARALUMNO"];
+            $sub_array[] = '<button type="button" name="detalles" id="'.$fila["IDALUMNO"].'" class="btn btn-success btn-xs detalles">detalles</button>';
             $sub_array[] = '<button type="button" name="editar" id="'.$fila["IDALUMNO"].'" class="btn btn-warning btn-xs editar">Editar</button>';
             $sub_array[] = '<button type="button" name="borrar" id="'.$fila["IDALUMNO"].'" class="btn btn-danger btn-xs borrar">Borrar</button>';
             $datos[] = $sub_array;

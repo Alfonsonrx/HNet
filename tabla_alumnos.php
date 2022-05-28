@@ -278,10 +278,7 @@ require_once("modelo/alumno.php");
                                             <th>Nombre</th>
                                             <th>Apellido Paterno</th>
                                             <th>Apellido Materno</th>
-                                            <th>Nacimiento</th>
-                                            <th>Email</th>
-                                            <th>Direccion</th>
-                                            <th>Celular</th>
+                                            <th></th>
                                             <th></th>
                                             <th></th>
                                         </tr>
@@ -294,10 +291,7 @@ require_once("modelo/alumno.php");
                                             <th>Nombre</th>
                                             <th>Apellido Paterno</th>
                                             <th>Apellido Materno</th>
-                                            <th>Nacimiento</th>
-                                            <th>Email</th>
-                                            <th>Direccion</th>
-                                            <th>Celular</th>
+                                            <th></th>
                                             <th></th>
                                             <th></th>
                                         </tr>
@@ -325,10 +319,6 @@ require_once("modelo/alumno.php");
                     <form method="POST" id="formulario" enctype="multipart/form-data">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <label id="lbl_id_alumno" for="id_alumno">Ingrese el id del alumno</label>
-                                <input type="text" name="id_alumno" id="id_alumno" class="form-control">
-                                <br />
-
                                 <label for="id_curso">Ingrese el id del curso</label>
                                 <input type="text" name="id_curso" id="id_curso" class="form-control">
                                 <br />

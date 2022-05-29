@@ -5,7 +5,7 @@ $(document).ready(function() {
       url: "controllers/tableController.php?do=getTable",
     },
   });
-
+  
   $(document).on('submit', '#formulario', function(event){
     event.preventDefault();
     var id_curso = $('#id_curso').val();
@@ -101,4 +101,21 @@ $(document).ready(function() {
         return false;	
     }
   });
+
+  /**
+   * Codigo de testeo, en cuarentena
+   * 
+   */
+  $.ajax({
+    url:"controllers/tableController.php?do=getTableTest",
+    method:"POST",
+    success:function(data)
+        {
+            console.log(data);	
+        }
+    })
+  /**
+   * 
+   * 
+   */
 });

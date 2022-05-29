@@ -273,7 +273,7 @@ require_once("modelo/alumno.php");
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>ID Curso</th>
+                                            <th>Curso</th>
                                             <th>Run</th>
                                             <th>Nombre</th>
                                             <th>Apellido Paterno</th>
@@ -286,7 +286,7 @@ require_once("modelo/alumno.php");
                                     <tfoot>
                                         <tr>
                                             <th>ID</th>
-                                            <th>ID Curso</th>
+                                            <th>Curso</th>
                                             <th>Run</th>
                                             <th>Nombre</th>
                                             <th>Apellido Paterno</th>

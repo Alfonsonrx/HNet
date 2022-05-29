@@ -38,8 +38,7 @@ $(document).ready(function() {
     }
   });
 
-  $(document).on('click', '#botonCrear', function(){
-    
+  $(document).on('click', '.boton-crear', function(){
     $('#modalAlumno').modal('show');
 
     $('#formulario')[0].reset()
@@ -70,7 +69,7 @@ $(document).ready(function() {
                 $('#email').val(data[7]);
                 $('#direccion').val(data[8]);
                 $('#celular').val(data[9]);
-                $('.modal-title').text("Editar Usuario");
+                $('.modal-title').text("Editar Alumno "+data[0]);
                 $('#id_alumno').val(id_alumno);
                 $('#action').val("Editar");
                 $('#operacion').val("Editar");
@@ -80,7 +79,7 @@ $(document).ready(function() {
             }
         })
   });
-
+  
   $(document).on('click', '.borrar', function(){
     var id_alumno = $(this).attr("id");
     if(confirm("Esta seguro de borrar este registro: " + id_alumno))
@@ -101,21 +100,4 @@ $(document).ready(function() {
         return false;	
     }
   });
-
-  /**
-   * Codigo de testeo, en cuarentena
-   * 
-   */
-  $.ajax({
-    url:"controllers/tableController.php?do=getTableTest",
-    method:"POST",
-    success:function(data)
-        {
-            console.log(data);	
-        }
-    })
-  /**
-   * 
-   * 
-   */
 });

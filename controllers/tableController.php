@@ -37,31 +37,5 @@ switch ($do) {
         $result = $al->obtenerAlumno($_POST["id_alumno"]);
         echo json_encode($result);
         break;
-    /*
-    * Caso de testeo
-    */
-    case 'getTableTest':
-        $al = new Alumnos();
-        $result = $al->obtenerAlumnosTest();
-        $datos = array();
-        foreach($result as $row){
-            $sub_array = array_slice($row,0,6);
-            array_push($sub_array,
-                '<button type="button" name="detalles" id="'.$row[0].'" class="btn btn-success btn-xs detalles">detalles</button>',
-                '<button type="button" name="editar" id="'.$row[0].'" class="btn btn-warning btn-xs editar">Editar</button>',
-                '<button type="button" name="borrar" id="'.$row[0].'" class="btn btn-danger btn-xs borrar">Borrar</button>',
-            );
-            $datos[] = $sub_array;
-        }
-
-        $salida = array(
-            "data" => $datos
-        );
-
-        echo json_encode($salida);
-        break;
-    /*
-    *
-    */
 }
 ?>

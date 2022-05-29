@@ -3,35 +3,56 @@
 
 
 class Alumnos {
-    private $db;
-    private $id_alumno;
-    private $id_curso;
-    private $run;
-    private $nombre;
-    private $apellido_paterno;
-    private $apellido_materno;
-    private $fecha_nacimiento;
-    private $email;
-    private $direccion;
-    private $celular;
+    private Database $db;
+    private int $id_alumno;
+    private int $id_curso;
+    private string $run;
+    private string $nombre;
+    private string $apellido_paterno;
+    private string $apellido_materno;
+    private string $fecha_nacimiento;
+    private string $email;
+    private string $direccion;
+    private string $celular;
 
+    /**
+     *  Esta funcion instancia el objeto
+     */
     public function __construct(){
         include_once 'Conexion.php';
         $this->db = new Database();
     }
+    /**
+     * Funcion para obtener el valor de las variablles
+     * de la instancia
+     * 
+     * @param string $key
+     * 
+     * @return [keytype]
+     */
     public function __get($key){
         return $this->$key;
     }
 
+    /**
+     * Asigna valores a las variables de la instancia
+     * 
+     * @param string $key
+     * @param mixed $value
+     * 
+     * @return [null]
+     */
     public function __set($key, $value) {
         $this->$key = $value;
     }
 
     /**
+     * Crea un nuevo alumno ejecutando un script sql con los 
+     * datos de la instancia alumnno
      * 
      * @param mixed $alumno
      * 
-     * @return [type]
+     * @return [string]
      */
     public function crearAlumno($alumno) {
         $sql = "INSERT INTO `alumno` 
@@ -48,16 +69,17 @@ class Alumnos {
     }
 
     /**
-     * @param mixed $id_alumno
+     * Obtiene los datos de un alumno especifico
      * 
-     * @return [type]
+     * @param int $id_alumno
+     * 
+     * @return [array]
      */
     public function obtenerAlumno($id_alumno) {
         $sql = "SELECT * FROM `alumno` WHERE IDALUMNO='$id_alumno' LIMIT 1";
         $res = $this->db->execute($sql);
 
         foreach ($res as $fila) {
-            
             $salida[] = $fila["IDALUMNO"];
             $salida[] = $fila["IDCURSO"];
             $salida[] = $fila["RUNALUMNO"];
@@ -68,18 +90,19 @@ class Alumnos {
             $salida[] = $fila["EMAILALUMNO"];
             $salida[] = $fila["DIRECCIONALUMNO"];
             $salida[] = $fila["CELULARALUMNO"];
-
-            $datos = $salida;
+            $salida;
         }
-        return $datos;
+        return $salida;
     }
 
     /**
-     * @param mixed $id_alumno
+     * Borra a un alumno especifico de la lista
      * 
-     * @return [type]
+     * @param int $id_alumno
+     * 
+     * @return [string]
      */
-    public function borrarAlumno($id_alumno) {
+    public function borrarAlumno(int $id_alumno) {
         $sql = "DELETE FROM alumno WHERE `alumno`.`IDALUMNO` = '$id_alumno'";
         $res = $this->db->execute($sql);
         if ($res) {
@@ -90,12 +113,18 @@ class Alumnos {
     }
 
     /**
-     * @param mixed $alumno
+     * Edita a un alumno con los valores ingresados
      * 
-     * @return [type]
+     * @param Alumno $alumno
+     * 
+     * @return [string]
      */
     public function editarAlumno($alumno) {
-        $sql = "UPDATE `alumno` SET `IDCURSO` = '$alumno->id_curso', `RUNALUMNO` = '$alumno->run',`NOMBREIDALUMNO` = '$alumno->nombre', `PATERNOIDALUMNO` = '$alumno->apellido_paterno', `MATERNOIDALUMNO` = '$alumno->apellido_materno', `FECHANACIMIENTOIDALUMNO` = '$alumno->fecha_nacimiento', `EMAILALUMNO` = '$alumno->email', `DIRECCIONALUMNO` = '$alumno->direccion', `CELULARALUMNO` = '$alumno->celular' WHERE `alumno`.`IDALUMNO` = '$alumno->id_alumno'";
+
+        $sql = "UPDATE `alumno` SET `IDCURSO` = '$alumno->id_curso', `RUNALUMNO` = '$alumno->run',`NOMBREIDALUMNO` = '$alumno->nombre',
+        `PATERNOIDALUMNO` = '$alumno->apellido_paterno', `MATERNOIDALUMNO` = '$alumno->apellido_materno', `FECHANACIMIENTOIDALUMNO` = '$alumno->fecha_nacimiento', 
+        `EMAILALUMNO` = '$alumno->email', `DIRECCIONALUMNO` = '$alumno->direccion', `CELULARALUMNO` = '$alumno->celular' WHERE `alumno`.`IDALUMNO` = '$alumno->id_alumno'";
+
         $res = $this->db->execute($sql);
         if ($res) {
             return "Modificado";
@@ -105,7 +134,13 @@ class Alumnos {
     }
 
     /**
-     * @return [type]
+     * Obtiene una lista de alumnos, si $idCurso se deja por defecto
+     * entonces llama a todos los alumnos, si se cambia a un valor entero
+     * llama a los alumnos que pertenezcan a la lista de un curso especifico
+     * 
+     * @param int $idCurso
+     * 
+     * @return [array]
      */
     public function obtenerAlumnos($idCurso = 'c.IDCURSO') {
         $sql = "SELECT a.IDALUMNO, c.NIVEL, c.SECCION, a.RUNALUMNO, a.NOMBREIDALUMNO, a.PATERNOIDALUMNO, a.MATERNOIDALUMNO FROM `alumno` AS a JOIN curso AS c WHERE a.IDCURSO = $idCurso;";
@@ -133,38 +168,6 @@ class Alumnos {
             "data" => $datos
         );
         return $salida;
-    }
-    /**
-     * Funcion de testeo
-     * Se busca hacer un llamado general y asi poder alterar segun lo que se necesite
-     */
-    public function obtenerAlumnosTest($idCurso = 'c.IDCURSO') {
-        $sql = "SELECT a.IDALUMNO, c.NIVEL, c.SECCION, a.RUNALUMNO, 
-        a.NOMBREIDALUMNO, a.PATERNOIDALUMNO, a.MATERNOIDALUMNO, 
-        a.FECHANACIMIENTOIDALUMNO, a.EMAILALUMNO, a.DIRECCIONALUMNO, a.CELULARALUMNO
-        FROM `alumno` AS a JOIN curso AS c WHERE a.IDCURSO = $idCurso;";
-        
-        $res = $this->db->getAll($sql);
-        $datos = array();
-        
-        
-        foreach($res as $fila){
-        
-            $sub_array = array();
-            $sub_array[] = $fila["IDALUMNO"];
-            $sub_array[] = $fila["NIVEL"] . " " . $fila["SECCION"];
-            $sub_array[] = $fila["RUNALUMNO"];
-            $sub_array[] = $fila["NOMBREIDALUMNO"];
-            $sub_array[] = $fila["PATERNOIDALUMNO"];
-            $sub_array[] = $fila["MATERNOIDALUMNO"];
-            $sub_array[] = $fila["FECHANACIMIENTOIDALUMNO"];
-            $sub_array[] = $fila["EMAILALUMNO"];
-            $sub_array[] = $fila["DIRECCIONALUMNO"];
-            $sub_array[] = $fila["CELULARALUMNO"];
-            $datos[] = $sub_array;
-        }
-        
-        return $datos;
     }
 }
 ?>

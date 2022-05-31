@@ -8,6 +8,7 @@ $(document).ready(function() {
   
   $(document).on('submit', '#formulario', function(event){
     event.preventDefault();
+    
     var id_curso = $('#id_curso').val();
     var run = $('#run').val();
     var nombre = $('#nombre').val();

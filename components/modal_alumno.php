@@ -49,6 +49,7 @@
                     </div>
         
                     <div class="modal-footer">
+                        <input type="hidden" name="id_alumno" id="id_alumno">             
                         <input type="hidden" name="operacion" id="operacion">             
                         <input type="submit" name="action" id="action" class="btn btn-success" value="Crear">
                     </div>

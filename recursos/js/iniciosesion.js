@@ -20,9 +20,7 @@ $(document).ready(function() {
                 processData: false
             }).done(function(json) {
                 if (json['ans']) {
-                    let mensaje = json['detalles'];
                     document.cookie ='auth='+true;
-                    alert(mensaje);
                     setTimeout(function() {
                         window.location.replace('http://localhost/HNet/index.php')
                     }, 1000);

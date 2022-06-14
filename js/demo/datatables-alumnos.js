@@ -81,6 +81,38 @@ $(document).ready(function() {
         })
   });
   
+  $(document).on('click', '.editar', function(){		
+    var id_alumno = $(this).attr("id");		
+    $.ajax({
+        url:"controllers/tableController.php?do=obtenerAlumno",
+        method:"POST",
+        data:{id_alumno:id_alumno},
+        dataType:"json",
+        success:function(data)
+            {
+                console.log(data);	
+                $('#modalAlumno').modal('show');
+
+                $('#id_curso').val(data[1]);
+                $('#run').val(data[2]);
+                $('#nombre').val(data[3]);
+                $('#apellido_paterno').val(data[4]);
+                $('#apellido_materno').val(data[5]);
+                $('#fecha_nacimiento').val(data[6]);
+                $('#email').val(data[7]);
+                $('#direccion').val(data[8]);
+                $('#celular').val(data[9]);
+                $('.modal-title').text("Editar Alumno "+data[0]);
+                $('#id_alumno').val(id_alumno);
+                $('#action').val("Editar");
+                $('#operacion').val("Editar");
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+            }
+        })
+  });
+  
   $(document).on('click', '.borrar', function(){
     var id_alumno = $(this).attr("id");
     if(confirm("Esta seguro de borrar este registro: " + id_alumno))

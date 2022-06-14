@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-require_once("modelo/alumno.php");
+session_start();
+
 ?>
 <head>
 

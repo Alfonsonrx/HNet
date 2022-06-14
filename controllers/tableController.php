@@ -1,5 +1,5 @@
 <?php
-include("../modelo/alumno.php");
+include("../model/alumno.php");
 $do = (isset($_GET['do'])) ? $_GET['do'] : '';
 
 switch ($do) {

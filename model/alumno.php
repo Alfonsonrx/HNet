@@ -19,7 +19,7 @@ class Alumnos {
      *  Esta funcion instancia el objeto
      */
     public function __construct(){
-        include_once 'Conexion.php';
+        include_once 'conexion.php';
         $this->db = new Database();
     }
     /**

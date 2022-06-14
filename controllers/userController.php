@@ -11,7 +11,7 @@ switch($do) {
             $r["ans"] = false;
             $r["message"] = "Alguno de los campos esta vacio";
         } else {
-            require('../modelo/empleado.php');
+            require('./modelo/empleado.php');
             $empleado = new Empleado();
             $empleado->__set("rut", $rut);
             $encryptpw = md5($pass);

@@ -4,9 +4,7 @@
 <?php
 session_start();
 
-include './modelo/validador.php';
-
-$nombreCompleto = $_SESSION["empleado"]["nombre"] . " " . $_SESSION["empleado"]["apellido"];
+include 'model/validador.php';
 ?>
 
 <head>
@@ -19,7 +17,7 @@ $nombreCompleto = $_SESSION["empleado"]["nombre"] . " " . $_SESSION["empleado"][
 
     <title>Humberto Intranet - Dashboard</title>
     <?php 
-        include './components/head.php';
+        include 'components/head.php';
     ?>
 </head>
 
@@ -30,7 +28,7 @@ $nombreCompleto = $_SESSION["empleado"]["nombre"] . " " . $_SESSION["empleado"][
 
         <!-- Sidebar -->
         <?php 
-            include './components/sidebar.php';
+            include 'components/sidebar.php';
         ?>
         <!-- End of Sidebar -->
 
@@ -42,7 +40,7 @@ $nombreCompleto = $_SESSION["empleado"]["nombre"] . " " . $_SESSION["empleado"][
 
                 <!-- Topbar -->
                 <?php 
-                    include './components/topbar.php';
+                    include 'components/topbar.php';
                 ?>
                 <!-- End of Topbar -->
 

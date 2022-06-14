@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-require_once("modelo/alumno.php");
+session_start();
+
 ?>
 <head>
 
@@ -14,7 +15,7 @@ require_once("modelo/alumno.php");
     <title>Alumnos - HNet</title>
 
     <?php 
-        include './components/head.php';
+        include 'components/head.php';
     ?>
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -28,7 +29,7 @@ require_once("modelo/alumno.php");
 
         <!-- Sidebar -->
         <?php 
-            include './components/sidebar.php';
+            include 'components/sidebar.php';
         ?>
         <!-- End of Sidebar -->
 
@@ -40,7 +41,7 @@ require_once("modelo/alumno.php");
 
                 <!-- Topbar -->
                 <?php 
-                    include './components/topbar.php';
+                    include 'components/topbar.php';
                 ?>  
                 <!-- End of Topbar -->
 
@@ -101,7 +102,7 @@ require_once("modelo/alumno.php");
             </div>
             <!-- End of Main Content -->
 
-            <?php include './components/modal_alumno.php'; ?>
+            <?php include 'components/modal_alumno.php'; ?>
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">

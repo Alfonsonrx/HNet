@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+<?php
 session_start();
+include '../model/validador.php';
 ?>
+
 <head>
 
     <meta charset="utf-8">
@@ -14,7 +16,7 @@ session_start();
     <title>SB Admin 2 - Charts</title>
 
     <?php 
-        include './components/head.php';
+        include '../components/head.php';
     ?>
 
 </head>
@@ -26,7 +28,7 @@ session_start();
 
         <!-- Sidebar -->
         <?php 
-            include './components/sidebar.php';
+            include '../components/sidebar.php';
         ?>
         <!-- End of Sidebar -->
 
@@ -38,7 +40,7 @@ session_start();
 
                 <!-- Topbar -->
                 <?php 
-                    include './components/topbar.php';
+                    include '../components/topbar.php';
                 ?>
                 <!-- End of Topbar -->
 
@@ -157,22 +159,22 @@ session_start();
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="../vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-    <script src="js/demo/chart-bar-demo.js"></script>
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+    <script src="../js/demo/chart-bar-demo.js"></script>
 
 </body>
 

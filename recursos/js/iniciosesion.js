@@ -11,7 +11,7 @@ $(document).ready(function() {
         
         setTimeout(function () {
             $.ajax({
-                url: "controllers/userController.php?do=login",
+                url: "../controllers/userController.php?do=login",
                 type: "POST",
                 dataType: "json",
                 data: formData,
@@ -20,7 +20,6 @@ $(document).ready(function() {
                 processData: false
             }).done(function(json) {
                 if (json['ans']) {
-                    document.cookie ='auth='+true;
                     setTimeout(function() {
                         window.location.replace('http://localhost/HNet/index.php')
                     }, 1000);

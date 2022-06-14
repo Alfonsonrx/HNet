@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+session_start();
+include 'model/validador.php';
+?>
+
 <head>
 
     <meta charset="utf-8">

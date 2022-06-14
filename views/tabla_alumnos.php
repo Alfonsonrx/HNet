@@ -2,6 +2,7 @@
 <html lang="en">
 <?php
 session_start();
+include '../model/validador.php';
 
 ?>
 <head>
@@ -15,10 +16,10 @@ session_start();
     <title>Alumnos - HNet</title>
 
     <?php 
-        include 'components/head.php';
+        include '../components/head.php';
     ?>
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -29,7 +30,7 @@ session_start();
 
         <!-- Sidebar -->
         <?php 
-            include 'components/sidebar.php';
+            include '../components/sidebar.php';
         ?>
         <!-- End of Sidebar -->
 
@@ -41,7 +42,7 @@ session_start();
 
                 <!-- Topbar -->
                 <?php 
-                    include 'components/topbar.php';
+                    include '../components/topbar.php';
                 ?>  
                 <!-- End of Topbar -->
 
@@ -102,7 +103,7 @@ session_start();
             </div>
             <!-- End of Main Content -->
 
-            <?php include 'components/modal_alumno.php'; ?>
+            <?php include '../components/modal_alumno.php'; ?>
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -146,21 +147,21 @@ session_start();
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-alumnos.js"></script>
+    <script src="../js/demo/datatables-alumnos.js"></script>
     
 </body>
 

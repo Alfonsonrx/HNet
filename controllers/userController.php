@@ -11,7 +11,7 @@ switch($do) {
             $r["ans"] = false;
             $r["message"] = "Alguno de los campos esta vacio";
         } else {
-            require('./modelo/empleado.php');
+            require('../model/empleado.php');
             $empleado = new Empleado();
             $empleado->__set("rut", $rut);
             $encryptpw = md5($pass);
@@ -20,8 +20,9 @@ switch($do) {
             $resul = $empleado->iniciarSesion();
 
             if($resul) {
+                $_SESSION["auth"] = "true";
+                
                 $_SESSION["empleado"] = array(
-                    "auth"=>true,
                     "empId"=>$resul["IDEMPLEADO"],
                     "empRol"=>$resul["ROLEMPLEADO"],
                     "nombre"=>$resul['NOMBREEMPLEADO'],

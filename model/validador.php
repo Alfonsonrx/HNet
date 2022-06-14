@@ -1,5 +1,7 @@
 <?php
-if(!isset($_COOKIE["auth"]) || $_COOKIE["auth"] == "false"){
-    header("Location: http://localhost/HNet/login.php");
+
+if(!isset($_SESSION["auth"]) || $_SESSION["auth"] == "false"){
+    header("Location: http://localhost/HNet/views/login.php");
 }
+
 ?>

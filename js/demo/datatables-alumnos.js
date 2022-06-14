@@ -2,7 +2,7 @@
 $(document).ready(function() {
   var dataTable = $('#dataTable').DataTable( {
     "ajax":{
-      url: "controllers/tableController.php?do=getTable",
+      url: "../controllers/tableController.php?do=getTable",
     },
   });
   
@@ -20,7 +20,7 @@ $(document).ready(function() {
     var celular = $('#celular').val();
     if(id_curso != '' && nombre != '' && email != '') {
       $.ajax({
-        url:"controllers/tableController.php?do=ingresar",
+        url:"../controllers/tableController.php?do=ingresar",
         method:'POST',
         data:new FormData(this),
         contentType:false,
@@ -52,7 +52,7 @@ $(document).ready(function() {
   $(document).on('click', '.editar', function(){		
     var id_alumno = $(this).attr("id");		
     $.ajax({
-        url:"controllers/tableController.php?do=obtenerAlumno",
+        url:"../controllers/tableController.php?do=obtenerAlumno",
         method:"POST",
         data:{id_alumno:id_alumno},
         dataType:"json",
@@ -84,7 +84,7 @@ $(document).ready(function() {
   $(document).on('click', '.editar', function(){		
     var id_alumno = $(this).attr("id");		
     $.ajax({
-        url:"controllers/tableController.php?do=obtenerAlumno",
+        url:"../controllers/tableController.php?do=obtenerAlumno",
         method:"POST",
         data:{id_alumno:id_alumno},
         dataType:"json",
@@ -118,7 +118,7 @@ $(document).ready(function() {
     if(confirm("Esta seguro de borrar este registro: " + id_alumno))
     {
         $.ajax({
-            url:"controllers/tableController.php?do=borrar",
+            url:"../controllers/tableController.php?do=borrar",
             method:"POST",
             data:{id_alumno:id_alumno},
             success:function(data)

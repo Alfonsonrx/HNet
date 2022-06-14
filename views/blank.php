@@ -4,7 +4,7 @@
 <?php
 session_start();
 
-include './modelo/validador.php';
+include '../model/validador.php';
 ?>
 
 <head>

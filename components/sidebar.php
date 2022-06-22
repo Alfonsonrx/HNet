@@ -92,9 +92,9 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.php">
+        <a class="nav-link" href="../views/tabla_cursos.php">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
+            <span>Cursos</span></a>
     </li>
 
     <!-- Nav Item - Alumnos -->

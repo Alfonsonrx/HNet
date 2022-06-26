@@ -49,7 +49,7 @@ $(document).ready(function() {
     $('#operacion').val("Crear");
   });
   
-  $(document).on('click', '.editar', function(){		
+  $(document).on('click', '.detalles', function(){		
     var id_alumno = $(this).attr("id");		
     $.ajax({
         url:"../controllers/AlumnoTableController.php?do=obtenerAlumno",
@@ -63,14 +63,11 @@ $(document).ready(function() {
 
                 $('#id_curso').val(data[1]);
                 $('#run').val(data[2]);
-                $('#nombre').val(data[3]);
-                $('#apellido_paterno').val(data[4]);
-                $('#apellido_materno').val(data[5]);
                 $('#fecha_nacimiento').val(data[6]);
                 $('#email').val(data[7]);
                 $('#direccion').val(data[8]);
                 $('#celular').val(data[9]);
-                $('.modal-title').text("Editar Alumno "+data[0]);
+                $('.modal-title').text(`${data[3]} ${data[4]} ${data[5]}`);
                 $('#id_alumno').val(id_alumno);
                 $('#action').val("Editar");
                 $('#operacion').val("Editar");

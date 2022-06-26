@@ -58,7 +58,8 @@ include '../model/validador.php';
                                 <div class="text-center">
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-primary bg-gradient-primary w-100 boton-crear" data-bs-toggle="modal" data-bs-target="#modalUsuario" id="botonCrear">
-                                    <i class="bi bi-plus-circle-fill"></i> Crear
+                                    Crear
+                                    <i class="fas fa-plus"></i>
                                     </button>
                                 </div>
                             </div>
@@ -68,28 +69,28 @@ include '../model/validador.php';
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Curso</th>
-                                            <th>Run</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido Paterno</th>
-                                            <th>Apellido Materno</th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
+                                            <th >ID</th>
+                                            <th >Curso</th>
+                                            <th >Run</th>
+                                            <th >Nombre</th>
+                                            <th >Apellido Paterno</th>
+                                            <th >Apellido Materno</th>
+                                            <th ></th>
+                                            <th ></th>
+                                            <th ></th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Curso</th>
-                                            <th>Run</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido Paterno</th>
-                                            <th>Apellido Materno</th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
+                                            <th >ID</th>
+                                            <th >Curso</th>
+                                            <th >Run</th>
+                                            <th >Nombre</th>
+                                            <th >Apellido Paterno</th>
+                                            <th >Apellido Materno</th>
+                                            <th ></th>
+                                            <th ></th>
+                                            <th ></th>
                                         </tr>
                                     </tfoot>
                                 </table>

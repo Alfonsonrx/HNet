@@ -59,23 +59,24 @@ $(document).ready(function() {
         success:function(data)
             {
                 console.log(data);	
-                $('#modalAlumno').modal('show');
+                $('#modalDetalleAlumno').modal('show');
 
-                $('#id_curso').val(data[1]);
-                $('#run').val(data[2]);
-                $('#fecha_nacimiento').val(data[6]);
-                $('#email').val(data[7]);
-                $('#direccion').val(data[8]);
-                $('#celular').val(data[9]);
-                $('.modal-title').text(`${data[3]} ${data[4]} ${data[5]}`);
+                $('#id_curso').text(data[1]);
+                $('#run').text(data[2]);
+                $('#fecha_nacimiento').text(data[6]);
+                $('#email').text(data[7]);
+                $('#direccion').text(data[8]);
+                $('#celular').text(data[9]);
+                $('.modalDetalle-title').text(`${data[3]} ${data[4]} ${data[5]}`);
                 $('#id_alumno').val(id_alumno);
-                $('#action').val("Editar");
-                $('#operacion').val("Editar");
             },
-            error: function(jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
+              error: function(jqXHR, textStatus, errorThrown) {
+              console.log(textStatus, errorThrown);
             }
-        })
+          })
+    $.ajax({
+
+    })
   });
   
   $(document).on('click', '.editar', function(){		

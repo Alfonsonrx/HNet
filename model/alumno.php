@@ -90,7 +90,6 @@ class Alumnos {
             $salida[] = $fila["EMAILALUMNO"];
             $salida[] = $fila["DIRECCIONALUMNO"];
             $salida[] = $fila["CELULARALUMNO"];
-            $salida;
         }
         return $salida;
     }

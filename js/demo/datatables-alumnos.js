@@ -52,30 +52,46 @@ $(document).ready(function() {
   $(document).on('click', '.detalles', function(){		
     var id_alumno = $(this).attr("id");		
     $.ajax({
-        url:"../controllers/AlumnoTableController.php?do=obtenerAlumno",
-        method:"POST",
-        data:{id_alumno:id_alumno},
-        dataType:"json",
-        success:function(data)
-            {
-                console.log(data);	
-                $('#modalDetalleAlumno').modal('show');
+      url:"../controllers/AlumnoTableController.php?do=obtenerAlumno",
+      method:"POST",
+      data:{id_alumno:id_alumno},
+      dataType:"json",
+      success:function(data)
+        {
+          // console.log(data);	
+          $('#modalDetalleAlumno').modal('show');
 
-                $('#id_curso').text(data[1]);
-                $('#run').text(data[2]);
-                $('#fecha_nacimiento').text(data[6]);
-                $('#email').text(data[7]);
-                $('#direccion').text(data[8]);
-                $('#celular').text(data[9]);
-                $('.modalDetalle-title').text(`${data[3]} ${data[4]} ${data[5]}`);
-                $('#id_alumno').val(id_alumno);
-            },
-              error: function(jqXHR, textStatus, errorThrown) {
-              console.log(textStatus, errorThrown);
-            }
+          $.ajax({
+            url:"../controllers/CursoTableController.php?do=obtenerCurso",
+              method:"POST",
+              data:{id_curso:data[1]},
+              dataType:"json",
+              success:function(data){
+                $('#id_curso').text(`${data[3]} ${data[4]}`);
+              },
+                error: function(jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+              }
           })
-    $.ajax({
-
+          $('#run').text(data[2]);
+          $('#fecha_nacimiento').text(data[6]);
+          $('#email').text(data[7]);
+          if (data[8] == ''){
+            $('#direccion').text("No se encuentra en registros");
+          } else{
+            $('#direccion').text(data[8]);
+          }
+          if (data[9] == '0'){
+            $('#celular').text("No se encuentra en registros");
+          } else{
+            $('#celular').text(data[9]);
+          }
+          $('.modalDetalle-title').text(`${data[3]} ${data[4]} ${data[5]}`);
+          $('#id_alumno').val(id_alumno);
+        },
+          error: function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus, errorThrown);
+        }
     })
   });
   

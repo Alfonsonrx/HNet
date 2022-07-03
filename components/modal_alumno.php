@@ -10,23 +10,20 @@
         
             <div class="modal-content">
                 <div class="modal-body">
-                    <label name="id_curso" id="id_curso"></label>
-                    <br />
-                    
-                    <label name="run" id="run"></label>
-                    <br />
-                    
-                    <label name="fecha_nacimiento" id="fecha_nacimiento">Ingrese fecha nacimiento</label>
-                    <br />
-    
-                    <label name="email" id="email">Ingrese el email</label>
-                    <br />
-                    
-                    <label name="direccion" id="direccion">Ingrese Direccion</label>
-                    <br />
-    
-                    <label name="celular" id="celular">Ingrese Celular</label>
-                    <br />
+                    <ul class="list-group list-group-flush">
+                        <label name="id_curso" for="id_curso">Curso</label>
+                        <li id="id_curso" class="list-group-item"> </li>
+                        <label name="run" for="run">run</label>
+                        <li id="run" class="list-group-item"> </li>
+                        <label name="fecha_nacimiento" for="fecha_nacimiento">fecha_nacimiento</label>
+                        <li id="fecha_nacimiento" class="list-group-item"> </li>
+                        <label name="email" for="email">email</label>
+                        <li id="email" class="list-group-item"> </li>
+                        <label name="direccion" for="direccion">direccion</label>
+                        <li id="direccion" class="list-group-item"> </li>
+                        <label name="celular" for="celular">celular</label>
+                        <li id="celular" class="list-group-item"> </li>
+                    </ul>
                 </div>
     
                 <div class="modal-footer">

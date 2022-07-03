@@ -69,12 +69,11 @@ include '../model/validador.php';
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Curso</th>
-                                            <th>Run</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido Paterno</th>
-                                            <th>Apellido Materno</th>
-                                            <th></th>
+                                            <th>ID Libro</th>
+                                            <th>Año</th>
+                                            <th>Nivel</th>
+                                            <th>Seccion</th>
+                                            <th>Sala</th>
                                             <th></th>
                                             <th></th>
                                         </tr>
@@ -82,12 +81,11 @@ include '../model/validador.php';
                                     <tfoot>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Curso</th>
-                                            <th>Run</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido Paterno</th>
-                                            <th>Apellido Materno</th>
-                                            <th></th>
+                                            <th>ID Libro</th>
+                                            <th>Año</th>
+                                            <th>Nivel</th>
+                                            <th>Seccion</th>
+                                            <th>Sala</th>
                                             <th></th>
                                             <th></th>
                                         </tr>
@@ -103,7 +101,50 @@ include '../model/validador.php';
             </div>
             <!-- End of Main Content -->
 
-            <?php include '../components/modal_alumno.php'; ?>
+            <!-- Modal Crear/Editar -->
+            <div class="modal fade modal-alumno" id="modalCurso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="crearModalLabel">Crear Usuario</h5>
+                            <button type="button" class="btn-close fas fa-times" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                    
+                        <form method="POST" id="formulario" enctype="multipart/form-data">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    
+                                    <label for="run">Ingrese Id Libro</label>
+                                    <input type="text" name="run" id="run" class="form-control">
+                                    <br />
+
+                                    <label for="run">Ingrese Año</label>
+                                    <input type="date" name="run" id="run" class="form-control">
+                                    <br />
+                                    
+                                    <label for="nombre">Ingrese el nombre</label>
+                                    <input type="text" name="nombre" id="nombre" class="form-control">
+                                    <br />
+                                    
+                                    <label for="apellido_paterno">Ingrese Apellido Paterno</label>
+                                    <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control">
+                                    <br />
+                                    
+                                    <label for="apellido_materno">Ingrese Apellido Materno</label>
+                                    <input type="text" name="apellido_materno" id="apellido_materno" class="form-control">
+                                    <br />
+                                </div>
+                    
+                                <div class="modal-footer">
+                                    <input type="hidden" name="id_curso" id="id_curso">             
+                                    <input type="hidden" name="operacion" id="operacion">             
+                                    <input type="submit" name="action" id="action" class="btn btn-success" value="Crear">
+                                </div>
+                            </div>
+                        </form>
+                    </div>  
+                </div>
+            </div>
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -161,7 +202,7 @@ include '../model/validador.php';
     <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../js/demo/datatables-alumnos.js"></script>
+    <script src="../js/demo/datatables-cursos.js"></script>
     
 </body>
 

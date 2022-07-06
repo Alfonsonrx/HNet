@@ -4,12 +4,12 @@
 
 class Cursos {
     private Database $db;
-    private int $id_curso;
-    private int $id_libro;
-    private int $anio;
-    private int $nivel;
-    private int $seccion;
-    private int $n_sala;
+    private string $id_curso;
+    private $id_libro;
+    private string $anio;
+    private string $nivel;
+    private string $seccion;
+    private string $n_sala;
 
     
     public function __construct(){
@@ -53,7 +53,7 @@ class Cursos {
         if ($res) {
             return "Guardado";
         } else {
-            return  "error";
+            return $sql;
         }
     }
 
@@ -132,6 +132,7 @@ class Cursos {
             $sub_array[] = $fila["NIVEL"];
             $sub_array[] = $fila["SECCION"];
             $sub_array[] = $fila["SALA"];
+            $sub_array[] = '<button type="button" name="detalles" id="'.$fila["IDCURSO"].'" href="curso_vista.php?id=$fila["IDCURSO"]" class="btn btn-success btn-sm detalles"><i class="fas fa-link"></i> Detalles</button> ';
             $sub_array[] = '<button type="button" name="editar" id="'.$fila["IDCURSO"].'" class="btn btn-warning btn-sm editar"><i class="fas fa-user-edit"></i> Editar</button> ';
             $sub_array[] = '<button type="button" name="borrar" id="'.$fila["IDCURSO"].'" class="btn btn-danger btn-sm borrar"><i class="fas fa-minus-circle"></i> Borrar</button> ';
             $datos[] = $sub_array;

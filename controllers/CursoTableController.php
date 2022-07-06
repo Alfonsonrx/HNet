@@ -5,16 +5,14 @@ $do = (isset($_GET['do'])) ? $_GET['do'] : '';
 switch ($do) {
     case 'ingresar':
         $curso = new Cursos();
-        $curso->__set("id_alumno", $_POST["id_alumno"]);
         $curso->__set("id_curso", $_POST["id_curso"]);
-        $curso->__set("run", $_POST["run"]);
-        $curso->__set("nombre", $_POST["nombre"]);
-        $curso->__set("apellido_paterno", $_POST["apellido_paterno"]);
-        $curso->__set("apellido_materno", $_POST["apellido_materno"]);
-        $curso->__set("fecha_nacimiento", $_POST["fecha_nacimiento"]);
-        $curso->__set("email", $_POST["email"]);
-        $curso->__set("direccion", $_POST["direccion"]);
-        $curso->__set("celular", $_POST["celular"]);
+        $curso->__set("id_libro", $_POST["id_libro"]);
+        $date = new DateTime($_POST["anio"]);
+        $date = $date->format('Y-m-d');
+        $curso->__set("anio", $date);
+        $curso->__set("nivel", $_POST["nivel"]);
+        $curso->__set("seccion", $_POST["seccion"]);
+        $curso->__set("n_sala", $_POST["sala"]);
         if($_POST["operacion"] == "Crear") {
             $result = $curso->crearCurso($curso);
         } elseif ($_POST["operacion"] == "Editar") {

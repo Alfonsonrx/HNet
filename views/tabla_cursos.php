@@ -58,7 +58,8 @@ include '../model/validador.php';
                                 <div class="text-center">
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-primary bg-gradient-primary w-100 boton-crear" data-bs-toggle="modal" data-bs-target="#modalUsuario" id="botonCrear">
-                                    <i class="bi bi-plus-circle-fill"></i> Crear
+                                    Crear
+                                    <i class="fas fa-plus"></i>
                                     </button>
                                 </div>
                             </div>
@@ -76,6 +77,7 @@ include '../model/validador.php';
                                             <th>Sala</th>
                                             <th></th>
                                             <th></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -86,6 +88,7 @@ include '../model/validador.php';
                                             <th>Nivel</th>
                                             <th>Seccion</th>
                                             <th>Sala</th>
+                                            <th></th>
                                             <th></th>
                                             <th></th>
                                         </tr>
@@ -115,28 +118,28 @@ include '../model/validador.php';
                                 <div class="modal-body">
                                     
                                     <label for="run">Ingrese Id Libro</label>
-                                    <input type="text" name="run" id="run" class="form-control">
+                                    <input type="text" name="id_libro" id="id_libro" class="form-control">
                                     <br />
 
-                                    <label for="run">Ingrese Año</label>
-                                    <input type="date" name="run" id="run" class="form-control">
+                                    <label for="anio">Ingrese Año</label>
+                                    <input type="date" name="anio" id="anio" class="form-control">
                                     <br />
                                     
-                                    <label for="nombre">Ingrese el nombre</label>
-                                    <input type="text" name="nombre" id="nombre" class="form-control">
+                                    <label for="nivel">Ingrese Nivel</label>
+                                    <input type="text" name="nivel" id="nivel" class="form-control">
                                     <br />
                                     
-                                    <label for="apellido_paterno">Ingrese Apellido Paterno</label>
-                                    <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control">
+                                    <label for="seccion">Ingrese Seccion</label>
+                                    <input type="text" name="seccion" id="seccion" class="form-control">
                                     <br />
                                     
-                                    <label for="apellido_materno">Ingrese Apellido Materno</label>
-                                    <input type="text" name="apellido_materno" id="apellido_materno" class="form-control">
+                                    <label for="sala">Ingrese Sala</label>
+                                    <input type="text" name="sala" id="sala" class="form-control">
                                     <br />
                                 </div>
                     
                                 <div class="modal-footer">
-                                    <input type="hidden" name="id_curso" id="id_curso">             
+                                    <input type="hidden" name="id_curso" id="id_curso" value="0">             
                                     <input type="hidden" name="operacion" id="operacion">             
                                     <input type="submit" name="action" id="action" class="btn btn-success" value="Crear">
                                 </div>

@@ -6,6 +6,14 @@ $(document).ready(function() {
         },
     });
 
+    /**
+     * Esta funcion comprueba si el campo esta vacio
+     * y le agrega una clase warning que permanece por 3 segundos
+     * 
+     * @param string campo
+     * 
+     * @return [None]
+     */
     function campoVacio(campo) {
         if ($(campo).val() == '') {
             $(campo).addClass('border-danger');
@@ -58,7 +66,7 @@ $(document).ready(function() {
         $('#operacion').val("Crear");
     });
 
-    $(document).on('click', '.editar', function(){		
+    $(document).on('click', '.editar_curso', function(){		
         var id_curso = $(this).attr("id");		
         $.ajax({
             url:"../controllers/CursoTableController.php?do=obtenerCurso",
@@ -68,7 +76,6 @@ $(document).ready(function() {
             success:function(data) {
                 console.log(data);	
                 $('#modalCurso').modal('show');
-
                 $('#id_libro').val(data[1]);
                 $('#anio').val(data[2]);
                 $('#nivel').val(data[3]);
@@ -85,7 +92,7 @@ $(document).ready(function() {
         })
     });
 
-    $(document).on('click', '.borrar', function(){
+    $(document).on('click', '.borrar_curso', function(){
         var id_curso = $(this).attr("id");
         if(confirm("Esta seguro de borrar este registro: " + id_curso)) {
             $.ajax({

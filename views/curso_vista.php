@@ -54,8 +54,10 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800" id="page-header">Curso</h1>
+                    <h1 class="h3 mb-2 text-gray-800" id="page-header">Curso </h1>
                     <div class="card-body">
+                        <input type="hidden" id="lbl-idcurso">             
+
                         <span id="lbl-idlibro" class="text-monospace">Id Libro: </span>
                         <br>
                         <span id="lbl-anio" class="text-monospace">Año: </span>
@@ -64,22 +66,24 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                         <br>
                         <span id="lbl-sala" class="text-monospace">Sala: </span>
                     </div>
+
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#alumnos" role="tab" aria-controls="alumnos" aria-selected="true">Alumnos</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Asginaturas</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Horarios</a>
                         </li>
                     </ul>
+                    
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="alumnos" role="tabpanel" aria-labelledby="alumnos-tab">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <table class="table table-bordered" id="alumnos_dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
                                                 <th >ID</th>
@@ -111,8 +115,42 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-                        
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <table class="table table-bordered" id="asignatura_dataTable" width="100%" >
+                                                <thead>
+                                                    <tr>
+                                                        <th >ID</th>
+                                                        <th >Nombre</th>
+                                                        <th ></th>
+                                                        <th ></th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th >ID</th>
+                                                        <th >Nombre</th>
+                                                        <th ></th>
+                                                        <th ></th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-default">Nombre Asignatura: </span>
+                                            </div>
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                        <button type="button" class="btn btn-primary btn-lg btn-block">Agregar asignatura</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
                     </div>
                 </div>
@@ -120,6 +158,8 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
 
             </div>
             <!-- End of Main Content -->
+
+            <?php include '../components/modal_alumno.php'; ?>
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -178,5 +218,6 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
 
     <!-- Page level custom scripts -->
     <script src="../recursos/js/curso_detail.js"></script>
-    
+    <script src="../js/demo/datatables-alumnos.js"></script>
+
 </body>

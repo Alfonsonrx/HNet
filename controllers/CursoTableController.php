@@ -1,6 +1,7 @@
 <?php
 include("../model/curso.php");
 $do = (isset($_GET['do'])) ? $_GET['do'] : '';
+$id_curso = (isset($_GET['id'])) ? $_GET['id'] : '';
 
 switch ($do) {
     case 'ingresar':
@@ -23,6 +24,27 @@ switch ($do) {
     case 'getTable':
         $curso = new Cursos();
         $result = $curso->obtenerCursos();
+        echo json_encode($result);
+        break;
+    case 'getAsigTable':
+        $curso = new Cursos();
+
+        $sql = "SELECT a.IDASIGNATURA, a.NOMBREASIGNATURA FROM `asignatura` AS a JOIN cursa AS c WHERE a.IDASIGNATURA = c.IDASIGNATURA AND c.IDCURSO = $id_curso;";
+        $res = $curso->db->execute($sql);
+
+        foreach ($res as $fila) {
+            $salida = array();
+
+            $salida[] = $fila["IDASIGNATURA"];
+            $salida[] = $fila["NOMBREASIGNATURA"];
+            $salida[] = '<button type="button" name="editar" id="'.$fila["IDASIGNATURA"].'" class="btn btn-warning btn-sm editar"><i class="fas fa-user-edit"></i> Editar</button> ';
+            $salida[] = '<button type="button" name="borrar" id="'.$fila["IDASIGNATURA"].'" class="btn btn-danger btn-sm borrar"><i class="fas fa-minus-circle"></i> Borrar</button> ';
+            $datos[] = $salida;
+        }
+        $salida = array(
+            "data" => $datos
+        );
+        $result = $salida;
         echo json_encode($result);
         break;
     

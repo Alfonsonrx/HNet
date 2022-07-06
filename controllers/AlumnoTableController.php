@@ -1,6 +1,7 @@
 <?php
 include("../model/alumno.php");
 $do = (isset($_GET['do'])) ? $_GET['do'] : '';
+$id_curso = (isset($_GET['id'])) ? $_GET['id'] : '';
 
 switch ($do) {
     case 'ingresar':
@@ -24,7 +25,11 @@ switch ($do) {
         break;
     case 'getTable':
         $al = new Alumnos();
-        $result = $al->obtenerAlumnos();
+        if ($id_curso != '') {
+            $result = $al->obtenerAlumnos($id_curso);
+        } else {
+            $result = $al->obtenerAlumnos();
+        }
         echo json_encode($result);
         break;
     

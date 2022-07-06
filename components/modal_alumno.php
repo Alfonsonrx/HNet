@@ -12,22 +12,22 @@
                 <div class="modal-body">
                     <ul class="list-group list-group-flush">
                         <label name="id_curso" for="id_curso">Curso</label>
-                        <li id="id_curso" class="list-group-item"> </li>
+                        <li id="det_id_curso" class="list-group-item"> </li>
                         <label name="run" for="run">run</label>
-                        <li id="run" class="list-group-item"> </li>
+                        <li id="det_run" class="list-group-item"> </li>
                         <label name="fecha_nacimiento" for="fecha_nacimiento">fecha_nacimiento</label>
-                        <li id="fecha_nacimiento" class="list-group-item"> </li>
+                        <li id="det_fecha_nacimiento" class="list-group-item"> </li>
                         <label name="email" for="email">email</label>
-                        <li id="email" class="list-group-item"> </li>
+                        <li id="det_email" class="list-group-item"> </li>
                         <label name="direccion" for="direccion">direccion</label>
-                        <li id="direccion" class="list-group-item"> </li>
+                        <li id="det_direccion" class="list-group-item"> </li>
                         <label name="celular" for="celular">celular</label>
-                        <li id="celular" class="list-group-item"> </li>
+                        <li id="det_celular" class="list-group-item"> </li>
                     </ul>
                 </div>
     
                 <div class="modal-footer">
-                    <input type="hidden" name="id_alumno" id="id_alumno">             
+                    <input type="hidden" name="id_alumno" id="det_id_alumno">             
                 </div>
             </div>
         </div>  

@@ -21,6 +21,6 @@ class Empleado{
         $res = $this->db->consult($sql);
         return $res;
     }
-    
+
 }
 ?>

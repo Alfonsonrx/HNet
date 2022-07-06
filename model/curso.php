@@ -132,9 +132,9 @@ class Cursos {
             $sub_array[] = $fila["NIVEL"];
             $sub_array[] = $fila["SECCION"];
             $sub_array[] = $fila["SALA"];
-            $sub_array[] = '<button type="button" name="detalles" id="'.$fila["IDCURSO"].'" href="curso_vista.php?id=$fila["IDCURSO"]" class="btn btn-success btn-sm detalles"><i class="fas fa-link"></i> Detalles</button> ';
-            $sub_array[] = '<button type="button" name="editar" id="'.$fila["IDCURSO"].'" class="btn btn-warning btn-sm editar"><i class="fas fa-user-edit"></i> Editar</button> ';
-            $sub_array[] = '<button type="button" name="borrar" id="'.$fila["IDCURSO"].'" class="btn btn-danger btn-sm borrar"><i class="fas fa-minus-circle"></i> Borrar</button> ';
+            $sub_array[] = '<a href="curso_vista.php?id='.$fila["IDCURSO"].'" type="button" name="detalles" id="'.$fila["IDCURSO"].'" class="btn btn-success btn-sm detalles"><i class="fas fa-link"></i> Detalles</a> ';
+            $sub_array[] = '<button type="button" name="editar" id="'.$fila["IDCURSO"].'" class="btn btn-warning btn-sm editar_curso"><i class="fas fa-user-edit"></i> Editar</button> ';
+            $sub_array[] = '<button type="button" name="borrar" id="'.$fila["IDCURSO"].'" class="btn btn-danger btn-sm borrar_curso"><i class="fas fa-minus-circle"></i> Borrar</button> ';
             $datos[] = $sub_array;
         }
         

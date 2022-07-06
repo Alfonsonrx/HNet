@@ -67,27 +67,28 @@ $(document).ready(function() {
               data:{id_curso:data[1]},
               dataType:"json",
               success:function(data){
-                $('#id_curso').text(`${data[3]} ${data[4]}`);
+                $('#det_id_curso').text(`${data[3]} ${data[4]}`);
               },
                 error: function(jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);
               }
           })
-          $('#run').text(data[2]);
-          $('#fecha_nacimiento').text(data[6]);
-          $('#email').text(data[7]);
+          
+          $('#det_run').text(data[2]);
+          $('#det_fecha_nacimiento').text(data[6]);
+          $('#det_email').text(data[7]);
           if (data[8] == ''){
-            $('#direccion').text("No se encuentra en registros");
+            $('#det_direccion').text("No se encuentra en registros");
           } else{
-            $('#direccion').text(data[8]);
+            $('#det_direccion').text(data[8]);
           }
           if (data[9] == '0'){
-            $('#celular').text("No se encuentra en registros");
+            $('#det_celular').text("No se encuentra en registros");
           } else{
-            $('#celular').text(data[9]);
+            $('#det_celular').text(data[9]);
           }
           $('.modalDetalle-title').text(`${data[3]} ${data[4]} ${data[5]}`);
-          $('#id_alumno').val(id_alumno);
+          $('#det_id_alumno').val(id_alumno);
         },
           error: function(jqXHR, textStatus, errorThrown) {
           console.log(textStatus, errorThrown);
@@ -95,7 +96,7 @@ $(document).ready(function() {
     })
   });
   
-  $(document).on('click', '.editar', function(){		
+  $(document).on('click', '.editar_alumno', function(){		
     var id_alumno = $(this).attr("id");		
     $.ajax({
         url:"../controllers/AlumnoTableController.php?do=obtenerAlumno",
@@ -103,7 +104,7 @@ $(document).ready(function() {
         data:{id_alumno:id_alumno},
         dataType:"json",
         success:function(data)
-            {
+            { 
                 console.log(data);	
                 $('#modalAlumno').modal('show');
 
@@ -127,7 +128,7 @@ $(document).ready(function() {
         })
   });
   
-  $(document).on('click', '.borrar', function(){
+  $(document).on('click', '.borrar_alumno', function(){
     var id_alumno = $(this).attr("id");
     if(confirm("Esta seguro de borrar este registro: " + id_alumno))
     {

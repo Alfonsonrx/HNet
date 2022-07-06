@@ -2,19 +2,11 @@
 
 
 
-class Alumnos {
+class LibroCursos {
     private Database $db;
-    private int $id_alumno;
-    private int $id_curso;
-    private string $run;
-    private string $nombre;
-    private string $apellido_paterno;
-    private string $apellido_materno;
-    private string $fecha_nacimiento;
-    private string $email;
-    private string $direccion;
-    private string $celular;
-
+    private string $id_libro;
+    private int $id_empleado;
+    private string $observaciones;
     /**
      *  Esta funcion instancia el objeto
      */
@@ -47,19 +39,13 @@ class Alumnos {
     }
 
     /**
-     * Crea un nuevo alumno ejecutando un script sql con los 
-     * datos de la instancia alumnno
-     * 
-     * @param mixed $alumno
+     * @param mixed $libroCurso
      * 
      * @return [string]
      */
-    public function crearAlumno($alumno) {
-        $sql = "INSERT INTO `alumno` 
-        (`IDALUMNO`, `IDCURSO`, `RUNALUMNO`, `NOMBREIDALUMNO`, `PATERNOIDALUMNO`, 
-        `MATERNOIDALUMNO`, `FECHANACIMIENTOIDALUMNO`, `EMAILALUMNO`, `DIRECCIONALUMNO`, `CELULARALUMNO`) 
-        VALUES (NULL, '$alumno->id_curso', '$alumno->run', '$alumno->nombre', '$alumno->apellido_paterno', 
-        '$alumno->apellido_materno', '$alumno->fecha_nacimiento', '$alumno->email', '$alumno->direccion', '$alumno->celular')";
+    public function crearLibro($libroCurso) {
+        $sql = "INSERT INTO `libroclase` (`IDLIBROCLASES`, `IDEMPLEADO`, `OBSERVACIONEVALUACION`) 
+        VALUES (NULL, '$libroCurso->id_libro', '$libroCurso->observaciones')";
         $res = $this->db->execute($sql);
         if ($res) {
             return "Guardado";
@@ -69,40 +55,33 @@ class Alumnos {
     }
 
     /**
-     * Obtiene los datos de un alumno especifico
-     * 
-     * @param int $id_alumno
+     * @param string $id_libro
+     * @param string $id_empleado
      * 
      * @return [array]
      */
-    public function obtenerAlumno($id_alumno) {
-        $sql = "SELECT * FROM `alumno` WHERE IDALUMNO='$id_alumno' LIMIT 1";
+    public function obtenerLibroEmpleado($id_libro = "l.IDLIBROCLASES", $id_empleado = "e.IDEMPLEADO") {
+        $sql = "SELECT l.IDLIBROCLASES, e.NOMBREEMPLEADO, e.PATERNOEMPLEADO, e.MATERNOEMPLEADO, l.OBSERVACIONEVALUACION 
+        FROM `libroclase` AS l JOIN empleado AS e WHERE l.IDLIBROCLASES = $id_libro AND l.IDEMPLEADO = $id_empleado;";
         $res = $this->db->execute($sql);
 
         foreach ($res as $fila) {
-            $salida[] = $fila["IDALUMNO"];
-            $salida[] = $fila["IDCURSO"];
-            $salida[] = $fila["RUNALUMNO"];
-            $salida[] = $fila["NOMBREIDALUMNO"];
-            $salida[] = $fila["PATERNOIDALUMNO"];
-            $salida[] = $fila["MATERNOIDALUMNO"];
-            $salida[] = $fila["FECHANACIMIENTOIDALUMNO"];
-            $salida[] = $fila["EMAILALUMNO"];
-            $salida[] = $fila["DIRECCIONALUMNO"];
-            $salida[] = $fila["CELULARALUMNO"];
+            $salida[] = $fila["IDLIBROCLASES"];
+            $salida[] = $fila["NOMBREEMPLEADO"] . " " . $fila["PATERNOEMPLEADO"] . " " . $fila["MATERNOEMPLEADO"];
+            $salida[] = $fila["OBSERVACIONEVALUACION"];
         }
         return $salida;
     }
 
     /**
-     * Borra a un alumno especifico de la lista
+     * Borra a un libro especifico de la lista
      * 
-     * @param int $id_alumno
+     * @param int $id_libro
      * 
      * @return [string]
      */
-    public function borrarAlumno(int $id_alumno) {
-        $sql = "DELETE FROM alumno WHERE `alumno`.`IDALUMNO` = '$id_alumno'";
+    public function borrarLibro(int $id_libro) {
+        $sql = "DELETE FROM libroclase WHERE `libroclase`.`IDLIBROCLASES` = '$id_libro'";
         $res = $this->db->execute($sql);
         if ($res) {
             return "borrado";
@@ -142,7 +121,7 @@ class Alumnos {
      * @return [array]
      */
     public function obtenerAlumnos($idCurso = 'c.IDCURSO') {
-        $sql = "SELECT a.IDALUMNO, c.NIVEL, c.SECCION, a.RUNALUMNO, a.NOMBREIDALUMNO, a.PATERNOIDALUMNO, a.MATERNOIDALUMNO FROM `alumno` AS a JOIN curso AS c WHERE a.IDCURSO = c.IDCURSO AND c.IDCURSO = $idCurso;";
+        $sql = "SELECT a.IDALUMNO, c.NIVEL, c.SECCION, a.RUNALUMNO, a.NOMBREIDALUMNO, a.PATERNOIDALUMNO, a.MATERNOIDALUMNO FROM `alumno` AS a JOIN curso AS c WHERE a.IDCURSO = $idCurso;";
         
         $res = $this->db->getAll($sql);
         $datos = array();
@@ -158,8 +137,8 @@ class Alumnos {
             $sub_array[] = $fila["PATERNOIDALUMNO"];
             $sub_array[] = $fila["MATERNOIDALUMNO"];
             $sub_array[] = '<button type="button" name="detalles" id="'.$fila["IDALUMNO"].'" class="btn btn-success btn-sm detalles"><i class="fas fa-info"></i> Detalles</button>';
-            $sub_array[] = '<button type="button" name="editar" id="'.$fila["IDALUMNO"].'" class="btn btn-warning btn-sm editar_alumno"><i class="fas fa-user-edit"></i> Editar</button> ';
-            $sub_array[] = '<button type="button" name="borrar" id="'.$fila["IDALUMNO"].'" class="btn btn-danger btn-sm borrar_alumno"><i class="fas fa-minus-circle"></i> Borrar</button> ';
+            $sub_array[] = '<button type="button" name="editar" id="'.$fila["IDALUMNO"].'" class="btn btn-warning btn-sm editar"><i class="fas fa-user-edit"></i> Editar</button> ';
+            $sub_array[] = '<button type="button" name="borrar" id="'.$fila["IDALUMNO"].'" class="btn btn-danger btn-sm borrar"><i class="fas fa-minus-circle"></i> Borrar</button> ';
             $datos[] = $sub_array;
         }
         

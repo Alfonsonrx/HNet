@@ -18,10 +18,11 @@ switch ($do) {
         $al->__set("celular", $_POST["celular"]);
         if($_POST["operacion"] == "Crear") {
             $result = $al->crearAlumno($al);
+            echo $result;
         } elseif ($_POST["operacion"] == "Editar") {
             $result = $al->editarAlumno($al);
+            echo $result;
         }
-        echo $result;
         break;
     case 'getTable':
         $al = new Alumnos();

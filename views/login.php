@@ -19,9 +19,9 @@
 
     <!-- Custom styles for this template-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="../recursos/js/iniciosesion.js"></script>
+    <script src="../js/iniciosesion.js"></script>
 
-    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../recursos/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -47,8 +47,8 @@
                                     <form class="user">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
-                                                id="inptRut" aria-describedby="rutHelp"
-                                                placeholder="Rut" required>
+                                                id="inptRun" aria-describedby="RutHelp"
+                                                placeholder="Run" required>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"

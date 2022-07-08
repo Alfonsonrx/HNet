@@ -16,9 +16,9 @@ switch ($do) {
         $horario->__set("hora_inicio", $_POST["inicio_asignatura"]);
         $horario->__set("hora_final", $_POST["final_asignatura"]);
         $horario->__set("asistencia_profesor", $_POST["asistencia_profesor"]);
-        if($_POST["operacion"] == "Crear") {
+        if($_POST["operacion_horario"] == "Crear") {
             $result = $horario->crearHorario();
-        } elseif ($_POST["operacion"] == "Editar") {
+        } elseif ($_POST["operacion_horario"] == "Editar") {
             $result = $horario->editarHorario();
         }
         echo $result;

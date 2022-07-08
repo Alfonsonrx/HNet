@@ -55,11 +55,10 @@
   // Smooth scrolling using jQuery easing
   $('#logoutAccount').on('click', function(e) {
     $.ajax({
-      url:"../controllers/UserController.php?do=logout",
+      url:"controllers/UserController.php?do=logout",
       method:"POST",
       success:function(data) {
-          // console.log(data);
-          // Horario_dataTable.ajax.reload();
+        
       }
     });
   });

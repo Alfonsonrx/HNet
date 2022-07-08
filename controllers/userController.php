@@ -33,9 +33,21 @@ switch($do) {
                 $r["message"] = "Iniciando sesion";
             } else {
                 $r["ans"] = false;
-                $r["message"] = "Usuario o contraseña incorrecto";
+                $r["message"] = "Usuario o contraseña incorrecto ".$run." " . md5($pass);
             }
         } 
+        echo json_encode($r);
+        break;
+    
+    case 'logout':
+        
+        if(isset($_SESSION["auth"]) || $_SESSION["auth"] == "true"){
+            $_SESSION["auth"] = "false";
+            session_destroy();
+        }
+        
+        $r["ans"] = true;
+        $r["message"] = "Iniciando sesion";
         echo json_encode($r);
         break;
 

@@ -114,15 +114,13 @@ class Alumnos {
     /**
      * Edita a un alumno con los valores ingresados
      * 
-     * @param Alumno $alumno
-     * 
      * @return [string]
      */
-    public function editarAlumno($alumno) {
+    public function editarAlumno() {
 
-        $sql = "UPDATE `alumno` SET `IDCURSO` = '$alumno->id_curso', `RUNALUMNO` = '$alumno->run',`NOMBREIDALUMNO` = '$alumno->nombre',
-        `PATERNOIDALUMNO` = '$alumno->apellido_paterno', `MATERNOIDALUMNO` = '$alumno->apellido_materno', `FECHANACIMIENTOIDALUMNO` = '$alumno->fecha_nacimiento', 
-        `EMAILALUMNO` = '$alumno->email', `DIRECCIONALUMNO` = '$alumno->direccion', `CELULARALUMNO` = '$alumno->celular' WHERE `alumno`.`IDALUMNO` = '$alumno->id_alumno'";
+        $sql = "UPDATE `alumno` SET `IDCURSO` = '$this->id_curso', `RUNALUMNO` = '$this->run',`NOMBREIDALUMNO` = '$this->nombre',
+        `PATERNOIDALUMNO` = '$this->apellido_paterno', `MATERNOIDALUMNO` = '$this->apellido_materno', `FECHANACIMIENTOIDALUMNO` = '$this->fecha_nacimiento', 
+        `EMAILALUMNO` = '$this->email', `DIRECCIONALUMNO` = '$this->direccion', `CELULARALUMNO` = '$this->celular' WHERE `alumno`.`IDALUMNO` = '$this->id_alumno'";
 
         $res = $this->db->execute($sql);
         if ($res) {

@@ -21,7 +21,7 @@ $(document).ready(function() {
             }).done(function(json) {
                 if (json['ans']) {
                     setTimeout(function() {
-                        window.location.replace('http://localhost/HNet/index.php')
+                        window.location.replace('http://localhost/HNet/views/tabla_cursos.php')
                     }, 1000);
                 } else {
                     let mensaje = json['message'];

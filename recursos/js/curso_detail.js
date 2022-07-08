@@ -1,5 +1,26 @@
+/**
+     * Esta funcion determina si un campo input esta vacio y le agrega 
+     * una clase wargning para que el usuario sepa
+     * 
+     * @param string campo
+     * 
+     * @return [none]
+     */
+function campoVacio(campo) {
+    if ($(campo).val() == '') {
+        $(campo).addClass('border-danger');
+        if ($(texto_alarma + ' ' + campo).length) {
+            $(texto_alarma).addClass(campo).insertAfter(campo);
+        }
+        setTimeout((e) => {
+            $(campo).removeClass('border-danger');
+            $('.text-danger').remove();
+        }, 3000);
+    }
+}
+
 $(document).ready(function() {
-        /**
+    /**
      * Inicio de la ventana curso, con todos sus datos
      */
     var id_curso = location.search.substring(1);
@@ -29,6 +50,8 @@ $(document).ready(function() {
             
             $("#lbl-anio").append(""+data[2]);
             $("#page-header").append(data[3]+" "+data[4]);
+            $('title').text(data[3]+" "+data[4]+" - HNet")
+
             $("#lbl-sala").append(""+data[5]);
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -55,25 +78,57 @@ $(document).ready(function() {
             "search":         "Buscar:"
         }
     })
-    
+    // console.log($('#alumnos-tab').attr('aria-selected'));
+
+    $('#alumnos-tab').on('click', function(e) {
+        
+        $('#alumnos_dataTable').DataTable().destroy();
+        $('#asignatura_dataTable').DataTable().destroy();
+        $('#horario_dataTable').DataTable().destroy();
+
+        A_dataTable = $('#alumnos_dataTable').DataTable( {
+            "ajax":{
+                url: "../controllers/AlumnoTableController.php?do=getTable&id="+id_curso,
+            },
+            "language": {
+                "emptyTable": "Aun no hay almunos inscritos en este curso",
+                "lengthMenu": "Mostrando _MENU_ datos",
+                "paginate": {
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"
+                },
+                "info":           "Mostrando _START_ a _END_ de _TOTAL_ datos",
+                "search":         "Buscar:"
+            }
+        })
+
+    })
         /**
      * Segunda pestaña de curso, asignaturas
      */
 
-    Asig_dataTable = $('#asignatura_dataTable').DataTable( {
-        "ajax":{
-            url: "../controllers/CursoTableController.php?do=getAsigTable&id="+id_curso,
-        },
-        "language": {
-            "emptyTable": "Este curso no tiene asignaturas aun",
-            "lengthMenu": "Mostrando _MENU_ datos",
-            "paginate": {
-                "next":       "Siguiente",
-                "previous":   "Anterior"
+    $('#asignatura-tab').on('click', function(e) {
+
+        $('#alumnos_dataTable').DataTable().destroy();
+        $('#asignatura_dataTable').DataTable().destroy();
+        $('#horario_dataTable').DataTable().destroy();
+
+        Asig_dataTable = $('#asignatura_dataTable').DataTable( {
+            "ajax":{
+                url: "../controllers/CursoTableController.php?do=getAsigTable&id="+id_curso,
             },
-            "info":           "Mostrando _START_ a _END_ de _TOTAL_ datos",
-            "search":         "Buscar:"
-        }
+            "language": {
+                "emptyTable": "Este curso no tiene asignaturas aun",
+                "lengthMenu": "Mostrando _MENU_ datos",
+                "paginate": {
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"
+                },
+                "info":           "Mostrando _START_ a _END_ de _TOTAL_ datos",
+                "search":         "Buscar:"
+            }
+        })
+
     })
 
     $(document).on('submit', '#formulario', function(event){
@@ -87,20 +142,28 @@ $(document).ready(function() {
      * Tercera pestaña de curso, horarios
      */
 
-    Horario_dataTable = $('#horario_dataTable').DataTable( {
-        "ajax":{
-            url: "../controllers/HorarioTableController.php?do=getTable&id="+id_curso,
-        },
-        "language": {
-            "emptyTable": "Este curso no tiene horarios inscritos aun",
-            "lengthMenu": "Mostrando _MENU_ datos",
-            "paginate": {
-                "next":       "Siguiente",
-                "previous":   "Anterior"
+    $('#horario-tab').on('click', function(e) {
+
+        $('#alumnos_dataTable').DataTable().destroy();
+        $('#asignatura_dataTable').DataTable().destroy();
+        $('#horario_dataTable').DataTable().destroy();
+
+        Horario_dataTable = $('#horario_dataTable').DataTable( {
+            "ajax":{
+                url: "../controllers/HorarioTableController.php?do=getTable&id="+id_curso,
             },
-            "info":           "Mostrando _START_ a _END_ de _TOTAL_ datos",
-            "search":         "Buscar:"
-        }
+            "language": {
+                "emptyTable": "Este curso no tiene horarios inscritos aun",
+                "lengthMenu": "Mostrando _MENU_ datos",
+                "paginate": {
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"
+                },
+                "info":           "Mostrando _START_ a _END_ de _TOTAL_ datos",
+                "search":         "Buscar:"
+            }
+        })
+
     })
 
     $(document).on('click', '.asignatura_horario', function(){		
@@ -128,7 +191,7 @@ $(document).ready(function() {
         var inicio_asignatura = $('#inicio-asignatura').val();
         var final_asignatura = $('#final-asignatura').val();
         var asistencia_profesor = $("input[name='asistencia']:checked").val();
-        var operacion = $('#operacion').val();
+        var operacion_horario = $('#operacion_horario').val();
         if(id_asignatura != '' && id_libro != '' && fecha != '' && inicio_asignatura != '' && final_asignatura != '') {
             $.ajax({
                 url:"../controllers/HorarioTableController.php?do=ingresar&id="+id_curso,
@@ -142,11 +205,22 @@ $(document).ready(function() {
                     'inicio_asignatura': inicio_asignatura,
                     'final_asignatura': final_asignatura,
                     'asistencia_profesor': asistencia_profesor,
-                    'operacion': operacion,
+                    'operacion_horario': operacion_horario,
                 },
                 success:function(data) {
+
                 }
             });
+            setTimeout((e) => {
+                $('#inpt-asignatura_horario').val("");
+                $('#inpt-asignatura_horario').val("");
+                $('#fecha-asignatura').val("");
+                $('#inicio-asignatura').val("");
+                $('#final-asignatura').val("");
+                $("input[name='asistencia']:checked").prop('checked', false);
+
+                $('#operacion_horario').val("Crear");
+            }, 100);
             Horario_dataTable.ajax.reload();
         }
         else {
@@ -204,7 +278,7 @@ $(document).ready(function() {
                 $('#final-asignatura').val(data[4]);
                 $("input[value='"+data[5]+"'").prop('checked', true);;
                 $('#id_horario').val(id_horario);
-                $('#operacion').val("Editar");
+                $('#operacion_horario').val("Editar");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);
@@ -212,26 +286,7 @@ $(document).ready(function() {
         })
     });
 
-    /**
-     * Esta funcion determina si un campo input esta vacio y le agrega 
-     * una clase wargning para que el usuario sepa
-     * 
-     * @param string campo
-     * 
-     * @return [none]
-     */
-    function campoVacio(campo) {
-        if ($(campo).val() == '') {
-            $(campo).addClass('border-danger');
-            if ($(texto_alarma + ' ' + campo).length) {
-                $(texto_alarma).addClass(campo).insertAfter(campo);
-            }
-            setTimeout((e) => {
-                $(campo).removeClass('border-danger');
-                $('.text-danger').remove();
-            }, 3000);
-        }
-    }
+    
     
     
 

@@ -37,7 +37,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Tablas:</h6>
                 <a class="collapse-item" href="../views/login.php">Login</a>
-                <a class="collapse-item" href="../views/register.php">Register</a>
+                <a class="collapse-item" href="../views/tabla_libros.php">Libros de Curso</a>
                 <a class="collapse-item" href="../views/forgot-password.php">Forgot Password</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Other Pages:</h6>
@@ -60,14 +60,18 @@
             <i class="fas fa-users"></i>
             <span>Alumnos</span></a>
     </li>
-
+    <?php
+    if ($_SESSION['empleado']["empRol"] == "UTP") {
+    ?>
     <!-- Nav Item - Empleados -->
     <li class="nav-item">
         <a class="nav-link" href="../views/tabla_empleados.php">
             <i class="fas fa-address-card"></i>
             <span>Empleados</span></a>
     </li>
-
+    <?php
+    }
+    ?>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

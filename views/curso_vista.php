@@ -20,7 +20,7 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cursos - HNet</title>
+    <title></title>
 
     <?php 
         include '../components/head.php';
@@ -130,7 +130,6 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                                                         <th >Nombre</th>
                                                         <th >Profesor</th>
                                                         <th ></th>
-                                                        <th ></th>
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
@@ -138,7 +137,6 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                                                         <th >ID</th>
                                                         <th >Nombre</th>
                                                         <th >Profesor</th>
-                                                        <th ></th>
                                                         <th ></th>
                                                     </tr>
                                                 </tfoot>
@@ -189,6 +187,7 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                                                         <th >Asistencia Profesor</th>
                                                         <th ></th>
                                                         <th ></th>
+                                                        <th ></th>
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
@@ -200,6 +199,7 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                                                         <th >Hora Inicio</th>
                                                         <th >Hora Fin</th>
                                                         <th >Asistencia Profesor</th>
+                                                        <th ></th>
                                                         <th ></th>
                                                         <th ></th>
                                                     </tr>
@@ -220,7 +220,7 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                                                     ?>
                                                 </div>
                                             </div>
-                                            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="inpt-asignatura_horario">
+                                            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="inpt-asignatura_horario" disabled>
                                         </div>
 
                                         <div class="input-group mb-3">
@@ -257,7 +257,7 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                                         <button type="button" class="btn btn-primary bg-gradient-primary w-100 btn-block" id="btn-agregar">Agregar horario </button>
                                         <div class="modal-footer">
                                             <input type="hidden" name="id_horario" id="id_horario">             
-                                            <input type="hidden" name="operacion" id="operacion" value="Crear">             
+                                            <input type="hidden" name="operacion_horario" id="operacion_horario" value="Crear">             
                                         </div>
                                     </div>
                                 </div>
@@ -293,25 +293,7 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php include '../components/logout.php'; ?>
 
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -321,14 +303,14 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
     <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.js"></script>
 
     <!-- Page level plugins -->
     <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../recursos/js/curso_detail.js"></script>
     <script src="../js/demo/datatables-alumnos.js"></script>
+    <script src="../recursos/js/curso_detail.js"></script>
 
 </body>

@@ -27,6 +27,7 @@ $(document).ready(function() {
     var email = $('#email').val();
     var direccion = $('#direccion').val();
     var celular = $('#celular').val();
+    var operacion = $('#operacion').val();
     if(id_curso != '' && nombre != '' && email != '') {
       $.ajax({
         url:"../controllers/AlumnoTableController.php?do=ingresar",

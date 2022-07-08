@@ -41,7 +41,6 @@ switch ($do) {
             $salida[] = $fila["IDASIGNATURA"];
             $salida[] = $fila["NOMBREASIGNATURA"];
             $salida[] = $fila["NOMBREEMPLEADO"]." ".$fila["PATERNOEMPLEADO"]." ".$fila["MATERNOEMPLEADO"];
-            $salida[] = '<button type="button" name="editar" id="'.$fila["IDASIGNATURA"].'" class="btn btn-warning btn-sm editar_asignatura"><i class="fas fa-user-edit"></i> Editar</button> ';
             $salida[] = '<button type="button" name="borrar" id="'.$fila["IDASIGNATURA"].'" class="btn btn-danger btn-sm borrar_asignatura"><i class="fas fa-minus-circle"></i> Borrar</button> ';
             $datos[] = $salida;
         }

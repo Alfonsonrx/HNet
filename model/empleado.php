@@ -53,7 +53,7 @@ class Empleado{
      * @return [type]
      */
     public function iniciarSesion() {
-        $sql = "SELECT * FROM empleado WHERE RUNEMPLEADO='".$this->rut."' AND PASSWORD='".$this->pw."'";
+        $sql = "SELECT * FROM empleado WHERE RUNEMPLEADO='".$this->run."' AND PASSWORD='".$this->pw."'";
         $res = $this->db->consult($sql);
         return $res;
     }
@@ -76,7 +76,7 @@ class Empleado{
         if ($res) {
             return "Guardado";
         } else {
-            return  $sql;
+            return  "Error";
         }
     }
 

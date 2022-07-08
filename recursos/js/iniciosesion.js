@@ -2,11 +2,11 @@ $(document).ready(function() {
     $("#btnLogin").on("click",(e) => {
         e.preventDefault();
 
-        let inptRut = $('#inptRut').val();
+        let inptRun = $('#inptRun').val();
         let inptPw = $('#inptCon').val();
         let formData = new FormData();
 
-        formData.append("rut", inptRut);
+        formData.append("run", inptRun);
         formData.append("password", inptPw);
         
         setTimeout(function () {

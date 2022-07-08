@@ -7,6 +7,7 @@ class LibroCursos {
     private string $id_libro;
     private int $id_empleado;
     private string $observaciones;
+    
     /**
      *  Esta funcion instancia el objeto
      */
@@ -39,6 +40,8 @@ class LibroCursos {
     }
 
     /**
+     * Esta funcion crea un libro de curso en la base de datos
+     * 
      * @param mixed $libroCurso
      * 
      * @return [string]
@@ -91,9 +94,9 @@ class LibroCursos {
     }
 
     /**
-     * Edita a un alumno con los valores ingresados
+     * Edita a un Libro con los valores ingresados
      * 
-     * @param Alumno $alumno
+     * @param Libro $libro
      * 
      * @return [string]
      */

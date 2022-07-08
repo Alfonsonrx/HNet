@@ -2,27 +2,38 @@
 $(document).ready(function() {
   var dataTable = $('#dataTable').DataTable( {
     "ajax":{
-      url: "controllers/tableController.php?do=getTable",
+      url: "../controllers/userController.php?do=getTable",
     },
+    "language": {
+        "emptyTable": "Este curso no tiene asignaturas aun",
+        "infoEmpty": "Mostrando 0 de 0 datos",
+        "lengthMenu": "Mostrando _MENU_ datos",
+        "paginate": {
+            "next":       "Siguiente",
+            "previous":   "Anterior"
+        },
+    }
   });
   // el '#' hace referencia a la clase
 
   $(document).on('submit', '#formulario', function(event){
     event.preventDefault();
-    var id_alumno = $('#id_alumno').val();
-    console.log(id_alumno);
-    var id_curso = $('#id_curso').val();
+    var id_empleado = $('#id_empleado').val();
     var run = $('#run').val();
+    var pw = $('#pw').val();
+    var email = $('#email').val();
     var nombre = $('#nombre').val();
     var apellido_paterno = $('#apellido_paterno').val();
     var apellido_materno = $('#apellido_materno').val();
     var fecha_nacimiento = $('#fecha_nacimiento').val();
-    var email = $('#email').val();
     var direccion = $('#direccion').val();
+    var telefono = $('#telefono').val();
     var celular = $('#celular').val();
-    if(id_curso != '' && nombre != '' && email != '') {
+    var rol = $('#rol').val();
+    var jefatura = $('#jefatura').val();
+    if(run != '' && pw != '' && nombre != '' && rol != '') {
       $.ajax({
-        url:"controllers/tableController.php?do=ingresar",
+        url:"../controllers/userController.php?do=ingresar",
         method:'POST',
         data:new FormData(this),
         contentType:false,
@@ -31,7 +42,7 @@ $(document).ready(function() {
         {
           console.log(data);
           $('#formulario')[0].reset();
-          $('#modalAlumno').modal('hide');
+          $('#modalEmpleado').modal('hide');
           dataTable.ajax.reload();
         }
       });
@@ -43,53 +54,74 @@ $(document).ready(function() {
 
   $(document).on('click', '#botonCrear', function(){
     
-    $('#modalAlumno').modal('show');
+    $('#modalEmpleado').modal('show');
     
-    $('#lbl_id_alumno').show();
-    $('#id_alumno').show();
+    $('#formulario')[0].reset()
 
-    $('#id_alumno').val("");
-    $('#id_curso').val("");
-    $('#run').val("");
-    $('#nombre').val("");
-    $('#apellido_paterno').val("");
-    $('#apellido_materno').val("");
-    $('#fecha_nacimiento').val("");
-    $('#email').val("");
-    $('#direccion').val("");
-    $('#celular').val("");
-    
     $('.modal-title').text("Crear Usuario");
     $('#action').val("Crear");
     $('#operacion').val("Crear");
   });
-  
-  $(document).on('click', '.editar', function(){		
-    var id_alumno = $(this).attr("id");		
+
+  $(document).on('click', '.detalles', function(){		
+    var id_empleado = $(this).attr("id");		
     $.ajax({
-        url:"controllers/tableController.php?do=obtenerAlumno",
+      url:"../controllers/userController.php?do=obtenerEmpleado",
+      method:"POST",
+      data:{id_empleado:id_empleado},
+      dataType:"json",
+      success:function(data)
+        {
+          // console.log(data);	
+          data.forEach( function(item, i) { 
+            if (item == '') data[i] = "No se encuentra en registros";
+          });
+          $('#modalDetalleEmpleado').modal('show');
+
+          $('#det_run').text(data[1]);
+          $('#det_fecha_nacimiento').text(data[6]);
+          $('#det_email').text(data[7]);
+          $('#det_direccion').text(data[8]);
+          $('#det_telefono').text(data[9]);
+          $('#det_celular').text(data[10]);
+          $('#det_rol').text(data[11]);
+          $('#det_jefatura').text(data[12]);
+          $('.modalDetalle-title').text(`${data[3]} ${data[4]} ${data[5]}`);
+          $('#det_id_empleado').val(id_empleado);
+        },
+          error: function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus, errorThrown);
+        }
+    })
+  });
+
+  
+  $(document).on('click', '.editar_empleado', function(){		
+    var id_empleado = $(this).attr("id");		
+    $.ajax({
+        url:"../controllers/userController.php?do=obtenerEmpleado",
         method:"POST",
-        data:{id_alumno:id_alumno},
+        data:{id_empleado:id_empleado},
         dataType:"json",
         success:function(data)
             {
                 console.log(data);	
-                $('#modalAlumno').modal('show');
+                $('#modalEmpleado').modal('show');
 
-                $('#lbl_id_alumno').hide();
-                $('#id_alumno').hide();
-
-                $('#id_curso').val(data[1]);
-                $('#run').val(data[2]);
+                $('#run').val(data[1]);
+                // $('#pw').val(data[2]);
                 $('#nombre').val(data[3]);
                 $('#apellido_paterno').val(data[4]);
                 $('#apellido_materno').val(data[5]);
                 $('#fecha_nacimiento').val(data[6]);
                 $('#email').val(data[7]);
                 $('#direccion').val(data[8]);
-                $('#celular').val(data[9]);
-                $('.modal-title').text("Editar Usuario");
-                $('#id_alumno').val(id_alumno);
+                $('#telefono').val(data[9]);
+                $('#celular').val(data[10]);
+                $('#rol').val(data[11]);
+                $('#jefatura').val(data[12]);
+                $('.modal-title').text("Editar Empleado");
+                $('#id_empleado').val(id_empleado);
                 $('#action').val("Editar");
                 $('#operacion').val("Editar");
             },
@@ -99,14 +131,14 @@ $(document).ready(function() {
         })
   });
 
-  $(document).on('click', '.borrar', function(){
-    var id_alumno = $(this).attr("id");
-    if(confirm("Esta seguro de borrar este registro: " + id_alumno))
+  $(document).on('click', '.borrar_empleado', function(){
+    var id_empleado = $(this).attr("id");
+    if(confirm("Esta seguro de borrar este registro: " + id_empleado))
     {
         $.ajax({
-            url:"controllers/tableController.php?do=borrar",
+            url:"../controllers/userController.php?do=borrar",
             method:"POST",
-            data:{id_alumno:id_alumno},
+            data:{id_empleado:id_empleado},
             success:function(data)
             {
               console.log(data);

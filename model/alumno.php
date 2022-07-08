@@ -4,8 +4,8 @@
 
 class Alumnos {
     private Database $db;
-    private int $id_alumno;
-    private int $id_curso;
+    private string $id_alumno;
+    private string $id_curso;
     private string $run;
     private string $nombre;
     private string $apellido_paterno;

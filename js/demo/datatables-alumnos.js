@@ -4,6 +4,15 @@ $(document).ready(function() {
     "ajax":{
       url: "../controllers/AlumnoTableController.php?do=getTable",
     },
+    "language": {
+      "lengthMenu": "Mostrando _MENU_ datos",
+      "paginate": {
+          "next":       "Siguiente",
+          "previous":   "Anterior"
+      },
+      "info": "Mostrando _START_ a _END_ de _TOTAL_ datos",
+      "search": "Buscar:"
+    }
   });
   
   $(document).on('submit', '#formulario', function(event){
@@ -60,6 +69,9 @@ $(document).ready(function() {
         {
           // console.log(data);	
           $('#modalDetalleAlumno').modal('show');
+          data.forEach( function(item, i) { 
+            if (item == '' || item == '0') data[i] = "No se encuentra en registros"; 
+          });
 
           $.ajax({
             url:"../controllers/CursoTableController.php?do=obtenerCurso",
@@ -77,16 +89,8 @@ $(document).ready(function() {
           $('#det_run').text(data[2]);
           $('#det_fecha_nacimiento').text(data[6]);
           $('#det_email').text(data[7]);
-          if (data[8] == ''){
-            $('#det_direccion').text("No se encuentra en registros");
-          } else{
-            $('#det_direccion').text(data[8]);
-          }
-          if (data[9] == '0'){
-            $('#det_celular').text("No se encuentra en registros");
-          } else{
-            $('#det_celular').text(data[9]);
-          }
+          $('#det_direccion').text(data[8]);
+          $('#det_celular').text(data[9]);
           $('.modalDetalle-title').text(`${data[3]} ${data[4]} ${data[5]}`);
           $('#det_id_alumno').val(id_alumno);
         },

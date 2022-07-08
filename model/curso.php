@@ -42,6 +42,8 @@ class Cursos {
     }
 
     /**
+     * crea un nuevo curso en la base de datos
+     * 
      * @param mixed $curso
      * 
      * @return [string]
@@ -97,6 +99,8 @@ class Cursos {
     }
 
     /**
+     * Edita los datos de un curso
+     * 
      * @param mixed $alumno
      * 
      * @return [type]
@@ -115,6 +119,9 @@ class Cursos {
     }
 
     /**
+     * Obtiene los datos de la tabla cursos y los adjunta en un array 
+     * usualmente para dataTables
+     * 
      * @return [array]
      */
     public function obtenerCursos() {

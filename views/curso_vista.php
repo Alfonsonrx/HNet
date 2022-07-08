@@ -4,6 +4,9 @@
 session_start();
 include '../model/validador.php';
 require_once('../model/curso.php');
+require_once("../model/asignatura.php");
+$as = new Asignatura();
+$asignaturas = $as->obtenerAsignaturas();
 
 $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
 
@@ -59,6 +62,7 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                         <input type="hidden" id="lbl-idcurso">             
 
                         <span id="lbl-idlibro" class="text-monospace">Id Libro: </span>
+                        <span id="texto-idlibro" class="text-monospace"></span>
                         <br>
                         <span id="lbl-anio" class="text-monospace">Año: </span>
                         <br>
@@ -69,13 +73,13 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
 
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#alumnos" role="tab" aria-controls="alumnos" aria-selected="true">Alumnos</a>
+                            <a class="nav-link active" id="alumnos-tab" data-toggle="tab" href="#alumnos" role="tab" aria-controls="alumnos" aria-selected="true">Alumnos</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Asginaturas</a>
+                            <a class="nav-link" id="asignatura-tab" data-toggle="tab" href="#asignatura" role="tab" aria-controls="asignatura" aria-selected="false">Asignaturas</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Horarios</a>
+                            <a class="nav-link" id="horario-tab" data-toggle="tab" href="#horario" role="tab" aria-controls="horario" aria-selected="false">Horarios</a>
                         </li>
                     </ul>
                     
@@ -115,15 +119,16 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="tab-pane fade" id="asignatura" role="tabpanel" aria-labelledby="asignatura-tab">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-sm">
                                         <table class="table table-bordered" id="asignatura_dataTable" width="100%" >
                                                 <thead>
                                                     <tr>
                                                         <th >ID</th>
                                                         <th >Nombre</th>
+                                                        <th >Profesor</th>
                                                         <th ></th>
                                                         <th ></th>
                                                     </tr>
@@ -132,26 +137,132 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                                                     <tr>
                                                         <th >ID</th>
                                                         <th >Nombre</th>
+                                                        <th >Profesor</th>
                                                         <th ></th>
                                                         <th ></th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-3">
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-default">Nombre Asignatura: </span>
+                                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Asignatura: </button>
+                                                <div class="dropdown-menu">
+                                                    <?php
+                                                    foreach ($asignaturas as $a) {
+                                                    ?>
+                                                    <a class="asignatura_tabla dropdown-item" id="<?= $a['IDASIGNATURA'] ?>"><?= $a['NOMBREASIGNATURA'] ?></a>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </div>
+                                            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="inpt-asignatura">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-default">ID Profesor: </span>
                                             </div>
                                             <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                                         </div>
-                                        <button type="button" class="btn btn-primary btn-lg btn-block">Agregar asignatura</button>
+                                        <button type="button" class="btn btn-primary bg-gradient-primary w-100 btn-block">Agregar asignatura</button>
 
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+
+                        <div class="tab-pane fade" id="horario" role="tabpanel" aria-labelledby="horario-tab">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm" id="tabla_horario">
+                                        <table class="table table-bordered" id="horario_dataTable" width="100%" >
+                                                <thead>
+                                                    <tr>
+                                                        <th >ID</th>
+                                                        <th >Asignatura</th>
+                                                        <th >ID Libro</th>
+                                                        <th >Fecha</th>
+                                                        <th >Hora Inicio</th>
+                                                        <th >Hora Fin</th>
+                                                        <th >Asistencia Profesor</th>
+                                                        <th ></th>
+                                                        <th ></th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th >ID</th>
+                                                        <th >Asignatura</th>
+                                                        <th >ID Libro</th>
+                                                        <th >Fecha</th>
+                                                        <th >Hora Inicio</th>
+                                                        <th >Hora Fin</th>
+                                                        <th >Asistencia Profesor</th>
+                                                        <th ></th>
+                                                        <th ></th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                    </div>
+                                    <div class="col-4" >
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Asignatura: </button>
+                                                <div class="dropdown-menu">
+                                                    <?php
+                                                    foreach ($asignaturas as $a) {
+                                                    ?>
+                                                    <a class="asignatura_horario dropdown-item" id="<?= $a['IDASIGNATURA'] ?>"><?= $a['NOMBREASIGNATURA'] ?></a>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </div>
+                                            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="inpt-asignatura_horario">
+                                        </div>
+
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-default">Fecha: </span>
+                                            </div>
+                                            <input type="date" class="form-control " id="fecha-asignatura" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" >
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-default">Inicio: </span>
+                                            </div>
+                                            <input type="time" class="form-control" id="inicio-asignatura" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-default">Fin: </span>
+                                            </div>
+                                            <input type="time" class="form-control" id="final-asignatura" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-default">Asistencia Profesor: </span>
+                                            </div>
+                                            <div class="form-check form-check-inline" style="padding-left: 2em;">
+                                                <input class="form-check-input" type="radio" name="asistencia" id="asistencia1" value="Presente">
+                                                <label class="form-check-label" for="chebox_asistencia">Presente</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="asistencia" id="asistencia2" value="Ausente">
+                                                <label class="form-check-label" for="chebox_asistencia">Ausente</label>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-primary bg-gradient-primary w-100 btn-block" id="btn-agregar">Agregar horario </button>
+                                        <div class="modal-footer">
+                                            <input type="hidden" name="id_horario" id="id_horario">             
+                                            <input type="hidden" name="operacion" id="operacion" value="Crear">             
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- /.container-fluid -->

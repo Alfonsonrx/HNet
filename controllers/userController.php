@@ -1,19 +1,19 @@
 <?php
 session_start();
 $do = (isset($_GET['do'])) ? $_GET['do'] : '';
+require('../model/empleado.php');
+$empleado = new Empleado();
 
 switch($do) {
     case 'login':
-        $rut = trim($_POST['rut']);
+        $run = trim($_POST['run']);
         $pass = trim($_POST['password']);
         
-        if($rut === "" || $pass === "") {
+        if($run === "" || $pass === "") {
             $r["ans"] = false;
             $r["message"] = "Alguno de los campos esta vacio";
         } else {
-            require('../model/empleado.php');
-            $empleado = new Empleado();
-            $empleado->__set("rut", $rut);
+            $empleado->__set("run", $run);
             $encryptpw = md5($pass);
             $empleado->__set("pw", $encryptpw);
 
@@ -37,6 +37,46 @@ switch($do) {
             }
         } 
         echo json_encode($r);
+        break;
+
+    case 'ingresar':
+        $empleado->__set("id_empleado", $_POST["id_empleado"]);
+        $empleado->__set("run", $_POST["run"]);
+        $empleado->__set("pw", md5($_POST["pw"]));
+        $empleado->__set("email", $_POST["email"]);
+        $empleado->__set("nombre", $_POST["nombre"]);
+        $empleado->__set("apellido_paterno", $_POST["apellido_paterno"]);
+        $empleado->__set("apellido_materno", $_POST["apellido_materno"]);
+        $empleado->__set("fecha_nacimiento", $_POST["fecha_nacimiento"]);
+        $empleado->__set("direccion", $_POST["direccion"]);
+        $empleado->__set("telefono", $_POST["telefono"]);
+        $empleado->__set("celular", $_POST["celular"]);
+        $empleado->__set("rol", $_POST["rol"]);
+        $empleado->__set("jefatura", intval($_POST["jefatura"]));
+
+        if($_POST["operacion"] == "Crear") {
+            $result = $empleado->crearEmpleado();
+        } elseif ($_POST["operacion"] == "Editar") {
+            $result = $empleado->editarEmpleado();
+        }
+        echo $result;
+        break;
+    case 'getTable':
+        $result = $empleado->obtenerEmpleados();
+        echo json_encode($result);
+        break;
+    
+    case 'borrar':
+        if ($_POST["id_empleado"] == $_SESSION["empleado"]["empId"]) {
+            $result = "No se puede eliminar el usuario que se esta ocupando";
+        } else {
+            $result = $empleado->borrarEmpleado($_POST["id_empleado"]);
+        }
+        echo $result;
+        break;
+    case 'obtenerEmpleado':
+        $result = $empleado->obtenerEmpleado($_POST["id_empleado"]);
+        echo json_encode($result);
         break;
 }
 ?>

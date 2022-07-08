@@ -4,6 +4,15 @@ $(document).ready(function() {
         "ajax":{
             url: "../controllers/CursoTableController.php?do=getTable",
         },
+        "language": {
+            "lengthMenu": "Mostrando _MENU_ datos",
+            "paginate": {
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
+            "info":           "Mostrando _START_ a _END_ de _TOTAL_ datos",
+            "search":         "Buscar:"
+        }
     });
 
     /**

@@ -26,19 +26,23 @@ switch ($do) {
         $result = $curso->obtenerCursos();
         echo json_encode($result);
         break;
+
+    // Modulos para administrar asignaturas del curso
+
     case 'getAsigTable':
         $curso = new Cursos();
 
-        $sql = "SELECT a.IDASIGNATURA, a.NOMBREASIGNATURA FROM `asignatura` AS a JOIN cursa AS c WHERE a.IDASIGNATURA = c.IDASIGNATURA AND c.IDCURSO = $id_curso;";
+        $sql = "SELECT a.IDASIGNATURA, a.NOMBREASIGNATURA, e.NOMBREEMPLEADO, e.PATERNOEMPLEADO, e.MATERNOEMPLEADO FROM `asignatura` AS a JOIN cursa AS c JOIN imparte AS i JOIN empleado AS e 
+        WHERE a.IDASIGNATURA = c.IDASIGNATURA AND a.IDASIGNATURA = i.IDASIGNATURA AND e.IDEMPLEADO = i.IDEMPLEADO AND c.IDCURSO = $id_curso;";
         $res = $curso->db->execute($sql);
-
+        $datos = array();
         foreach ($res as $fila) {
             $salida = array();
-
             $salida[] = $fila["IDASIGNATURA"];
             $salida[] = $fila["NOMBREASIGNATURA"];
-            $salida[] = '<button type="button" name="editar" id="'.$fila["IDASIGNATURA"].'" class="btn btn-warning btn-sm editar"><i class="fas fa-user-edit"></i> Editar</button> ';
-            $salida[] = '<button type="button" name="borrar" id="'.$fila["IDASIGNATURA"].'" class="btn btn-danger btn-sm borrar"><i class="fas fa-minus-circle"></i> Borrar</button> ';
+            $salida[] = $fila["NOMBREEMPLEADO"]." ".$fila["PATERNOEMPLEADO"]." ".$fila["MATERNOEMPLEADO"];
+            $salida[] = '<button type="button" name="editar" id="'.$fila["IDASIGNATURA"].'" class="btn btn-warning btn-sm editar_asignatura"><i class="fas fa-user-edit"></i> Editar</button> ';
+            $salida[] = '<button type="button" name="borrar" id="'.$fila["IDASIGNATURA"].'" class="btn btn-danger btn-sm borrar_asignatura"><i class="fas fa-minus-circle"></i> Borrar</button> ';
             $datos[] = $salida;
         }
         $salida = array(
@@ -48,11 +52,21 @@ switch ($do) {
         echo json_encode($result);
         break;
     
+    case 'quitarAsignatura':
+        $curso = new Cursos();
+        $id_asignatura = $_POST["id_asignatura"];
+        $sql = "DELETE FROM cursa WHERE `cursa`.`IDASIGNATURA` = '$id_asignatura';";
+        $res = $curso->db->execute($sql);
+        
+        echo $res;
+        break;
+    
     case 'borrar':
         $curso = new Cursos();
         $result = $curso->borrarCurso($_POST["id_curso"]);
         echo $result;
         break;
+        
     case 'obtenerCurso':
         $curso = new Cursos();
         $result = $curso->obtenerCurso($_POST["id_curso"]);

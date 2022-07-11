@@ -78,7 +78,6 @@ $(document).ready(function() {
             "search":         "Buscar:"
         }
     })
-    // console.log($('#alumnos-tab').attr('aria-selected'));
 
     $('#alumnos-tab').on('click', function(e) {
         
@@ -103,7 +102,15 @@ $(document).ready(function() {
         })
 
     })
-        /**
+
+    $(document).on('submit', '#formulario', function(event){
+        event.preventDefault();
+        setTimeout((e) => {
+            $('#alumnos_dataTable').DataTable().ajax.reload();
+        }, 100);
+    });
+
+    /**
      * Segunda pestaña de curso, asignaturas
      */
 
@@ -130,13 +137,6 @@ $(document).ready(function() {
         })
 
     })
-
-    $(document).on('submit', '#formulario', function(event){
-        event.preventDefault();
-        setTimeout((e) => {
-            $('#alumnos_dataTable').DataTable().ajax.reload();
-        }, 100);
-    });
 
     /**
      * Tercera pestaña de curso, horarios
@@ -166,6 +166,7 @@ $(document).ready(function() {
 
     })
 
+    
     $(document).on('click', '.asignatura_horario', function(){		
         var id_asignatura = $(this).attr("id");
         var nombre_asign = $(this).text();

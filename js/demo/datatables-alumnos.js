@@ -15,24 +15,41 @@ $(document).ready(function() {
     }
   });
   
+  $(document).on('click', '.drop-curso', function(){		
+    var id_curso = $(this).attr("id");
+    var nombre_curso = $(this).text();
+    var inpt_cur = $('.id_curso')
+    inpt_cur.text(id_curso);
+    inpt_cur.val(nombre_curso);
+  });
+
+  $('#run').on('input',updaterut);
+
+  function updaterut(e) {
+    var rut = $('#run').val().replace('.','').replace(',','').replace('-','');
+    rut = rut.replace('-','');
+    console.log(e);
+    cuerpo = rut.slice(0,-1);
+    dv = rut.slice(-1).toUpperCase();
+
+    $('#run').val(cuerpo+'-'+dv);
+  }
+
   $(document).on('submit', '#formulario', function(event){
     event.preventDefault();
     
-    var id_curso = $('#id_curso').val();
+    var id_curso = $('.id_curso').text();
+    $('.id_curso').val($('.id_curso').text());
     var run = $('#run').val();
     var nombre = $('#nombre').val();
-    var apellido_paterno = $('#apellido_paterno').val();
-    var apellido_materno = $('#apellido_materno').val();
-    var fecha_nacimiento = $('#fecha_nacimiento').val();
     var email = $('#email').val();
-    var direccion = $('#direccion').val();
-    var celular = $('#celular').val();
-    var operacion = $('#operacion').val();
-    if(id_curso != '' && nombre != '' && email != '') {
+    var formData = new FormData(this);
+    console.log(id_curso);
+    if(id_curso != '' && run != '' && nombre != '' && email != '') {
       $.ajax({
         url:"../controllers/AlumnoTableController.php?do=ingresar",
         method:'POST',
-        data:new FormData(this),
+        data: formData,
         contentType:false,
         processData:false,
         success:function(data)
@@ -110,10 +127,23 @@ $(document).ready(function() {
         dataType:"json",
         success:function(data)
             { 
-                console.log(data);	
+                // console.log(data);	
                 $('#modalAlumno').modal('show');
 
-                $('#id_curso').val(data[1]);
+                $('.id_curso').attr("id",data[1]);
+
+                $.ajax({
+                  url:"../controllers/CursoTableController.php?do=obtenerCurso",
+                  method:"POST",
+                  data:{id_curso:data[1]},
+                  dataType:"json",
+
+                  success:function(data){
+                    // console.log(data);
+                    $('.id_curso').val(data[3]+" "+data[4]);
+                  }
+                })
+
                 $('#run').val(data[2]);
                 $('#nombre').val(data[3]);
                 $('#apellido_paterno').val(data[4]);

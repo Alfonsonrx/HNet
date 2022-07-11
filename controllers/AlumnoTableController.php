@@ -20,7 +20,7 @@ switch ($do) {
             $result = $al->crearAlumno($al);
             echo $result;
         } elseif ($_POST["operacion"] == "Editar") {
-            $result = $al->editarAlumno($al);
+            $result = $al->editarAlumno();
             echo $result;
         }
         break;

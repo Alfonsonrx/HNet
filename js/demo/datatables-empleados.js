@@ -15,6 +15,17 @@ $(document).ready(function() {
     }
   });
   // el '#' hace referencia a la clase
+  $('#run').on('input',updaterut);
+
+  function updaterut(e) {
+    var rut = $('#run').val().replace('.','').replace(',','').replace('-','');
+    rut = rut.replace('-','');
+    console.log(e);
+    cuerpo = rut.slice(0,-1);
+    dv = rut.slice(-1).toUpperCase();
+
+    $('#run').val(cuerpo+'-'+dv);
+  }
 
   $(document).on('submit', '#formulario', function(event){
     event.preventDefault();
@@ -46,6 +57,7 @@ $(document).ready(function() {
           dataTable.ajax.reload();
         }
       });
+      
     }
     else {
         alert("Algunos campos son obligatorios");

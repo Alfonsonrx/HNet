@@ -130,8 +130,8 @@ $rol = $_SESSION['empleado']["empRol"]
                             <div class="modal-content">
                                 <div class="modal-body">
                                     
-                                    <label for="run">Ingrese Id Libro</label>
-                                    <input type="text" name="id_libro" id="id_libro" class="form-control">
+                                    <label for="id_libro">Ingrese Id Libro</label>
+                                    <input type="number" name="id_libro" id="id_libro" class="form-control">
                                     <br />
 
                                     <label for="anio">Ingrese Año</label>
@@ -147,7 +147,7 @@ $rol = $_SESSION['empleado']["empRol"]
                                     <br />
                                     
                                     <label for="sala">Ingrese Sala</label>
-                                    <input type="text" name="sala" id="sala" class="form-control">
+                                    <input type="number" name="sala" id="sala" class="form-control">
                                     <br />
                                 </div>
                     

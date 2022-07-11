@@ -36,6 +36,11 @@
 <!-- Modal detalles -->
 
 <!-- Modal Crear/Editar -->
+<?php
+require_once('../model/curso.php');
+$cursos = new Cursos();
+$lista_cursos = $cursos->obtenerCursos();
+?>
 <div class="modal fade modal-alumno" id="modalAlumno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -47,8 +52,22 @@
             <form method="POST" id="formulario" enctype="multipart/form-data">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <label for="id_curso">Ingrese el id del curso</label>
-                        <input type="text" name="id_curso" id="id_curso" class="form-control">
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Curso: </button>
+                                <div class="dropdown-menu">
+                                    <?php
+                                    foreach ($lista_cursos["data"] as $c) {
+                                    ?>
+                                    <a class="drop-curso dropdown-item" id="<?= $c[0]; ?>"><?= $c[3]." ".$c[4]; ?></a>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                            <input type="text" name="id_curso" class="form-control id_curso" readonly="true">
+                        </div>
                         <br />
                         
                         <label for="run">Ingrese Run</label>
@@ -80,7 +99,7 @@
                         <br />
         
                         <label for="celular">Ingrese Celular</label>
-                        <input type="text" name="celular" id="celular" class="form-control">
+                        <input type="number" name="celular" id="celular" class="form-control">
                         <br />
         
                     </div>

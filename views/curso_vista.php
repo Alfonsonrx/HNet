@@ -3,8 +3,8 @@
 <?php
 session_start();
 include '../model/validador.php';
-require_once('../model/curso.php');
 require_once("../model/asignatura.php");
+
 $as = new Asignatura();
 $asignaturas = $as->obtenerAsignaturas();
 

@@ -126,7 +126,8 @@ class Alumnos {
         if ($res) {
             return "Modificado";
         } else {
-            return "error";
+            // return "error";
+            return $this->id_curso;
         }
     }
 

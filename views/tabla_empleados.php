@@ -3,6 +3,7 @@
 <?php
 session_start();
 include '../model/validador.php';
+$rol = $_SESSION['empleado']["empRol"]
 
 ?>
 <head>
@@ -145,6 +146,9 @@ include '../model/validador.php';
             </div>
             <!-- Modal detalles -->
             <!-- Modal Editar -->
+            <?php
+            if ($rol == 'UTP') {
+            ?>
             <div class="modal fade" id="modalEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -166,7 +170,7 @@ include '../model/validador.php';
                                 <br />
 
                                 <label for="email">Ingrese el email</label>
-                                <input type="text" name="email" id="email" class="form-control">
+                                <input type="email" name="email" id="email" class="form-control">
                                 <br />
 
                                 <label for="nombre">Ingrese el nombre</label>
@@ -190,11 +194,11 @@ include '../model/validador.php';
                                 <br />
 
                                 <label for="telefono">Ingrese telefono</label>
-                                <input type="text" name="telefono" id="telefono" class="form-control">
+                                <input type="number" name="telefono" id="telefono" class="form-control">
                                 <br />
 
                                 <label for="celular">Ingrese Celular</label>
-                                <input type="text" name="celular" id="celular" class="form-control">
+                                <input type="number" name="celular" id="celular" class="form-control">
                                 <br />
 
                                 <div class="input-group mb-3">
@@ -215,7 +219,7 @@ include '../model/validador.php';
                                 <br />
 
                                 <label for="jefatura">Ingrese jefatura</label>
-                                <input type="text" name="jefatura" id="jefatura" class="form-control">
+                                <input type="number" name="jefatura" id="jefatura" class="form-control">
                                 <br />
 
                             </div>
@@ -230,7 +234,9 @@ include '../model/validador.php';
                 </div>     
             </div>
             </div>
-
+            <?php
+            }
+            ?>
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">

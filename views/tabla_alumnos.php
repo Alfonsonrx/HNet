@@ -4,6 +4,8 @@
 session_start();
 include '../model/validador.php';
 
+$rol = $_SESSION['empleado']["empRol"]
+
 ?>
 <head>
 
@@ -76,8 +78,14 @@ include '../model/validador.php';
                                             <th >Apellido Paterno</th>
                                             <th >Apellido Materno</th>
                                             <th ></th>
+                                            <?php
+                                            if ($rol == 'UTP' or $rol == 'Inspector') {
+                                            ?>
                                             <th ></th>
                                             <th ></th>
+                                            <?php
+                                            }
+                                            ?>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -89,8 +97,14 @@ include '../model/validador.php';
                                             <th >Apellido Paterno</th>
                                             <th >Apellido Materno</th>
                                             <th ></th>
+                                            <?php
+                                            if ($rol == 'UTP' or $rol == 'Inspector') {
+                                            ?>
                                             <th ></th>
                                             <th ></th>
+                                            <?php
+                                            }
+                                            ?>
                                         </tr>
                                     </tfoot>
                                 </table>

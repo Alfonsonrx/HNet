@@ -182,7 +182,7 @@ include '../model/validador.php';
                                 <br />
                                 
                                 <label for="fecha_nacimiento">Ingrese fecha nacimiento</label>
-                                <input type="text" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control">
+                                <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control">
                                 <br />
 
                                 <label for="direccion">Ingrese Direccion</label>
@@ -197,8 +197,21 @@ include '../model/validador.php';
                                 <input type="text" name="celular" id="celular" class="form-control">
                                 <br />
 
-                                <label for="rol">Ingrese rol</label>
-                                <input type="text" name="rol" id="rol" class="form-control">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Rol: </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" id="drop-rol">Profesor/a</a>
+                                            <a class="dropdown-item" id="drop-rol">UTP</a>
+                                            <a class="dropdown-item" id="drop-rol">Inspector/a</a>
+                                            <a class="dropdown-item" id="drop-rol">Orientador/a</a>
+                                        </div>
+                                    </div>
+                                    <input type="text" name="rol" id="rol" class="form-control" readonly="true">
+                                </div>
+
+                                <!-- <label for="rol">Ingrese rol</label>
+                                <input type="text" name="rol" id="rol" class="form-control"> -->
                                 <br />
 
                                 <label for="jefatura">Ingrese jefatura</label>

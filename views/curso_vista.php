@@ -9,7 +9,7 @@ $as = new Asignatura();
 $asignaturas = $as->obtenerAsignaturas();
 
 $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
-
+$jef_curso = ($id_curso == $_SESSION["empleado"]["curso_jef"] or $_SESSION["empleado"]["empRol"] == 'UTP');
 
 ?>
 <head>
@@ -97,8 +97,14 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                                                 <th >Apellido Paterno</th>
                                                 <th >Apellido Materno</th>
                                                 <th ></th>
+                                                <?php
+                                                if ($jef_curso) {
+                                                ?>
                                                 <th ></th>
                                                 <th ></th>
+                                                <?php
+                                                }
+                                                ?>
                                             </tr>
                                         </thead>
                                         <tfoot>
@@ -110,8 +116,14 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                                                 <th >Apellido Paterno</th>
                                                 <th >Apellido Materno</th>
                                                 <th ></th>
+                                                <?php
+                                                if ($jef_curso) {
+                                                ?>
                                                 <th ></th>
                                                 <th ></th>
+                                                <?php
+                                                }
+                                                ?>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -129,7 +141,13 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                                                         <th >ID</th>
                                                         <th >Nombre</th>
                                                         <th >Profesor</th>
+                                                        <?php
+                                                        if ($jef_curso) {
+                                                        ?>
                                                         <th ></th>
+                                                        <?php
+                                                        }
+                                                        ?>
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
@@ -137,7 +155,13 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                                                         <th >ID</th>
                                                         <th >Nombre</th>
                                                         <th >Profesor</th>
+                                                        <?php
+                                                        if ($jef_curso) {
+                                                        ?>
                                                         <th ></th>
+                                                        <?php
+                                                        }
+                                                        ?>
                                                     </tr>
                                                 </tfoot>
                                             </table>
@@ -186,8 +210,14 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                                                         <th >Hora Fin</th>
                                                         <th >Asistencia Profesor</th>
                                                         <th ></th>
+                                                        <?php
+                                                        if ($jef_curso) {
+                                                        ?>
                                                         <th ></th>
                                                         <th ></th>
+                                                        <?php
+                                                        }
+                                                        ?>
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
@@ -200,12 +230,21 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                                                         <th >Hora Fin</th>
                                                         <th >Asistencia Profesor</th>
                                                         <th ></th>
+                                                        <?php
+                                                        if ($jef_curso) {
+                                                        ?>
                                                         <th ></th>
                                                         <th ></th>
+                                                        <?php
+                                                        }
+                                                        ?>
                                                     </tr>
                                                 </tfoot>
                                             </table>
                                     </div>
+                                    <?php
+                                    if ($jef_curso) {
+                                    ?>
                                     <div class="col-4" >
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
@@ -260,6 +299,9 @@ $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
                                             <input type="hidden" name="operacion_horario" id="operacion_horario" value="Crear">             
                                         </div>
                                     </div>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>

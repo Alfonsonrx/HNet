@@ -54,12 +54,11 @@
   });
   // Smooth scrolling using jQuery easing
   $('#logoutAccount').on('click', function(e) {
+    console.log('logged out');
+
     $.ajax({
       url:"controllers/UserController.php?do=logout",
       method:"POST",
-      success:function(data) {
-        
-      }
     });
   });
 

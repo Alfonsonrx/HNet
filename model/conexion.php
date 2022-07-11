@@ -42,11 +42,11 @@ class Database{
     public function consult($sql) {
         if ($this->sentence->prepare($sql)) {
             $lista = $this->db->query($sql);
-            $this->sentence->close();
+            // $this->sentence->close();
             return $lista->fetch_assoc();
         }
 
-        $this->db->close();
+        // $this->db->close();
 
         return null;
     }

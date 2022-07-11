@@ -48,12 +48,21 @@ class Empleado{
     }
 
     /**
-     * 
+     * Con esta funcion se comparara los datos con la informacion de la base de datos
+     * y asi saber si estan correctos
      * 
      * @return [type]
      */
     public function iniciarSesion() {
         $sql = "SELECT * FROM empleado WHERE RUNEMPLEADO='".$this->run."' AND PASSWORD='".$this->pw."'";
+        $res = $this->db->consult($sql);
+        return $res;
+    }
+    
+    public function jefatura() {
+        $sql = "SELECT e.IDEMPLEADO, e.NOMBREEMPLEADO, l.IDLIBROCLASES, c.IDCURSO 
+        FROM `empleado` AS e JOIN `libroclase` AS l JOIN `curso` AS c 
+        WHERE e.IDEMPLEADO = l.IDEMPLEADO AND l.IDLIBROCLASES = c.IDLIBROCLASES AND e.IDEMPLEADO = ".$this->id_empleado.";";
         $res = $this->db->consult($sql);
         return $res;
     }

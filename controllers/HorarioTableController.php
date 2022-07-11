@@ -10,9 +10,7 @@ switch ($do) {
         $horario->__set("id_curso", $id_curso);
         $horario->__set("id_asignatura", $_POST["id_asignatura"]);
         $horario->__set("id_libro", $_POST["id_libro"]);
-        $date = new DateTime($_POST["fecha"]);
-        $date = $date->format('Y-m-d');
-        $horario->__set("fecha", $date);
+        $horario->__set("fecha", $_POST["fecha"]);
         $horario->__set("hora_inicio", $_POST["inicio_asignatura"]);
         $horario->__set("hora_final", $_POST["final_asignatura"]);
         $horario->__set("asistencia_profesor", $_POST["asistencia_profesor"]);

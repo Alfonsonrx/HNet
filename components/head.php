@@ -7,4 +7,5 @@
 
     <!-- Custom styles for this template -->
     <link href="../recursos/css/sb-admin-2.css" rel="stylesheet">
+
 </head>

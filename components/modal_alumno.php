@@ -68,7 +68,7 @@
                         <br />
                         
                         <label for="fecha_nacimiento">Ingrese fecha nacimiento</label>
-                        <input type="text" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control">
+                        <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control">
                         <br />
         
                         <label for="email">Ingrese el email</label>

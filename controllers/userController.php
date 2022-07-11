@@ -21,33 +21,41 @@ switch($do) {
 
             if($resul) {
                 $_SESSION["auth"] = "true";
-                
+
                 $_SESSION["empleado"] = array(
                     "empId"=>$resul["IDEMPLEADO"],
                     "empRol"=>$resul["ROLEMPLEADO"],
                     "nombre"=>$resul['NOMBREEMPLEADO'],
                     "apellido"=>$resul['PATERNOEMPLEADO'],
                 );
+                $empleado->__set("id_empleado", $resul['IDEMPLEADO']);
+
+                if ($resul["ROLEMPLEADO"] == 'Profesor/a'){
+                    $jef = $empleado->jefatura();
+                    $_SESSION["empleado"]["curso_jef"] = $jef['IDCURSO'];
+                } else {
+                    $_SESSION["empleado"]["curso_jef"] = 0;
+                }
 
                 $r["ans"] = true;
                 $r["message"] = "Iniciando sesion";
             } else {
                 $r["ans"] = false;
-                $r["message"] = "Usuario o contraseña incorrecto ".$run." " . md5($pass);
+                $r["message"] = "Usuario o contraseña incorrecto ";
             }
         } 
         echo json_encode($r);
         break;
     
     case 'logout':
-        
+
         if(isset($_SESSION["auth"]) || $_SESSION["auth"] == "true"){
             $_SESSION["auth"] = "false";
             session_destroy();
         }
         
         $r["ans"] = true;
-        $r["message"] = "Iniciando sesion";
+        $r["message"] = "Cerrando sesion";
         echo json_encode($r);
         break;
 

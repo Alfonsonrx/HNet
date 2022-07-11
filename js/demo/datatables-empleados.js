@@ -131,6 +131,12 @@ $(document).ready(function() {
         })
   });
 
+  $(document).on('click', '#drop-rol', function(){		
+    var nombre_rol = $(this).text();
+    var inpt_rol = $('#rol')
+    inpt_rol.val(nombre_rol);
+  });
+
   $(document).on('click', '.borrar_empleado', function(){
     var id_empleado = $(this).attr("id");
     if(confirm("Esta seguro de borrar este registro: " + id_empleado))

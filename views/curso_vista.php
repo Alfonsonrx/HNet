@@ -21,37 +21,25 @@ $jef_curso = ($id_curso == $_SESSION["empleado"]["curso_jef"] or $_SESSION["empl
     <meta name="author" content="">
 
     <title></title>
-
-    <?php 
-        include '../components/head.php';
-    ?>
+    <?php include '../components/head.php'; ?>
     <!-- Custom styles for this page -->
     <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
-
-
 <body id="page-top">
-
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         <!-- Sidebar -->
-        <?php 
-            include '../components/sidebar.php';
-        ?>
+        <?php include '../components/sidebar.php'; ?>
         <!-- End of Sidebar -->
-
+        
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             
             <!-- Main Content -->
             <div id="content">
-
                 <!-- Topbar -->
-                <?php 
-                    include '../components/topbar.php';
-                ?>  
+                <?php include '../components/topbar.php'; ?>  
                 <!-- End of Topbar -->
                 
                 <!-- Begin Page Content -->

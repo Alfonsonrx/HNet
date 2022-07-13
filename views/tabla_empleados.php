@@ -213,13 +213,18 @@ $rol = $_SESSION['empleado']["empRol"]
                                     </div>
                                     <input type="text" name="rol" id="rol" class="form-control" readonly="true">
                                 </div>
-
-                                <!-- <label for="rol">Ingrese rol</label>
-                                <input type="text" name="rol" id="rol" class="form-control"> -->
                                 <br />
-
-                                <label for="jefatura">Ingrese jefatura</label>
-                                <input type="number" name="jefatura" id="jefatura" class="form-control">
+                                
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend" >
+                                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Tiene jefatura? </button>
+                                        <div class="dropdown-menu" >
+                                            <a class="dropdown-item" id="drop-jef">Si</a>
+                                            <a class="dropdown-item" id="drop-jef">No</a>
+                                        </div>
+                                    </div>
+                                    <input type="text" name="jefatura" id="jefatura" class="form-control" readonly="true">
+                                </div>
                                 <br />
 
                             </div>

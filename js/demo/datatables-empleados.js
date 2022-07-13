@@ -20,7 +20,6 @@ $(document).ready(function() {
   function updaterut(e) {
     var rut = $('#run').val().replace('.','').replace(',','').replace('-','');
     rut = rut.replace('-','');
-    console.log(e);
     cuerpo = rut.slice(0,-1);
     dv = rut.slice(-1).toUpperCase();
 
@@ -29,6 +28,7 @@ $(document).ready(function() {
 
   $(document).on('submit', '#formulario', function(event){
     event.preventDefault();
+
     var id_empleado = $('#id_empleado').val();
     var run = $('#run').val();
     var pw = $('#pw').val();
@@ -41,8 +41,14 @@ $(document).ready(function() {
     var telefono = $('#telefono').val();
     var celular = $('#celular').val();
     var rol = $('#rol').val();
-    var jefatura = $('#jefatura').val();
+    var jefatura = $('#jefatura');
+
     if(run != '' && pw != '' && nombre != '' && rol != '') {
+      if (jefatura.val() == 'Si') {
+        jefatura.val('1');
+      } else {
+        jefatura.val('0');
+      }
       $.ajax({
         url:"../controllers/userController.php?do=ingresar",
         method:'POST',
@@ -51,7 +57,7 @@ $(document).ready(function() {
         processData:false,
         success:function(data)
         {
-          console.log(data);
+          // console.log(data);
           $('#formulario')[0].reset();
           $('#modalEmpleado').modal('hide');
           dataTable.ajax.reload();
@@ -117,7 +123,7 @@ $(document).ready(function() {
         dataType:"json",
         success:function(data)
             {
-                console.log(data);	
+                // console.log(data);	
                 $('#modalEmpleado').modal('show');
 
                 $('#run').val(data[1]);
@@ -131,7 +137,11 @@ $(document).ready(function() {
                 $('#telefono').val(data[9]);
                 $('#celular').val(data[10]);
                 $('#rol').val(data[11]);
-                $('#jefatura').val(data[12]);
+                if (data[12] == '1') {
+                  $('#jefatura').val('Si');
+                } else {
+                  $('#jefatura').val('No');
+                }
                 $('.modal-title').text("Editar Empleado");
                 $('#id_empleado').val(id_empleado);
                 $('#action').val("Editar");
@@ -145,8 +155,12 @@ $(document).ready(function() {
 
   $(document).on('click', '#drop-rol', function(){		
     var nombre_rol = $(this).text();
-    var inpt_rol = $('#rol')
-    inpt_rol.val(nombre_rol);
+    $('#rol').val(nombre_rol);
+  });
+
+  $(document).on('click', '#drop-jef', function(){		
+    var opcion_jef = $(this).text();
+    $('#jefatura').val(opcion_jef);
   });
 
   $(document).on('click', '.borrar_empleado', function(){

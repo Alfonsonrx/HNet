@@ -100,19 +100,19 @@ class LibroCursos {
      * 
      * @return [string]
      */
-    public function editarAlumno($alumno) {
+    // public function editarAlumno($alumno) {
 
-        $sql = "UPDATE `alumno` SET `IDCURSO` = '$alumno->id_curso', `RUNALUMNO` = '$alumno->run',`NOMBREIDALUMNO` = '$alumno->nombre',
-        `PATERNOIDALUMNO` = '$alumno->apellido_paterno', `MATERNOIDALUMNO` = '$alumno->apellido_materno', `FECHANACIMIENTOIDALUMNO` = '$alumno->fecha_nacimiento', 
-        `EMAILALUMNO` = '$alumno->email', `DIRECCIONALUMNO` = '$alumno->direccion', `CELULARALUMNO` = '$alumno->celular' WHERE `alumno`.`IDALUMNO` = '$alumno->id_alumno'";
+    //     $sql = "UPDATE `alumno` SET `IDCURSO` = '$alumno->id_curso', `RUNALUMNO` = '$alumno->run',`NOMBREIDALUMNO` = '$alumno->nombre',
+    //     `PATERNOIDALUMNO` = '$alumno->apellido_paterno', `MATERNOIDALUMNO` = '$alumno->apellido_materno', `FECHANACIMIENTOIDALUMNO` = '$alumno->fecha_nacimiento', 
+    //     `EMAILALUMNO` = '$alumno->email', `DIRECCIONALUMNO` = '$alumno->direccion', `CELULARALUMNO` = '$alumno->celular' WHERE `alumno`.`IDALUMNO` = '$alumno->id_alumno'";
 
-        $res = $this->db->execute($sql);
-        if ($res) {
-            return "Modificado";
-        } else {
-            return "error";
-        }
-    }
+    //     $res = $this->db->execute($sql);
+    //     if ($res) {
+    //         return "Modificado";
+    //     } else {
+    //         return "error";
+    //     }
+    // }
 
     /**
      * Obtiene una lista de alumnos, si $idCurso se deja por defecto
@@ -123,32 +123,32 @@ class LibroCursos {
      * 
      * @return [array]
      */
-    public function obtenerAlumnos($idCurso = 'c.IDCURSO') {
-        $sql = "SELECT a.IDALUMNO, c.NIVEL, c.SECCION, a.RUNALUMNO, a.NOMBREIDALUMNO, a.PATERNOIDALUMNO, a.MATERNOIDALUMNO FROM `alumno` AS a JOIN curso AS c WHERE a.IDCURSO = $idCurso;";
+    // public function obtenerAlumnos($idCurso = 'c.IDCURSO') {
+    //     $sql = "SELECT a.IDALUMNO, c.NIVEL, c.SECCION, a.RUNALUMNO, a.NOMBREIDALUMNO, a.PATERNOIDALUMNO, a.MATERNOIDALUMNO FROM `alumno` AS a JOIN curso AS c WHERE a.IDCURSO = $idCurso;";
         
-        $res = $this->db->getAll($sql);
-        $datos = array();
+    //     $res = $this->db->getAll($sql);
+    //     $datos = array();
         
         
-        foreach($res as $fila){
+    //     foreach($res as $fila){
         
-            $sub_array = array();
-            $sub_array[] = $fila["IDALUMNO"];
-            $sub_array[] = $fila["NIVEL"] . " " . $fila["SECCION"];
-            $sub_array[] = $fila["RUNALUMNO"];
-            $sub_array[] = $fila["NOMBREIDALUMNO"];
-            $sub_array[] = $fila["PATERNOIDALUMNO"];
-            $sub_array[] = $fila["MATERNOIDALUMNO"];
-            $sub_array[] = '<button type="button" name="detalles" id="'.$fila["IDALUMNO"].'" class="btn btn-success btn-sm detalles"><i class="fas fa-info"></i> Detalles</button>';
-            $sub_array[] = '<button type="button" name="editar" id="'.$fila["IDALUMNO"].'" class="btn btn-warning btn-sm editar"><i class="fas fa-user-edit"></i> Editar</button> ';
-            $sub_array[] = '<button type="button" name="borrar" id="'.$fila["IDALUMNO"].'" class="btn btn-danger btn-sm borrar"><i class="fas fa-minus-circle"></i> Borrar</button> ';
-            $datos[] = $sub_array;
-        }
+    //         $sub_array = array();
+    //         $sub_array[] = $fila["IDALUMNO"];
+    //         $sub_array[] = $fila["NIVEL"] . " " . $fila["SECCION"];
+    //         $sub_array[] = $fila["RUNALUMNO"];
+    //         $sub_array[] = $fila["NOMBREIDALUMNO"];
+    //         $sub_array[] = $fila["PATERNOIDALUMNO"];
+    //         $sub_array[] = $fila["MATERNOIDALUMNO"];
+    //         $sub_array[] = '<button type="button" name="detalles" id="'.$fila["IDALUMNO"].'" class="btn btn-success btn-sm detalles"><i class="fas fa-info"></i> Detalles</button>';
+    //         $sub_array[] = '<button type="button" name="editar" id="'.$fila["IDALUMNO"].'" class="btn btn-warning btn-sm editar"><i class="fas fa-user-edit"></i> Editar</button> ';
+    //         $sub_array[] = '<button type="button" name="borrar" id="'.$fila["IDALUMNO"].'" class="btn btn-danger btn-sm borrar"><i class="fas fa-minus-circle"></i> Borrar</button> ';
+    //         $datos[] = $sub_array;
+    //     }
         
-        $salida = array(
-            "data" => $datos
-        );
-        return $salida;
-    }
+    //     $salida = array(
+    //         "data" => $datos
+    //     );
+    //     return $salida;
+    // }
 }
 ?>

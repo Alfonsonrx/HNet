@@ -28,7 +28,6 @@ $(document).ready(function() {
   function updaterut(e) {
     var rut = $('#run').val().replace('.','').replace(',','').replace('-','');
     rut = rut.replace('-','');
-    console.log(e);
     cuerpo = rut.slice(0,-1);
     dv = rut.slice(-1).toUpperCase();
 

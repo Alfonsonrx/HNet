@@ -62,7 +62,11 @@ class Alumnos {
         '$alumno->apellido_materno', '$alumno->fecha_nacimiento', '$alumno->email', '$alumno->direccion', '$alumno->celular')";
         $res = $this->db->execute($sql);
         if ($res) {
-            return "Guardado";
+            if (!$res == "1062") {
+                return "Guardado";
+            } else {
+                return $res;
+            }
         } else {
             return  "error";
         }
@@ -124,10 +128,13 @@ class Alumnos {
 
         $res = $this->db->execute($sql);
         if ($res) {
-            return "Modificado";
+            if (!$res == "1062") {
+                return "Modificado";
+            } else {
+                return $res;
+            }
         } else {
-            // return "error";
-            return $this->id_curso;
+            return  "error";
         }
     }
 

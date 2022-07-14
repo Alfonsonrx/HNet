@@ -46,31 +46,41 @@ class LibroCursos {
      * 
      * @return [string]
      */
-    public function crearLibro($libroCurso) {
+    public function crearLibro() {
         $sql = "INSERT INTO `libroclase` (`IDLIBROCLASES`, `IDEMPLEADO`, `OBSERVACIONEVALUACION`) 
-        VALUES (NULL, '$libroCurso->id_libro', '$libroCurso->observaciones')";
+        VALUES (NULL, '$this->id_empleado', '$this->observaciones')";
         $res = $this->db->execute($sql);
         if ($res) {
-            return "Guardado";
+            if (!$res == "1062" or !$res == "1451") {
+                return "Guardado";
+            } else {
+                return $res;
+            }
         } else {
             return  "error";
         }
     }
 
     /**
+     * Con esta funcion podemos traer la informacion que corresponda de un libro
+     * especificado con el id_libro
+     * 
      * @param string $id_libro
      * @param string $id_empleado
      * 
      * @return [array]
      */
     public function obtenerLibroEmpleado($id_libro = "l.IDLIBROCLASES", $id_empleado = "e.IDEMPLEADO") {
-        $sql = "SELECT l.IDLIBROCLASES, e.NOMBREEMPLEADO, e.PATERNOEMPLEADO, e.MATERNOEMPLEADO, l.OBSERVACIONEVALUACION 
+        $sql = "SELECT l.IDLIBROCLASES, e.IDEMPLEADO, e.NOMBREEMPLEADO, e.PATERNOEMPLEADO, e.MATERNOEMPLEADO, l.OBSERVACIONEVALUACION 
         FROM `libroclase` AS l JOIN empleado AS e WHERE l.IDLIBROCLASES = $id_libro AND l.IDEMPLEADO = $id_empleado;";
         $res = $this->db->execute($sql);
 
         foreach ($res as $fila) {
             $salida[] = $fila["IDLIBROCLASES"];
-            $salida[] = $fila["NOMBREEMPLEADO"] . " " . $fila["PATERNOEMPLEADO"] . " " . $fila["MATERNOEMPLEADO"];
+            $salida[] = $fila["IDEMPLEADO"];
+            $salida[] = $fila["NOMBREEMPLEADO"];
+            $salida[] = $fila["PATERNOEMPLEADO"];
+            $salida[] = $fila["MATERNOEMPLEADO"];
             $salida[] = $fila["OBSERVACIONEVALUACION"];
         }
         return $salida;
@@ -87,9 +97,9 @@ class LibroCursos {
         $sql = "DELETE FROM libroclase WHERE `libroclase`.`IDLIBROCLASES` = '$id_libro'";
         $res = $this->db->execute($sql);
         if ($res) {
-            return "borrado";
+            return $res;
         } else {
-            return "error";
+            return "Ha habido un error";
         }
     }
 
@@ -100,55 +110,52 @@ class LibroCursos {
      * 
      * @return [string]
      */
-    // public function editarAlumno($alumno) {
+    public function editarLibro() {
 
-    //     $sql = "UPDATE `alumno` SET `IDCURSO` = '$alumno->id_curso', `RUNALUMNO` = '$alumno->run',`NOMBREIDALUMNO` = '$alumno->nombre',
-    //     `PATERNOIDALUMNO` = '$alumno->apellido_paterno', `MATERNOIDALUMNO` = '$alumno->apellido_materno', `FECHANACIMIENTOIDALUMNO` = '$alumno->fecha_nacimiento', 
-    //     `EMAILALUMNO` = '$alumno->email', `DIRECCIONALUMNO` = '$alumno->direccion', `CELULARALUMNO` = '$alumno->celular' WHERE `alumno`.`IDALUMNO` = '$alumno->id_alumno'";
+        $sql = "UPDATE `libroclase` SET `IDEMPLEADO` = '$this->id_empleado', `OBSERVACIONEVALUACION` = '$this->observaciones' WHERE `libroclase`.`IDLIBROCLASES` = $this->id_libro;";
 
-    //     $res = $this->db->execute($sql);
-    //     if ($res) {
-    //         return "Modificado";
-    //     } else {
-    //         return "error";
-    //     }
-    // }
+        $res = $this->db->execute($sql);
+        if ($res) {
+            if (!$res == "1062" or !$res == "1451") {
+                return "Modificado";
+            } else {
+                return $res;
+            }
+        } else {
+            return  "error";
+        }
+    }
 
     /**
-     * Obtiene una lista de alumnos, si $idCurso se deja por defecto
-     * entonces llama a todos los alumnos, si se cambia a un valor entero
-     * llama a los alumnos que pertenezcan a la lista de un curso especifico
-     * 
-     * @param int $idCurso
+     * Esta funcion busca la tabla de libros, a la vez con el nombre
+     * del profesor jefe designado a ese libro del curso
      * 
      * @return [array]
      */
-    // public function obtenerAlumnos($idCurso = 'c.IDCURSO') {
-    //     $sql = "SELECT a.IDALUMNO, c.NIVEL, c.SECCION, a.RUNALUMNO, a.NOMBREIDALUMNO, a.PATERNOIDALUMNO, a.MATERNOIDALUMNO FROM `alumno` AS a JOIN curso AS c WHERE a.IDCURSO = $idCurso;";
+    public function obtenerLibros() {
+        $sql = "SELECT l.IDLIBROCLASES, e.IDEMPLEADO, e.NOMBREEMPLEADO, e.PATERNOEMPLEADO, e.MATERNOEMPLEADO, l.OBSERVACIONEVALUACION 
+        FROM `libroclase` AS l JOIN empleado AS e WHERE l.IDEMPLEADO = e.IDEMPLEADO;";
         
-    //     $res = $this->db->getAll($sql);
-    //     $datos = array();
+        $res = $this->db->getAll($sql);
+        $datos = array();
         
         
-    //     foreach($res as $fila){
+        foreach($res as $fila){
         
-    //         $sub_array = array();
-    //         $sub_array[] = $fila["IDALUMNO"];
-    //         $sub_array[] = $fila["NIVEL"] . " " . $fila["SECCION"];
-    //         $sub_array[] = $fila["RUNALUMNO"];
-    //         $sub_array[] = $fila["NOMBREIDALUMNO"];
-    //         $sub_array[] = $fila["PATERNOIDALUMNO"];
-    //         $sub_array[] = $fila["MATERNOIDALUMNO"];
-    //         $sub_array[] = '<button type="button" name="detalles" id="'.$fila["IDALUMNO"].'" class="btn btn-success btn-sm detalles"><i class="fas fa-info"></i> Detalles</button>';
-    //         $sub_array[] = '<button type="button" name="editar" id="'.$fila["IDALUMNO"].'" class="btn btn-warning btn-sm editar"><i class="fas fa-user-edit"></i> Editar</button> ';
-    //         $sub_array[] = '<button type="button" name="borrar" id="'.$fila["IDALUMNO"].'" class="btn btn-danger btn-sm borrar"><i class="fas fa-minus-circle"></i> Borrar</button> ';
-    //         $datos[] = $sub_array;
-    //     }
+            $sub_array = array();
+            $sub_array[] = $fila["IDLIBROCLASES"];
+            $sub_array[] = $fila["IDEMPLEADO"];
+            $sub_array[] = $fila["NOMBREEMPLEADO"]." ".$fila["PATERNOEMPLEADO"]." ".$fila["MATERNOEMPLEADO"];
+            $sub_array[] = $fila["OBSERVACIONEVALUACION"];
+            $sub_array[] = '<button type="button" name="editar" id="'.$fila["IDLIBROCLASES"].'" class="btn btn-warning btn-sm editar_libro"><i class="fas fa-minus-circle"></i> Editar</button> ';
+            $sub_array[] = '<button type="button" name="borrar" id="'.$fila["IDLIBROCLASES"].'" class="btn btn-danger btn-sm borrar_libro"><i class="fas fa-minus-circle"></i> Borrar</button> ';
+            $datos[] = $sub_array;
+        }
         
-    //     $salida = array(
-    //         "data" => $datos
-    //     );
-    //     return $salida;
-    // }
+        $salida = array(
+            "data" => $datos
+        );
+        return $salida;
+    }
 }
 ?>

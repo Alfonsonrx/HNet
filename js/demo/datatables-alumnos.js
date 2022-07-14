@@ -39,11 +39,12 @@ $(document).ready(function() {
     
     var id_curso = $('.id_curso').text();
     $('.id_curso').val($('.id_curso').text());
+    
     var run = $('#run').val();
     var nombre = $('#nombre').val();
     var email = $('#email').val();
     var formData = new FormData(this);
-    console.log(id_curso);
+    // console.log(id_curso);
     if(id_curso != '' && run != '' && nombre != '' && email != '') {
       $.ajax({
         url:"../controllers/AlumnoTableController.php?do=ingresar",
@@ -53,10 +54,14 @@ $(document).ready(function() {
         processData:false,
         success:function(data)
         {
-          console.log(data);
           $('#formulario')[0].reset();
           $('#modalAlumno').modal('hide');
-          dataTable.ajax.reload();
+          if (data == "1062") {
+            $("#alertaModal").modal('show');
+            $("#texto_modal_alerta").text("Ya existe un alumno con este Run");
+          } else {
+            dataTable.ajax.reload();
+          }
         }
       });
     }
@@ -70,7 +75,7 @@ $(document).ready(function() {
 
     $('#formulario')[0].reset()
     
-    $('.modal-title').text("Crear Usuario");
+    $('.modal-ingresar-title').text("Crear Usuario");
     $('#action').val("Crear");
     $('#operacion').val("Crear");
   });
@@ -129,7 +134,7 @@ $(document).ready(function() {
                 // console.log(data);	
                 $('#modalAlumno').modal('show');
 
-                $('.id_curso').attr("id",data[1]);
+                $('.id_curso').text(data[1]);
 
                 $.ajax({
                   url:"../controllers/CursoTableController.php?do=obtenerCurso",
@@ -151,7 +156,7 @@ $(document).ready(function() {
                 $('#email').val(data[7]);
                 $('#direccion').val(data[8]);
                 $('#celular').val(data[9]);
-                $('.modal-title').text("Editar Alumno "+data[0]);
+                $('.modal-ingresar-title').text("Editar Alumno "+data[0]);
                 $('#id_alumno').val(id_alumno);
                 $('#action').val("Editar");
                 $('#operacion').val("Editar");

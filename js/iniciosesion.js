@@ -21,11 +21,14 @@ $(document).ready(function() {
             }).done(function(json) {
                 if (json['ans']) {
                     setTimeout(function() {
-                        window.location.replace('http://localhost/HNet/views/tabla_cursos.php')
-                    }, 1000);
+                        window.location.replace('http://localhost/HNet/index.php')
+                    }, 200);
                 } else {
                     let mensaje = json['message'];
-                    alert(mensaje);
+                    $("#alertaModal").modal('show');
+                    
+                    $("#errorModalLongTitle").text('Error al iniciar sesion');
+                    $("#texto_modal_alerta").text(mensaje);
                 }
             })
         }, 500);

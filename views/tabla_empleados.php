@@ -112,7 +112,9 @@ $rol = $_SESSION['empleado']["empRol"]
                         <div class="modal-header">
                             <i class="fas fa-info"></i>
                             <h5 class="modalDetalle-title" id="detalleModalLabel"> </h5>
-                            <button type="button" class="btn-close fas fa-times" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                     
                         <div class="modal-content">
@@ -154,7 +156,9 @@ $rol = $_SESSION['empleado']["empRol"]
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Crear Empleado</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 
                     <form method="POST" id="formulario" enctype="multipart/form-data">
@@ -162,7 +166,7 @@ $rol = $_SESSION['empleado']["empRol"]
                             <div class="modal-body">
 
                                 <label for="run">Ingrese Run</label>
-                                <input type="text" name="run" id="run" class="form-control">
+                                <input type="text" name="run" id="run" class="form-control" maxlength="10">
                                 <br />
 
                                 <label for="pw">Ingrese contraseña</label>

@@ -3,7 +3,10 @@
 <?php
 session_start();
 include '../model/validador.php';
+require_once("../model/empleado.php");
 
+$prof = new Empleado();
+$profesores = $prof->obtenerProfesores();
 ?>
 <head>
 
@@ -52,48 +55,60 @@ include '../model/validador.php';
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Libros</h1>
                     <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <div class="col-2">
-                                <div class="text-center">
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary bg-gradient-primary w-100 boton-crear" data-bs-toggle="modal" data-bs-target="#modalUsuario" id="botonCrear">
-                                    Crear
-                                    <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm" id="tabla_libros">
+                                <table class="table table-bordered" id="libros_dataTable" width="100%" >
+                                        <thead>
+                                            <tr>
+                                                <th >ID</th>
+                                                <th >ID Profesor</th>
+                                                <th >Profesor Jefe</th>
+                                                <th >Observacion</th>
+                                                <th ></th>
+                                                <th ></th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th >ID</th>
+                                                <th >ID Profesor</th>
+                                                <th >Profesor Jefe</th>
+                                                <th >Observacion</th>
+                                                <th ></th>
+                                                <th ></th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Run</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido Paterno</th>
-                                            <th>Apellido Materno</th>
-                                            <th>Rol</th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Run</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido Paterno</th>
-                                            <th>Apellido Materno</th>
-                                            <th>Rol</th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                            <div class="col-3" >
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Profesor Jefe: </button>
+                                        <div class="dropdown-menu">
+                                            <?php
+                                            foreach ($profesores as $p) {
+                                            ?>
+                                            <a class="empleado-drop dropdown-item" id="<?= $p['IDEMPLEADO'] ?>"><?= $p['NOMBREEMPLEADO']." ".$p['PATERNOEMPLEADO']." ".$p['MATERNOEMPLEADO'] ?></a>
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <input type="text" class="form-control" aria-label="Text input with dropdown button" id="inpt-empleado" disabled>
+                                </div>
+
+                                <label for="observacion-libro">Observacion Libro:</label>
+                                <div class="input-group">
+                                    <textarea class="form-control" id="observacion-libro" aria-label="With textarea"></textarea>
+                                </div>
+                                </br>
+
+                                <button type="button" class="btn btn-primary bg-gradient-primary w-100 btn-block" id="btn-agregar-libro">Ingresar nuevo libro </button>
+                                <div class="modal-footer">
+                                    <input type="hidden" name="id_libro" id="id_libro">             
+                                    <input type="hidden" name="operacion_libro" id="operacion_libro" value="Crear">             
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -103,120 +118,6 @@ include '../model/validador.php';
 
             </div>
             <!-- End of Main Content -->
-
-            <!-- Modal detalles -->
-            <div class="modal fade modal-empleado" id="modalDetalleEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <i class="fas fa-info"></i>
-                            <h5 class="modalDetalle-title" id="detalleModalLabel"> </h5>
-                            <button type="button" class="btn-close fas fa-times" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                    
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <ul class="list-group list-group-flush">
-                                    <label name="run" for="run">run</label>
-                                    <li id="det_run" class="list-group-item"> </li>
-                                    <label name="fecha_nacimiento" for="fecha_nacimiento">fecha_nacimiento</label>
-                                    <li id="det_fecha_nacimiento" class="list-group-item"> </li>
-                                    <label name="email" for="email">email</label>
-                                    <li id="det_email" class="list-group-item"> </li>
-                                    <label name="direccion" for="direccion">direccion</label>
-                                    <li id="det_direccion" class="list-group-item"> </li>
-                                    <label name="celular" for="celular">celular</label>
-                                    <li id="det_celular" class="list-group-item"> </li>
-                                    <label name="telefono" for="telefono">telefono</label>
-                                    <li id="det_telefono" class="list-group-item"> </li>
-                                    <label name="rol" for="rol">rol</label>
-                                    <li id="det_rol" class="list-group-item"> </li>
-                                    <label name="jefatura" for="jefatura">jefatura</label>
-                                    <li id="det_jefatura" class="list-group-item"> </li>
-                                </ul>
-                            </div>
-                
-                            <div class="modal-footer">
-                                <input type="hidden" name="id_empleado" id="det_id_empleado">             
-                            </div>
-                        </div>
-                    </div>  
-                </div>
-            </div>
-            <!-- Modal detalles -->
-            <!-- Modal Editar -->
-            <div class="modal fade" id="modalEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Crear Empleado</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                
-                    <form method="POST" id="formulario" enctype="multipart/form-data">
-                        <div class="modal-content">
-                            <div class="modal-body">
-
-                                <label for="run">Ingrese Run</label>
-                                <input type="text" name="run" id="run" class="form-control">
-                                <br />
-
-                                <label for="pw">Ingrese contraseña</label>
-                                <input type="text" name="pw" id="pw" class="form-control">
-                                <br />
-
-                                <label for="email">Ingrese el email</label>
-                                <input type="text" name="email" id="email" class="form-control">
-                                <br />
-
-                                <label for="nombre">Ingrese el nombre</label>
-                                <input type="text" name="nombre" id="nombre" class="form-control">
-                                <br />
-                                
-                                <label for="apellido_paterno">Ingrese Apellido Paterno</label>
-                                <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control">
-                                <br />
-                                
-                                <label for="apellido_materno">Ingrese Apellido Materno</label>
-                                <input type="text" name="apellido_materno" id="apellido_materno" class="form-control">
-                                <br />
-                                
-                                <label for="fecha_nacimiento">Ingrese fecha nacimiento</label>
-                                <input type="text" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control">
-                                <br />
-
-                                <label for="direccion">Ingrese Direccion</label>
-                                <input type="text" name="direccion" id="direccion" class="form-control">
-                                <br />
-
-                                <label for="telefono">Ingrese telefono</label>
-                                <input type="text" name="telefono" id="telefono" class="form-control">
-                                <br />
-
-                                <label for="celular">Ingrese Celular</label>
-                                <input type="text" name="celular" id="celular" class="form-control">
-                                <br />
-
-                                <label for="rol">Ingrese rol</label>
-                                <input type="text" name="rol" id="rol" class="form-control">
-                                <br />
-
-                                <label for="jefatura">Ingrese jefatura</label>
-                                <input type="text" name="jefatura" id="jefatura" class="form-control">
-                                <br />
-
-                            </div>
-
-                            <div class="modal-footer">
-                                <input type="hidden" name="id_empleado" id="id_empleado">          
-                                <input type="hidden" name="operacion" id="operacion">             
-                                <input type="submit" name="action" id="action" class="btn btn-success" value="Crear">
-                            </div>
-                        </div>
-                    </form>
-                </div>     
-            </div>
-            </div>
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -256,7 +157,7 @@ include '../model/validador.php';
     <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../js/demo/datatables-empleados.js"></script>
+    <script src="../js/demo/datatables-libros.js"></script>
 
 </body>
 

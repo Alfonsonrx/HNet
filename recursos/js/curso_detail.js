@@ -41,7 +41,7 @@ $(document).ready(function() {
                 data:{id_libro:data[1]},
                 dataType:"json",
                 success:function(data) {
-                    $("#lbl-profesor").append(""+data[1]);
+                    $("#lbl-profesor").append(data[1]);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus, errorThrown);

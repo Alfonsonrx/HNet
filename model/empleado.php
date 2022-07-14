@@ -51,7 +51,7 @@ class Empleado{
      * Con esta funcion se comparara los datos con la informacion de la base de datos
      * y asi saber si estan correctos
      * 
-     * @return [type]
+     * @return [array]
      */
     public function iniciarSesion() {
         $sql = "SELECT * FROM empleado WHERE RUNEMPLEADO='".$this->run."' AND PASSWORD='".$this->pw."'";
@@ -59,6 +59,11 @@ class Empleado{
         return $res;
     }
     
+    /**
+     * Esta funcion devuelve la jefatura si es que tiene alguna
+     * 
+     * @return [array]
+     */
     public function jefatura() {
         $sql = "SELECT e.IDEMPLEADO, e.NOMBREEMPLEADO, l.IDLIBROCLASES, c.IDCURSO 
         FROM `empleado` AS e JOIN `libroclase` AS l JOIN `curso` AS c 
@@ -83,9 +88,13 @@ class Empleado{
         '$this->rol', '$this->jefatura')";  
         $res = $this->db->execute($sql);
         if ($res) {
-            return "Guardado";
+            if (!$res == "1062") {
+                return "Guardado";
+            } else {
+                return $res;
+            }
         } else {
-            return  "Error";
+            return  "error";
         }
     }
 
@@ -154,9 +163,13 @@ class Empleado{
 
         $res = $this->db->execute($sql);
         if ($res) {
-            return "Modificado";
+            if (!$res == "1062") {
+                return "Modificado";
+            } else {
+                return $res;
+            }
         } else {
-            return "error";
+            return  "error";
         }
     }
 
@@ -191,6 +204,13 @@ class Empleado{
             "data" => $datos
         );
         return $salida;
+    }
+
+    public function obtenerProfesores() {
+        $sql = "SELECT IDEMPLEADO, NOMBREEMPLEADO, PATERNOEMPLEADO, MATERNOEMPLEADO FROM `empleado` WHERE ROLEMPLEADO = 'Profesor/a';";
+        
+        $res = $this->db->getAll($sql);
+        return $res;
     }
 }
 ?>

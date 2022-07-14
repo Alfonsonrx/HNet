@@ -35,7 +35,7 @@ include 'model/validador.php';
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -52,6 +52,12 @@ include 'model/validador.php';
                     <span>Inicio</span></a>
             </li>
 
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="documentacion/">
+                <i class="fas fa-book"></i>
+                <span>Documentación</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -64,19 +70,19 @@ include 'model/validador.php';
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Tablas</span>
+                    <i class="fas fa-users-cog"></i>
+                    <span>Administrar</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.php">Login</a>
-                        <a class="collapse-item" href="register.php">Register</a>
-                        <a class="collapse-item" href="forgot-password.php">Forgot Password</a>
+                        <h6 class="collapse-header">Tablas:</h6>
+                        <a class="collapse-item" href="views/login.php">Login</a>
+                        <a class="collapse-item" href="views/tabla_libros.php">Libros de Curso</a>
+                        <a class="collapse-item" href="views/tabla_asignaturas.php">Asignaturas</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.php">404 Page</a>
-                        <a class="collapse-item" href="blank.php">Blank Page</a>
+                        <a class="collapse-item" href="views/404.php">404 Page</a>
+                        <a class="collapse-item" href="views/blank.php">Blank Page</a>
                     </div>
                 </div>
             </li>
@@ -84,15 +90,15 @@ include 'model/validador.php';
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="views/tabla_cursos.php">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Cursos</span></a>
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Cursos</span></a>
             </li>
 
             <!-- Nav Item - Alumnos -->
             <li class="nav-item">
                 <a class="nav-link" href="views/tabla_alumnos.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Alumnos</span></a>
+                <i class="fas fa-users"></i>
+                <span>Alumnos</span></a>
             </li>
 
             <?php
@@ -693,6 +699,25 @@ include 'model/validador.php';
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="alertaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Error Presentado</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <a id="texto_modal_alerta">Texto error</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

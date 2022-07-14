@@ -5,7 +5,9 @@
             <div class="modal-header">
                 <i class="fas fa-info"></i>
                 <h5 class="modalDetalle-title" id="detalleModalLabel"> </h5>
-                <button type="button" class="btn-close fas fa-times" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         
             <div class="modal-content">
@@ -45,8 +47,10 @@ $lista_cursos = $cursos->obtenerCursos();
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="crearModalLabel">Crear Usuario</h5>
-                <button type="button" class="btn-close fas fa-times" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-ingresar-title" id="crearModalLabel">Crear Usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         
             <form method="POST" id="formulario" enctype="multipart/form-data">
@@ -71,7 +75,7 @@ $lista_cursos = $cursos->obtenerCursos();
                         <br />
                         
                         <label for="run">Ingrese Run</label>
-                        <input type="text" name="run" id="run" class="form-control">
+                        <input type="text" name="run" id="run" class="form-control" maxlength="10">
                         <br />
                         
                         <label for="nombre">Ingrese el nombre</label>

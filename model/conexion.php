@@ -62,6 +62,9 @@ class Database{
      */
     public function execute($sql) {
         $res = $this->db->query($sql);
+        if (!$res) {
+            $res = $this->db->errno;
+        }
         $this->db->close();
         return $res;
     }

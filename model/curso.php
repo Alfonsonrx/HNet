@@ -53,9 +53,13 @@ class Cursos {
         VALUES (NULL, '$curso->id_libro', '$curso->anio', '$curso->nivel', '$curso->seccion', '$curso->n_sala')";
         $res = $this->db->execute($sql);
         if ($res) {
-            return "Guardado";
+            if (!$res == "1062") {
+                return "Guardado";
+            } else {
+                return $res;
+            }
         } else {
-            return $sql;
+            return  "error";
         }
     }
 
@@ -112,9 +116,13 @@ class Cursos {
 
         $res = $this->db->execute($sql);
         if ($res) {
-            return "Modificado";
+            if (!$res == "1062") {
+                return "Modificado";
+            } else {
+                return $res;
+            }
         } else {
-            return "error";
+            return  "error";
         }
     }
 

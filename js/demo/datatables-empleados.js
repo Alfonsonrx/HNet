@@ -57,10 +57,15 @@ $(document).ready(function() {
         processData:false,
         success:function(data)
         {
-          // console.log(data);
           $('#formulario')[0].reset();
           $('#modalEmpleado').modal('hide');
-          dataTable.ajax.reload();
+          if (data == "1062") {
+            console.log(data);
+            $("#alertaModal").modal('show');
+            $("#texto_modal_alerta").text("Ya existe un empleado con este Run");
+          } else {
+            dataTable.ajax.reload();
+          }
         }
       });
       

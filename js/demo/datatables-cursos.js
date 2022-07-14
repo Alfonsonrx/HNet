@@ -58,10 +58,15 @@ $(document).ready(function() {
                 contentType:false,
                 processData:false,
                 success:function(data) {
-                    console.log(data);
                     $('#formulario')[0].reset();
                     $('#modalCurso').modal('hide');
-                    dataTable.ajax.reload();
+                    if (data == "1062") {
+                        console.log(data);
+                        $("#alertaModal").modal('show');
+                        $("#texto_modal_alerta").text("El libro de curso ya esta siendo utilizado");
+                    } else {
+                        dataTable.ajax.reload();
+                    }
                 } 
             });
         }

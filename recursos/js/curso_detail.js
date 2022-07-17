@@ -177,7 +177,7 @@ $(document).ready(function() {
 
     $(document).on('click', '.asignatura_tabla', function(){		
         var id_asignatura = $(this).attr("id");
-        var nombre_asign = $(this).text();
+        var nombre_asign = $(this).children().text();
         var inpt_asig = $('#inpt-asignatura')
         inpt_asig.text(id_asignatura);
         inpt_asig.val(nombre_asign);
@@ -221,8 +221,8 @@ $(document).ready(function() {
                 $("input[name='asistencia']:checked").prop('checked', false);
 
                 $('#operacion_horario').val("Crear");
+                Horario_dataTable.ajax.reload();
             }, 100);
-            Horario_dataTable.ajax.reload();
         }
         else {
             alert("Algunos campos son obligatorios");

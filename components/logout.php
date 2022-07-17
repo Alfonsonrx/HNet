@@ -30,8 +30,9 @@
             <div class="modal-body">
                 <a id="texto_modal_alerta">Texto error</a>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div class="modal-footer error-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+                <button type="button" class="btn btn-danger forzar-borrado" data-dismiss="modal" hidden>Forzar</button>
             </div>
         </div>
     </div>

@@ -60,7 +60,6 @@
       method:"POST",
       success:function(data) {
           // console.log(data);
-          // Horario_dataTable.ajax.reload();
       }
     });
   });

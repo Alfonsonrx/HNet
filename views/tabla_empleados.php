@@ -110,7 +110,6 @@ $rol = $_SESSION['empleado']["empRol"]
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <i class="fas fa-info"></i>
                             <h5 class="modalDetalle-title" id="detalleModalLabel"> </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -277,7 +276,7 @@ $rol = $_SESSION['empleado']["empRol"]
     <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.js"></script>
 
     <!-- Page level plugins -->
     <script src="../vendor/datatables/jquery.dataTables.min.js"></script>

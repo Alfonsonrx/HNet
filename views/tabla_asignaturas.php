@@ -53,7 +53,7 @@ $profesores = $prof->obtenerProfesores();
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Libros</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Asignaturas</h1>
                     <!-- DataTales Example -->
                     <div class="card-body">
                         <div class="row">
@@ -95,11 +95,11 @@ $profesores = $prof->obtenerProfesores();
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroup-sizing-default">Nombre Asignatura: </span>
+                                        <span class="input-group-text" id="inputGroup-sizing-default">Nombre: </span>
                                     </div>
-                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                    <input type="text" class="form-control" id="inpt-asignatura" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                                 </div>
-                                <button type="button" class="btn btn-primary bg-gradient-primary w-100 btn-block">Agregar asignatura</button>
+                                <button type="button" class="btn btn-primary bg-gradient-primary w-100 btn-block" id="btn-agregar">Agregar asignatura</button>
 
                             </div>
                         </div>
@@ -142,14 +142,14 @@ $profesores = $prof->obtenerProfesores();
     <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.js"></script>
 
     <!-- Page level plugins -->
     <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <!-- <script src="../js/demo/datatables-asignaturas.js"></script> -->
+    <script src="../js/demo/datatables-asignaturas.js"></script>
 
 </body>
 

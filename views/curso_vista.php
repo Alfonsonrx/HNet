@@ -6,7 +6,7 @@ include '../model/validador.php';
 require_once("../model/asignatura.php");
 
 $as = new Asignatura();
-$asignaturas = $as->obtenerAsignaturas();
+
 
 $id_curso = (isset($_GET["id"])) ? $_GET["id"] : "";
 $jef_curso = ($id_curso == $_SESSION["empleado"]["curso_jef"] or $_SESSION["empleado"]["empRol"] == 'UTP');
@@ -159,22 +159,21 @@ $jef_curso = ($id_curso == $_SESSION["empleado"]["curso_jef"] or $_SESSION["empl
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Asignatura: </button>
                                                 <div class="dropdown-menu">
+                                                    <a class="dropdown-item" disabled >Selecionar Asignatura:</a>
+                                                    
                                                     <?php
+                                                    $asignaturas = $as->obtenerAsignaturas();
                                                     foreach ($asignaturas as $a) {
                                                     ?>
-                                                    <a class="asignatura_tabla dropdown-item" id="<?= $a['IDASIGNATURA'] ?>"><?= $a['NOMBREASIGNATURA'] ?></a>
+                                                    <a class="asignatura_tabla dropdown-item" id="<?= $a['IDASIGNATURA'] ?>"><b><?= $a['NOMBREASIGNATURA'] ?></b>
+                                                        <?= "-".$a['NOMBREEMPLEADO']." ".$a['PATERNOEMPLEADO']." ".$a['MATERNOEMPLEADO']."(".$a['IDEMPLEADO'].")" ?>
+                                                    </a>
                                                     <?php
                                                     }
                                                     ?>
                                                 </div>
                                             </div>
-                                            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="inpt-asignatura">
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-default">ID Profesor: </span>
-                                            </div>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="inpt-asignatura" disabled>
                                         </div>
                                         <button type="button" class="btn btn-primary bg-gradient-primary w-100 btn-block">Agregar asignatura</button>
 
@@ -192,7 +191,7 @@ $jef_curso = ($id_curso == $_SESSION["empleado"]["curso_jef"] or $_SESSION["empl
                                                     <tr>
                                                         <th >ID</th>
                                                         <th >Asignatura</th>
-                                                        <th >ID Libro</th>
+                                                        <!-- <th >ID Libro</th> -->
                                                         <th >Fecha</th>
                                                         <th >Hora Inicio</th>
                                                         <th >Hora Fin</th>
@@ -212,7 +211,7 @@ $jef_curso = ($id_curso == $_SESSION["empleado"]["curso_jef"] or $_SESSION["empl
                                                     <tr>
                                                         <th >ID</th>
                                                         <th >Asignatura</th>
-                                                        <th >ID Libro</th>
+                                                        <!-- <th >ID Libro</th> -->
                                                         <th >Fecha</th>
                                                         <th >Hora Inicio</th>
                                                         <th >Hora Fin</th>
@@ -238,8 +237,11 @@ $jef_curso = ($id_curso == $_SESSION["empleado"]["curso_jef"] or $_SESSION["empl
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Asignatura: </button>
                                                 <div class="dropdown-menu">
+                                                    <a class="dropdown-item" disabled >Selecionar Asignatura:</a>
+
                                                     <?php
-                                                    foreach ($asignaturas as $a) {
+                                                    $asignaturasCurso = $as->obtenerAsignaturasCurso($id_curso);
+                                                    foreach ($asignaturasCurso as $a) {
                                                     ?>
                                                     <a class="asignatura_horario dropdown-item" id="<?= $a['IDASIGNATURA'] ?>"><?= $a['NOMBREASIGNATURA'] ?></a>
                                                     <?php

@@ -120,7 +120,9 @@ class Horario {
      * @return [array]
      */
     public function obtenerHorarios($id_curso) {
-        $sql = "SELECT c.IDCURSO, h.IDHORARIO, a.NOMBREASIGNATURA, c.IDLIBROCLASES, h.FECHAHORARIO, h.HORAINICIO, h.HORAFIN, h.ASISTENCIAPROFESOR 
+        $sql = "SELECT c.IDCURSO, h.IDHORARIO, a.NOMBREASIGNATURA, 
+        -- c.IDLIBROCLASES, 
+        h.FECHAHORARIO, h.HORAINICIO, h.HORAFIN, h.ASISTENCIAPROFESOR 
                 FROM `horario` AS h 
                 JOIN `curso` AS c 
                 JOIN `asignatura` AS a 
@@ -135,7 +137,7 @@ class Horario {
             $sub_array = array();
             $sub_array[] = $fila["IDHORARIO"];
             $sub_array[] = $fila["NOMBREASIGNATURA"];
-            $sub_array[] = $fila["IDLIBROCLASES"];
+            // $sub_array[] = $fila["IDLIBROCLASES"];
             $sub_array[] = $fila["FECHAHORARIO"];
             $sub_array[] = $fila["HORAINICIO"];
             $sub_array[] = $fila["HORAFIN"];

@@ -175,7 +175,7 @@ $jef_curso = ($id_curso == $_SESSION["empleado"]["curso_jef"] or $_SESSION["empl
                                             </div>
                                             <input type="text" class="form-control" aria-label="Text input with dropdown button" id="inpt-asignatura" disabled>
                                         </div>
-                                        <button type="button" class="btn btn-primary bg-gradient-primary w-100 btn-block">Agregar asignatura</button>
+                                        <button type="button" class="btn btn-primary bg-gradient-primary w-100 btn-block" id="btn-agregar-asignatura">Agregar asignatura</button>
 
                                     </div>
                                 </div>

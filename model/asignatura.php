@@ -19,6 +19,20 @@ class Asignatura{
         $this->$key = $value;
     }
     
+    public function agregarAcurso($id_asignatura, $id_curso) {
+        $sql = "INSERT INTO `cursa` (`IDASIGNATURA`, `IDCURSO`) VALUES ('$id_asignatura', '$id_curso')";
+        $res = $this->db->execute($sql);
+        if ($res) {
+            if (!$res == "1062") {
+                return "Guardado";
+            } else {
+                return $res;
+            }
+        } else {
+            return  "error";
+        }
+    }
+
     public function obtenerAsignaturas() {
         $sql = "SELECT a.IDASIGNATURA, a.NOMBREASIGNATURA, i.IDEMPLEADO, e.NOMBREEMPLEADO, e.PATERNOEMPLEADO, e.MATERNOEMPLEADO 
                 FROM `asignatura` AS a 

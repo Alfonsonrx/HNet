@@ -61,15 +61,16 @@ class Database{
      * @return [int]
      */
     public function execute($sql, $multi_query = false) {
-        if ($multi_query) {
-            $res = $this->db->multi_query($sql);
-        } else {
-            $res = $this->db->query($sql);
-        }
-
-        if (!$res) {
+        try {
+            if ($multi_query) {
+                $res = $this->db->multi_query($sql);
+            } else {
+                $res = $this->db->query($sql);
+            }
+        } catch (mysqli_sql_exception $e) {
             $res = $this->db->errno;
         }
+
         // $this->db->close();
         return $res;
     }

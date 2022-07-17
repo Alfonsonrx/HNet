@@ -13,9 +13,7 @@ switch ($do) {
     
     case 'ingresarACurso':
         $asign = new Asignatura();
-        $asign->__set("id_empleado", $_POST["id_empleado"]);
-        $asign->__set("nombre_asignatura", $_POST["nombre_asign"]);
-        $result = $asign->crearAsignatura();
+        $result = $asign->agregarAcurso($_POST["id_asignatura"], $_POST["id_curso"]);
         echo $result;
         break;
 

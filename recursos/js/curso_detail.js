@@ -138,6 +138,42 @@ $(document).ready(function() {
 
     })
 
+    $(document).on('click', '.asignatura_tabla', function(){		
+        var id_asignatura = $(this).attr("id");
+        var nombre_asign = $(this).children().text();
+        var inpt_asig = $('#inpt-asignatura')
+        inpt_asig.text(id_asignatura);
+        inpt_asig.val(nombre_asign);
+    });
+
+    $(document).on('click', '#btn-agregar-asignatura', function() {
+        var id_asignatura = $('#inpt-asignatura').text();
+        if(id_asignatura != '') {
+            $.ajax({
+                url:"../controllers/AsignTableController.php?do=ingresarACurso",
+                type:'POST',
+                dataType:'json',
+                data: {'id_asignatura': id_asignatura, 'id_curso': id_curso},
+                success:function(data) {
+                    if (data == "1062") {
+                        console.log(data);
+                        $("#alertaModal").modal('show');
+                        $("#texto_modal_alerta").text("Ya esta incluido este curso");
+                    } else {
+                        Asig_dataTable.ajax.reload();
+                    }
+                }
+            });
+            setTimeout((e) => {
+                $('#inpt-asignatura').val("");
+                $('#inpt-asignatura').text("");
+            }, 100);
+        }
+        else {
+            console.log("Algunos campos son obligatorios");
+        }
+    });
+
     /**
      * Tercera pestaña de curso, horarios
      */
@@ -175,14 +211,7 @@ $(document).ready(function() {
         inpt_asig.val(nombre_asign);
     });
 
-    $(document).on('click', '.asignatura_tabla', function(){		
-        var id_asignatura = $(this).attr("id");
-        var nombre_asign = $(this).children().text();
-        var inpt_asig = $('#inpt-asignatura')
-        inpt_asig.text(id_asignatura);
-        inpt_asig.val(nombre_asign);
-    });
-
+    
     $(document).on('click', '#btn-agregar', function() {
 
         var id_horario = $('#id_horario').val();

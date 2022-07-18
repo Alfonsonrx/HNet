@@ -124,35 +124,35 @@ $jef_curso = ($id_curso == $_SESSION["empleado"]["curso_jef"] or $_SESSION["empl
                                 <div class="row">
                                     <div class="col-sm">
                                         <table class="table table-bordered" id="asignatura_dataTable" width="100%" >
-                                                <thead>
-                                                    <tr>
-                                                        <th >ID</th>
-                                                        <th >Nombre</th>
-                                                        <th >Profesor</th>
-                                                        <?php
-                                                        if ($jef_curso) {
-                                                        ?>
-                                                        <th ></th>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                    </tr>
-                                                </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th >ID</th>
-                                                        <th >Nombre</th>
-                                                        <th >Profesor</th>
-                                                        <?php
-                                                        if ($jef_curso) {
-                                                        ?>
-                                                        <th ></th>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
+                                            <thead>
+                                                <tr>
+                                                    <th >ID</th>
+                                                    <th >Nombre</th>
+                                                    <th >Profesor</th>
+                                                    <?php
+                                                    if ($jef_curso) {
+                                                    ?>
+                                                    <th ></th>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <th >ID</th>
+                                                    <th >Nombre</th>
+                                                    <th >Profesor</th>
+                                                    <?php
+                                                    if ($jef_curso) {
+                                                    ?>
+                                                    <th ></th>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
                                     </div>
                                     <div class="col-3">
                                         <div class="input-group mb-3">
@@ -187,47 +187,47 @@ $jef_curso = ($id_curso == $_SESSION["empleado"]["curso_jef"] or $_SESSION["empl
                                 <div class="row">
                                     <div class="col-sm" id="tabla_horario">
                                         <table class="table table-bordered" id="horario_dataTable" width="100%" >
-                                                <thead>
-                                                    <tr>
-                                                        <th >ID</th>
-                                                        <th >Asignatura</th>
-                                                        <!-- <th >ID Libro</th> -->
-                                                        <th >Fecha</th>
-                                                        <th >Hora Inicio</th>
-                                                        <th >Hora Fin</th>
-                                                        <th >Asistencia Profesor</th>
-                                                        <th ></th>
-                                                        <?php
-                                                        if ($jef_curso) {
-                                                        ?>
-                                                        <th ></th>
-                                                        <th ></th>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                    </tr>
-                                                </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th >ID</th>
-                                                        <th >Asignatura</th>
-                                                        <!-- <th >ID Libro</th> -->
-                                                        <th >Fecha</th>
-                                                        <th >Hora Inicio</th>
-                                                        <th >Hora Fin</th>
-                                                        <th >Asistencia Profesor</th>
-                                                        <th ></th>
-                                                        <?php
-                                                        if ($jef_curso) {
-                                                        ?>
-                                                        <th ></th>
-                                                        <th ></th>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
+                                            <thead>
+                                                <tr>
+                                                    <th >ID</th>
+                                                    <th >Asignatura</th>
+                                                    <!-- <th >ID Libro</th> -->
+                                                    <th >Fecha</th>
+                                                    <th >Hora Inicio</th>
+                                                    <th >Hora Fin</th>
+                                                    <th >Asistencia Profesor</th>
+                                                    <th ></th>
+                                                    <?php
+                                                    if ($jef_curso) {
+                                                    ?>
+                                                    <th ></th>
+                                                    <th ></th>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <th >ID</th>
+                                                    <th >Asignatura</th>
+                                                    <!-- <th >ID Libro</th> -->
+                                                    <th >Fecha</th>
+                                                    <th >Hora Inicio</th>
+                                                    <th >Hora Fin</th>
+                                                    <th >Asistencia Profesor</th>
+                                                    <th ></th>
+                                                    <?php
+                                                    if ($jef_curso) {
+                                                    ?>
+                                                    <th ></th>
+                                                    <th ></th>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
                                     </div>
                                     <?php
                                     if ($jef_curso) {

@@ -38,14 +38,15 @@ $(document).ready(function() {
     event.preventDefault();
     
     var id_curso = $('.id_curso').text();
-    $('.id_curso').val($('.id_curso').text());
     
     var run = $('#run').val();
     var nombre = $('#nombre').val();
     var email = $('#email').val();
-    var formData = new FormData(this);
-    // console.log(id_curso);
-    if(id_curso != '' && run != '' && nombre != '' && email != '') {
+
+    if(id_curso != '' && run != '' && run != '-' && nombre != '' && email != '') {
+      $('.id_curso').val($('.id_curso').text());
+      var formData = new FormData(this);
+
       $.ajax({
         url:"../controllers/AlumnoTableController.php?do=ingresar",
         method:'POST',
@@ -66,7 +67,8 @@ $(document).ready(function() {
       });
     }
     else {
-        alert("Algunos campos son obligatorios");
+      $("#alertaModal").modal('show');
+      $("#texto_modal_alerta").text("Hay campos vacios");
     }
   });
 

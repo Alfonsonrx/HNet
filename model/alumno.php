@@ -72,6 +72,15 @@ class Alumnos {
         }
     }
 
+    public function obtenerAlumnosCurso($idCurso) {
+        $sql = "SELECT a.IDALUMNO, a.NOMBREIDALUMNO, a.PATERNOIDALUMNO, a.MATERNOIDALUMNO 
+                FROM `alumno` AS a 
+                JOIN curso AS c 
+                WHERE a.IDCURSO = c.IDCURSO AND c.IDCURSO = $idCurso;";
+        $res = $this->db->getAll($sql);
+        return $res;
+    }
+
     /**
      * Obtiene los datos de un alumno especifico
      * 

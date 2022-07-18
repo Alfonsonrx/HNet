@@ -10,7 +10,7 @@ function campoVacio(campo) {
     if ($(campo).val() == '') {
         $(campo).addClass('border-danger');
         if ($(texto_alarma + ' ' + campo).length) {
-            $(texto_alarma).addClass(campo).insertAfter(campo);
+            // $(texto_alarma).addClass(campo).insertAfter(campo);
         }
         setTimeout((e) => {
             $(campo).removeClass('border-danger');
@@ -18,6 +18,7 @@ function campoVacio(campo) {
         }, 3000);
     }
 }
+var texto_alarma = "<span class='text-danger'>Este campo es obligatorio</span>"
 
 $(document).ready(function() {
     /**
@@ -148,6 +149,7 @@ $(document).ready(function() {
 
     $(document).on('click', '#btn-agregar-asignatura', function() {
         var id_asignatura = $('#inpt-asignatura').text();
+        campoVacio('#inpt-asignatura');
         if(id_asignatura != '') {
             $.ajax({
                 url:"../controllers/AsignTableController.php?do=ingresarACurso",
@@ -170,7 +172,8 @@ $(document).ready(function() {
             }, 100);
         }
         else {
-            console.log("Algunos campos son obligatorios");
+            $("#alertaModal").modal('show');
+            $("#texto_modal_alerta").text("Hay campos vacios");
         }
     });
 
@@ -216,13 +219,18 @@ $(document).ready(function() {
 
         var id_horario = $('#id_horario').val();
         var id_asignatura = $('#inpt-asignatura_horario').text();
+        campoVacio("#inpt-asignatura_horario");
         var id_libro = $('#texto-idlibro').text();
         var fecha = $('#fecha-asignatura').val();
+        campoVacio("#fecha-asignatura");
         var inicio_asignatura = $('#inicio-asignatura').val();
+        campoVacio("#inicio-asignatura");
         var final_asignatura = $('#final-asignatura').val();
+        campoVacio("#final-asignatura");
+
         var asistencia_profesor = $("input[name='asistencia']:checked").val();
         var operacion_horario = $('#operacion_horario').val();
-        if(id_asignatura != '' && id_libro != '' && fecha != '' && inicio_asignatura != '' && final_asignatura != '') {
+        if(id_asignatura != '' && id_libro != '' && fecha != '' && inicio_asignatura != '' && final_asignatura != '' && asistencia_profesor != undefined) {
             $.ajax({
                 url:"../controllers/HorarioTableController.php?do=ingresar&id="+id_curso,
                 type:'POST',
@@ -254,7 +262,8 @@ $(document).ready(function() {
             }, 100);
         }
         else {
-            alert("Algunos campos son obligatorios");
+            $("#alertaModal").modal('show');
+            $("#texto_modal_alerta").text("Hay campos vacios");
         }
     });
 
@@ -284,7 +293,7 @@ $(document).ready(function() {
                 data:{id_asignatura:id_asignatura},
                 success:function(data) {
                     console.log(data);
-                    Horario_dataTable.ajax.reload();
+                    Asig_dataTable.ajax.reload();
                 }
             });
         } else {
@@ -306,7 +315,7 @@ $(document).ready(function() {
                 $('#fecha-asignatura').val(data[2]);
                 $('#inicio-asignatura').val(data[3]);
                 $('#final-asignatura').val(data[4]);
-                $("input[value='"+data[5]+"'").prop('checked', true);;
+                $("input[value='"+data[5]+"'").prop('checked', true);
                 $('#id_horario').val(id_horario);
                 $('#operacion_horario').val("Editar");
             },
@@ -316,10 +325,5 @@ $(document).ready(function() {
         })
     });
 
-    
-    
-    
-
-    var texto_alarma = "<span class='text-danger'>Este campo es obligatorio</span>"
 
 });

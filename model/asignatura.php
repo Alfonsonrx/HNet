@@ -53,27 +53,24 @@ class Asignatura{
     }
 
     public function crearAsignatura() {
-        $sql = "INSERT INTO `asignatura` (`IDASIGNATURA`, `NOMBREASIGNATURA`) VALUES (NULL, '$this->nombre_asignatura')";
+        $sql = "INSERT INTO `asignatura` (`IDASIGNATURA`, `NOMBREASIGNATURA`) VALUES (NULL, '$this->nombre_asignatura');";
         $res = $this->db->execute($sql);
         if ($res) {
-            if ($res == '1') {
-                $sql = "INSERT INTO `imparte` SELECT a.IDASIGNATURA, e.IDEMPLEADO 
-                        FROM `asignatura` AS a 
-                        JOIN `empleado` AS e 
-                        WHERE a.NOMBREASIGNATURA = '$this->nombre_asignatura' AND e.IDEMPLEADO = '$this->id_empleado';";
-                $res = $this->db->execute($sql);
-                
-                if ($res) {
-                    if (!$res == "1062") {
-                        return "Guardado";
-                    } else {
-                        return $res;
-                    }
+            $sql = "INSERT INTO `imparte` SELECT a.IDASIGNATURA, e.IDEMPLEADO 
+                    FROM `asignatura` AS a 
+                    JOIN `empleado` AS e 
+                    WHERE a.NOMBREASIGNATURA = '$this->nombre_asignatura' AND e.IDEMPLEADO = '$this->id_empleado' 
+                    ORDER BY a.IDASIGNATURA DESC LIMIT 1;";
+            $res = $this->db->execute($sql);
+            
+            if ($res) {
+                if (!$res == "1062") {
+                    return "Guardado";
                 } else {
-                    return  "error";
+                    return $res;
                 }
-            }else {
-                return $res;
+            } else {
+                return  "error";
             }
         }
         

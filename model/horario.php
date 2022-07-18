@@ -60,7 +60,7 @@ class Horario {
     }
 
     public function obtenerHorario($id_horario) {
-        $sql = "SELECT h.IDASIGNATURA, a.NOMBREASIGNATURA, h.FECHAHORARIO, h.HORAINICIO, h.HORAFIN, h.ASISTENCIAPROFESOR
+        $sql = "SELECT h.IDASIGNATURA, a.NOMBREASIGNATURA, h.IDCURSO, h.FECHAHORARIO, h.HORAINICIO, h.HORAFIN, h.ASISTENCIAPROFESOR
         FROM `horario` AS h 
         JOIN asignatura AS a 
         WHERE h.IDASIGNATURA = a.IDASIGNATURA AND h.IDHORARIO = $id_horario LIMIT 1;";
@@ -70,6 +70,7 @@ class Horario {
         foreach ($res as $fila) {
             $salida[] = $fila["IDASIGNATURA"];
             $salida[] = $fila["NOMBREASIGNATURA"];
+            $salida[] = $fila["IDCURSO"];
             $salida[] = $fila["FECHAHORARIO"];
             $salida[] = $fila["HORAINICIO"];
             $salida[] = $fila["HORAFIN"];
@@ -86,7 +87,8 @@ class Horario {
      * @return [string]
      */
     public function borrarHorario($id_horario) {
-        $sql = "DELETE FROM horario WHERE `horario`.`IDHORARIO` = '$id_horario'";
+        $sql = "DELETE FROM asistencia WHERE `asistencia`.`IDHORARIO` = '$id_horario';
+                DELETE FROM horario WHERE `horario`.`IDHORARIO` = '$id_horario';";
         $res = $this->db->execute($sql);
         if ($res) {
             return "borrado";
@@ -108,9 +110,13 @@ class Horario {
 
         $res = $this->db->execute($sql);
         if ($res) {
-            return "Modificado";
+            if (!is_numeric($res)) {
+                return "Modificado";
+            } else {
+                return $res;
+            }
         } else {
-            return "error";
+            return  "error";
         }
     }
 
@@ -142,7 +148,7 @@ class Horario {
             $sub_array[] = $fila["HORAINICIO"];
             $sub_array[] = $fila["HORAFIN"];
             $sub_array[] = $fila["ASISTENCIAPROFESOR"];
-            $sub_array[] = '<button type="button" name="asistencia" id="'.$fila["IDHORARIO"].'" class="btn btn-success btn-sm asistencia_horario"><i class="fas fa-user-edit"></i> Asistencia</button> ';
+            $sub_array[] = '<a href="asistencias_vista.php?id='.$fila["IDHORARIO"].'" type="button" name="asistencia" id="'.$fila["IDHORARIO"].'" class="btn btn-success btn-sm asistencia_horario"><i class="fas fa-user-edit"></i> Asistencia</a> ';
             $sub_array[] = '<button type="button" name="editar" id="'.$fila["IDHORARIO"].'" class="btn btn-warning btn-sm editar_horario"><i class="fas fa-user-edit"></i> Editar</button> ';
             $sub_array[] = '<button type="button" name="borrar" id="'.$fila["IDHORARIO"].'" class="btn btn-danger btn-sm borrar_horario"><i class="fas fa-minus-circle"></i> Borrar</button> ';
             $datos[] = $sub_array;

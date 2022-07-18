@@ -70,8 +70,6 @@ class Database{
         } catch (mysqli_sql_exception $e) {
             $res = $this->db->errno;
         }
-
-        // $this->db->close();
         return $res;
     }
 }

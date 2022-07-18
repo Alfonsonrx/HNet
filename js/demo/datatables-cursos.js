@@ -1,4 +1,4 @@
-// Call the dataTables jQuery plugin
+    // Call the dataTables jQuery plugin
 $(document).ready(function() {
     var dataTable = $('#dataTable').DataTable( {
         "ajax":{
@@ -24,7 +24,7 @@ $(document).ready(function() {
      * @return [None]
      */
     function campoVacio(campo) {
-        if ($(campo).val() == '') {
+        if ($(campo).val() == '' || (campo).text() == '' || (campo).val() == undefined) {
             $(campo).addClass('border-danger');
             if ($(texto_alarma + ' ' + campo).length) {
                 $(texto_alarma).addClass(campo).insertAfter(campo);
@@ -36,19 +36,19 @@ $(document).ready(function() {
         }
     }
 
-    var texto_alarma = "<span class='text-danger'>Este campo es obligatorio</span>"
+    var texto_alarma = "<br/><span class='text-danger'>Este campo es obligatorio</span>"
     $(document).on('submit', '#formulario', function(event){
         event.preventDefault();
         
         var id_curso = $('#id_curso').val();
-        campoVacio('#id_libro')
         var id_libro = $('#id_libro').val();
-        campoVacio('#anio')
+        campoVacio('#id_libro')
         var anio = $('#anio').val();
-        campoVacio('#nivel')
+        campoVacio('#anio')
         var nivel = $('#nivel').val();
-        campoVacio('#seccion')
+        campoVacio('#nivel')
         var seccion = $('#seccion').val();
+        campoVacio('#seccion')
         var sala = $('#sala').val();
         if(id_libro != '' && anio != '' && nivel != '' && seccion != '') {
             $.ajax({
@@ -69,6 +69,9 @@ $(document).ready(function() {
                     }
                 } 
             });
+        } else {
+            $("#alertaModal").modal('show');
+            $("#texto_modal_alerta").text("Hay campos vacios");
         }
     });
 

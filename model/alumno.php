@@ -166,12 +166,11 @@ class Alumnos {
         foreach($res as $fila){
         
             $sub_array = array();
-            $sub_array[] = $fila["IDALUMNO"];
-            $sub_array[] = $fila["NIVEL"] . " " . $fila["SECCION"];
             $sub_array[] = $fila["RUNALUMNO"];
             $sub_array[] = $fila["NOMBREIDALUMNO"];
             $sub_array[] = $fila["PATERNOIDALUMNO"];
             $sub_array[] = $fila["MATERNOIDALUMNO"];
+            $sub_array[] = $fila["NIVEL"] . " " . $fila["SECCION"];
             $sub_array[] = '<button type="button" name="detalles" id="'.$fila["IDALUMNO"].'" class="btn btn-success btn-sm detalles"><i class="fas fa-info"></i> Detalles</button>';
             $sub_array[] = '<button type="button" name="editar" id="'.$fila["IDALUMNO"].'" class="btn btn-warning btn-sm editar_alumno"><i class="fas fa-user-edit"></i> Editar</button> ';
             $sub_array[] = '<button type="button" name="borrar" id="'.$fila["IDALUMNO"].'" class="btn btn-danger btn-sm borrar_alumno"><i class="fas fa-minus-circle"></i> Borrar</button> ';

@@ -9,6 +9,8 @@
 function campoVacio(campo) {
     if ($(campo).val() == '' || $(campo).text() == '' || $(campo).val() == undefined) {
         $(campo).addClass('border-danger');
+        var texto_alarma = "<span id='texto_alarma' class='text-danger'>Este campo es obligatorio</span>"
+        
         if (!$('#texto_alarma').hasClass(campo)) {
             $(texto_alarma).addClass(campo).insertAfter($(campo).parent());
         }
@@ -19,7 +21,6 @@ function campoVacio(campo) {
     }
 }
 
-var texto_alarma = "<span id='texto_alarma' class='text-danger'>Este campo es obligatorio</span>"
 
 $(document).ready(function() {
 

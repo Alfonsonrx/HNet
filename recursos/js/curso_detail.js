@@ -20,6 +20,8 @@ function campoVacio(campo) {
 }
 var texto_alarma = "<span class='text-danger'>Este campo es obligatorio</span>"
 
+
+
 $(document).ready(function() {
     /**
      * Inicio de la ventana curso, con todos sus datos
@@ -68,6 +70,12 @@ $(document).ready(function() {
         "ajax":{
             url: "../controllers/AlumnoTableController.php?do=getTable&id="+id_curso,
         },
+        "columnDefs": [
+            {
+                "targets": 4,
+                "visible": false,
+            },
+        ],
         "language": {
             "emptyTable": "Aun no hay almunos inscritos en este curso",
             "lengthMenu": "Mostrando _MENU_ datos",

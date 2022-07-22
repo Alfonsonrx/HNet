@@ -54,57 +54,59 @@ $lista_cursos = $cursos->obtenerCursos();
         
             <form method="POST" id="formulario" enctype="multipart/form-data">
                 <div class="modal-content">
-                    <div class="modal-body">
+                    <div class="row modal-body">
 
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Curso: </button>
-                                <div class="dropdown-menu">
-                                    <?php
-                                    foreach ($lista_cursos["data"] as $c) {
-                                    ?>
-                                    <a class="drop-curso dropdown-item" id="<?= $c[0]; ?>"><?= $c[3]." ".$c[4]; ?></a>
-                                    <?php
-                                    }
-                                    ?>
+                        <div class="col-sm">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Curso: </button>
+                                    <div class="dropdown-menu">
+                                        <?php
+                                        foreach ($lista_cursos["data"] as $c) {
+                                        ?>
+                                        <a class="drop-curso dropdown-item" id="<?= $c[0]; ?>"><?= $c[1]." ".$c[2]; ?></a>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
+                                <input type="text" name="id_curso" class="form-control id_curso" readonly="true">
                             </div>
-                            <input type="text" name="id_curso" class="form-control id_curso" readonly="true">
+                            <br />
+                            
+                            <label for="run">Ingrese Run</label>
+                            <input type="text" name="run" id="run" class="form-control" maxlength="10">
+                            <br />
+                            
+                            <label for="nombre">Ingrese el nombre</label>
+                            <input type="text" name="nombre" id="nombre" class="form-control">
+                            <br />
+                            
+                            <label for="apellido_paterno">Ingrese Apellido Paterno</label>
+                            <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control">
+                            <br />
+                            
+                            <label for="apellido_materno">Ingrese Apellido Materno</label>
+                            <input type="text" name="apellido_materno" id="apellido_materno" class="form-control">
+                            <br />
                         </div>
-                        <br />
-                        
-                        <label for="run">Ingrese Run</label>
-                        <input type="text" name="run" id="run" class="form-control" maxlength="10">
-                        <br />
-                        
-                        <label for="nombre">Ingrese el nombre</label>
-                        <input type="text" name="nombre" id="nombre" class="form-control">
-                        <br />
-                        
-                        <label for="apellido_paterno">Ingrese Apellido Paterno</label>
-                        <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control">
-                        <br />
-                        
-                        <label for="apellido_materno">Ingrese Apellido Materno</label>
-                        <input type="text" name="apellido_materno" id="apellido_materno" class="form-control">
-                        <br />
-                        
-                        <label for="fecha_nacimiento">Ingrese fecha nacimiento</label>
-                        <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control">
-                        <br />
-        
-                        <label for="email">Ingrese el email</label>
-                        <input type="email" name="email" id="email" class="form-control">
-                        <br />
-                        
-                        <label for="direccion">Ingrese Direccion</label>
-                        <input type="text" name="direccion" id="direccion" class="form-control">
-                        <br />
-        
-                        <label for="celular">Ingrese Celular</label>
-                        <input type="number" name="celular" id="celular" class="form-control">
-                        <br />
-        
+                        <div class="col-sm">
+                            <label for="fecha_nacimiento">Ingrese fecha nacimiento</label>
+                            <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control">
+                            <br />
+            
+                            <label for="email">Ingrese el email</label>
+                            <input type="email" name="email" id="email" class="form-control">
+                            <br />
+                            
+                            <label for="direccion">Ingrese Direccion</label>
+                            <input type="text" name="direccion" id="direccion" class="form-control">
+                            <br />
+            
+                            <label for="celular">Ingrese Celular</label>
+                            <input type="number" name="celular" id="celular" class="form-control">
+                            <br />
+                        </div>
                     </div>
         
                     <div class="modal-footer">

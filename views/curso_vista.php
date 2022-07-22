@@ -78,12 +78,11 @@ $jef_curso = ($id_curso == $_SESSION["empleado"]["curso_jef"] or $_SESSION["empl
                                     <table class="table table-bordered" id="alumnos_dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th >ID</th>
-                                                <th >Curso</th>
                                                 <th >Run</th>
                                                 <th >Nombre</th>
                                                 <th >Apellido Paterno</th>
                                                 <th >Apellido Materno</th>
+                                                <th >Curso</th>
                                                 <th ></th>
                                                 <?php
                                                 if ($jef_curso) {
@@ -97,12 +96,11 @@ $jef_curso = ($id_curso == $_SESSION["empleado"]["curso_jef"] or $_SESSION["empl
                                         </thead>
                                         <tfoot>
                                             <tr>
-                                                <th >ID</th>
-                                                <th >Curso</th>
                                                 <th >Run</th>
                                                 <th >Nombre</th>
                                                 <th >Apellido Paterno</th>
                                                 <th >Apellido Materno</th>
+                                                <th >Curso</th>
                                                 <th ></th>
                                                 <?php
                                                 if ($jef_curso) {
@@ -237,7 +235,7 @@ $jef_curso = ($id_curso == $_SESSION["empleado"]["curso_jef"] or $_SESSION["empl
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Asignatura: </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" disabled >Selecionar Asignatura:</a>
+                                                    <a class="asig_drop_ejemplo dropdown-item" disabled >Selecionar Asignatura:</a>
 
                                                     <?php
                                                     $asignaturasCurso = $as->obtenerAsignaturasCurso($id_curso);

@@ -52,12 +52,6 @@ include 'model/validador.php';
                     <span>Inicio</span></a>
             </li>
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="documentacion/">
-                <i class="fas fa-book"></i>
-                <span>Documentación</span></a>
-            </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -76,13 +70,13 @@ include 'model/validador.php';
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tablas:</h6>
-                        <a class="collapse-item" href="views/login.php">Login</a>
+                        <!-- <a class="collapse-item" href="views/login.php">Login</a> -->
                         <a class="collapse-item" href="views/tabla_libros.php">Libros de Curso</a>
                         <a class="collapse-item" href="views/tabla_asignaturas.php">Asignaturas</a>
                         <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
+                        <!-- <h6 class="collapse-header">Other Pages:</h6>
                         <a class="collapse-item" href="views/404.php">404 Page</a>
-                        <a class="collapse-item" href="views/blank.php">Blank Page</a>
+                        <a class="collapse-item" href="views/blank.php">Blank Page</a> -->
                     </div>
                 </div>
             </li>

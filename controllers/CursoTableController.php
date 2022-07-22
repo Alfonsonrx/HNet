@@ -38,7 +38,6 @@ switch ($do) {
         $datos = array();
         foreach ($res as $fila) {
             $salida = array();
-            $salida[] = $fila["IDASIGNATURA"];
             $salida[] = $fila["NOMBREASIGNATURA"];
             $salida[] = $fila["NOMBREEMPLEADO"]." ".$fila["PATERNOEMPLEADO"]." ".$fila["MATERNOEMPLEADO"];
             $salida[] = '<button type="button" name="borrar" id="'.$fila["IDASIGNATURA"].'" class="btn btn-danger btn-sm borrar_asignatura"><i class="fas fa-minus-circle"></i> Borrar</button> ';

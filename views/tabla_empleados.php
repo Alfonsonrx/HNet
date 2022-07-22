@@ -3,6 +3,7 @@
 <?php
 session_start();
 include '../model/validador.php';
+include '../model/validador_utp.php';
 $rol = $_SESSION['empleado']["empRol"]
 
 ?>
@@ -70,7 +71,6 @@ $rol = $_SESSION['empleado']["empRol"]
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
                                             <th>Run</th>
                                             <th>Nombre</th>
                                             <th>Apellido Paterno</th>
@@ -83,7 +83,6 @@ $rol = $_SESSION['empleado']["empRol"]
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>ID</th>
                                             <th>Run</th>
                                             <th>Nombre</th>
                                             <th>Apellido Paterno</th>
@@ -162,74 +161,76 @@ $rol = $_SESSION['empleado']["empRol"]
                 
                     <form method="POST" id="formulario" enctype="multipart/form-data">
                         <div class="modal-content">
-                            <div class="modal-body">
+                            <div class="row modal-body">
 
-                                <label for="run">Ingrese Run</label>
-                                <input type="text" name="run" id="run" class="form-control" maxlength="10">
-                                <br />
+                                <div class="col-sm">
+                                    <label for="run">Ingrese Run</label>
+                                    <input type="text" name="run" id="run" class="form-control" maxlength="10">
+                                    <br />
 
-                                <label for="pw">Ingrese contraseña</label>
-                                <input type="text" name="pw" id="pw" class="form-control">
-                                <br />
+                                    <label for="pw" id="lbl-pw">Ingrese contraseña</label>
+                                    <input type="text" name="pw" id="pw" class="form-control">
+                                    <br id="br-pw"/>
 
-                                <label for="email">Ingrese el email</label>
-                                <input type="email" name="email" id="email" class="form-control">
-                                <br />
+                                    <label for="email">Ingrese el email</label>
+                                    <input type="email" name="email" id="email" class="form-control">
+                                    <br />
 
-                                <label for="nombre">Ingrese el nombre</label>
-                                <input type="text" name="nombre" id="nombre" class="form-control">
-                                <br />
-                                
-                                <label for="apellido_paterno">Ingrese Apellido Paterno</label>
-                                <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control">
-                                <br />
-                                
-                                <label for="apellido_materno">Ingrese Apellido Materno</label>
-                                <input type="text" name="apellido_materno" id="apellido_materno" class="form-control">
-                                <br />
-                                
-                                <label for="fecha_nacimiento">Ingrese fecha nacimiento</label>
-                                <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control">
-                                <br />
-
-                                <label for="direccion">Ingrese Direccion</label>
-                                <input type="text" name="direccion" id="direccion" class="form-control">
-                                <br />
-
-                                <label for="telefono">Ingrese telefono</label>
-                                <input type="number" name="telefono" id="telefono" class="form-control">
-                                <br />
-
-                                <label for="celular">Ingrese Celular</label>
-                                <input type="number" name="celular" id="celular" class="form-control">
-                                <br />
-
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Rol: </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" id="drop-rol">Profesor/a</a>
-                                            <a class="dropdown-item" id="drop-rol">UTP</a>
-                                            <a class="dropdown-item" id="drop-rol">Inspector/a</a>
-                                            <a class="dropdown-item" id="drop-rol">Orientador/a</a>
-                                        </div>
-                                    </div>
-                                    <input type="text" name="rol" id="rol" class="form-control" readonly="true">
+                                    <label for="nombre">Ingrese el nombre</label>
+                                    <input type="text" name="nombre" id="nombre" class="form-control">
+                                    <br />
+                                    
+                                    <label for="apellido_paterno">Ingrese Apellido Paterno</label>
+                                    <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control">
+                                    <br />
+                                    
+                                    <label for="apellido_materno">Ingrese Apellido Materno</label>
+                                    <input type="text" name="apellido_materno" id="apellido_materno" class="form-control">
+                                    <br />
                                 </div>
-                                <br />
-                                
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend" >
-                                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Tiene jefatura? </button>
-                                        <div class="dropdown-menu" >
-                                            <a class="dropdown-item" id="drop-jef">Si</a>
-                                            <a class="dropdown-item" id="drop-jef">No</a>
-                                        </div>
-                                    </div>
-                                    <input type="text" name="jefatura" id="jefatura" class="form-control" readonly="true">
-                                </div>
-                                <br />
+                                <div class="col-sm">
+                                    <label for="fecha_nacimiento">Ingrese fecha nacimiento</label>
+                                    <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control">
+                                    <br />
 
+                                    <label for="direccion">Ingrese Direccion</label>
+                                    <input type="text" name="direccion" id="direccion" class="form-control">
+                                    <br />
+
+                                    <label for="telefono">Ingrese telefono</label>
+                                    <input type="number" name="telefono" id="telefono" class="form-control">
+                                    <br />
+
+                                    <label for="celular">Ingrese Celular</label>
+                                    <input type="number" name="celular" id="celular" class="form-control">
+                                    <br />
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Rol: </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" id="drop-rol">Profesor/a</a>
+                                                <a class="dropdown-item" id="drop-rol">UTP</a>
+                                                <a class="dropdown-item" id="drop-rol">Inspector/a</a>
+                                                <a class="dropdown-item" id="drop-rol">Orientador/a</a>
+                                            </div>
+                                        </div>
+                                        <input type="text" name="rol" id="rol" class="form-control" readonly="true">
+                                    </div>
+                                    <br />
+                                    
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend" >
+                                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Tiene jefatura? </button>
+                                            <div class="dropdown-menu" >
+                                                <a class="dropdown-item" id="drop-jef">Si</a>
+                                                <a class="dropdown-item" id="drop-jef">No</a>
+                                            </div>
+                                        </div>
+                                        <input type="text" name="jefatura" id="jefatura" class="form-control" readonly="true">
+                                    </div>
+                                    <br />
+                                </div>
                             </div>
 
                             <div class="modal-footer">

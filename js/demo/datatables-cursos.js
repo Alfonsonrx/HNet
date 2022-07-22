@@ -4,6 +4,12 @@ $(document).ready(function() {
         "ajax":{
             url: "../controllers/CursoTableController.php?do=getTable",
         },
+        "columnDefs": [
+            {
+                "targets": 0,
+                "visible": false,
+            },
+        ],
         "language": {
             "lengthMenu": "Mostrando _MENU_ datos",
             "paginate": {

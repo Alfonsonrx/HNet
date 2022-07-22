@@ -1,3 +1,72 @@
+function campoVacio(campo, drop = false) {
+  if ($(campo).val() == '') {
+      $(campo).addClass('border-danger');
+      var texto_alarma = "<span id='texto_alarma' class='text-danger'>Este campo es obligatorio</span>"
+      
+      if (!$('#texto_alarma').hasClass(campo)) {
+        if (drop) {
+          $(texto_alarma).addClass(campo).insertAfter($(campo).parent());
+        } else {
+          $(texto_alarma).addClass(campo).insertAfter($(campo));
+        }
+      }
+      setTimeout((e) => {
+          $(campo).removeClass('border-danger');
+          $('.text-danger').remove();
+      }, 3000);
+  }
+}
+
+function validaEmail(campoEmail) {
+  var email = $(campoEmail).val();
+  var texto_alarma = "<span id='texto_alarma' class='text-danger'>El email es invalido</span>"
+
+  if (!email.length==0){
+    
+    var patron = new RegExp('(^[0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$'); 
+    // console.log(patron.test(email));
+    if (patron.test(email)) {
+        return true;
+    } 
+  } else {
+    texto_alarma = "<span id='texto_alarma' class='text-danger'>El campo esta vacio</span>"
+  }
+  
+  $(campoEmail).addClass('border-danger');
+  if (!$('#texto_alarma').hasClass(campoEmail)) {
+    $(texto_alarma).addClass(campoEmail).insertAfter($(campoEmail));
+  }
+  setTimeout((e) => {
+      $(campoEmail).removeClass('border-danger');
+      $('.text-danger').remove();
+  }, 3000);
+  return false;
+}
+
+function validaRut(campoRut) {
+  var rut = $(campoRut).val();
+  var texto_alarma = "<span id='texto_alarma' class='text-danger'>El rut es invalido</span>"
+
+  if (rut.length==10){
+    
+    var patron = new RegExp('[0-9]{7}[-]{1}[0-9kK]{1}'); 
+    // console.log(patron.test(rut));
+    if (patron.test(rut)) {
+        return true;
+    } 
+  } 
+  
+  $(campoRut).addClass('border-danger');
+  if (!$('#texto_alarma').hasClass(campoRut)) {
+    $(texto_alarma).addClass(campoRut).insertAfter($(campoRut));
+  }
+  setTimeout((e) => {
+      $(campoRut).removeClass('border-danger');
+      $('.text-danger').remove();
+  }, 3000);
+  return false;
+}
+
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
   var dataTable = $('#dataTable').DataTable( {
@@ -40,10 +109,13 @@ $(document).ready(function() {
     var id_curso = $('.id_curso').text();
     
     var run = $('#run').val();
+    var val_rut = validaRut('#run');
     var nombre = $('#nombre').val();
+    campoVacio('#nombre');
     var email = $('#email').val();
+    var val_email = validaEmail('#email');
 
-    if(id_curso != '' && run != '' && run != '-' && nombre != '' && email != '') {
+    if(id_curso != '' && val_rut != '-' && nombre != '' && val_email != '') {
       $('.id_curso').val($('.id_curso').text());
       var formData = new FormData(this);
 
@@ -68,7 +140,7 @@ $(document).ready(function() {
     }
     else {
       $("#alertaModal").modal('show');
-      $("#texto_modal_alerta").text("Hay campos vacios");
+      $("#texto_modal_alerta").text("Hay campos vacios o invalidos");
     }
   });
 

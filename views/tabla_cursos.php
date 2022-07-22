@@ -71,11 +71,11 @@ $rol = $_SESSION['empleado']["empRol"]
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>ID Libro</th>
-                                            <th>Año</th>
                                             <th>Nivel</th>
                                             <th>Seccion</th>
                                             <th>Sala</th>
+                                            <th>Año</th>
+                                            <th>ID Libro</th>
                                             <th></th>
                                             <?php
                                             if ($rol == 'UTP') {
@@ -90,11 +90,11 @@ $rol = $_SESSION['empleado']["empRol"]
                                     <tfoot>
                                         <tr>
                                             <th>ID</th>
-                                            <th>ID Libro</th>
-                                            <th>Año</th>
                                             <th>Nivel</th>
                                             <th>Seccion</th>
                                             <th>Sala</th>
+                                            <th>Año</th>
+                                            <th>ID Libro</th>
                                             <th></th>
                                             <?php
                                             if ($rol == 'UTP') {

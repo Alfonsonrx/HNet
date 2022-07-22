@@ -71,12 +71,11 @@ $rol = $_SESSION['empleado']["empRol"]
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th >ID</th>
-                                            <th >Curso</th>
                                             <th >Run</th>
                                             <th >Nombre</th>
                                             <th >Apellido Paterno</th>
                                             <th >Apellido Materno</th>
+                                            <th >Curso</th>
                                             <th ></th>
                                             <?php
                                             if ($rol == 'UTP' or $rol == 'Inspector') {
@@ -90,12 +89,11 @@ $rol = $_SESSION['empleado']["empRol"]
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th >ID</th>
-                                            <th >Curso</th>
                                             <th >Run</th>
                                             <th >Nombre</th>
                                             <th >Apellido Paterno</th>
                                             <th >Apellido Materno</th>
+                                            <th >Curso</th>
                                             <th ></th>
                                             <?php
                                             if ($rol == 'UTP' or $rol == 'Inspector') {

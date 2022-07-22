@@ -112,7 +112,6 @@ class Empleado{
         foreach ($res as $fila) {
             $salida[] = $fila["IDEMPLEADO"];
             $salida[] = $fila["RUNEMPLEADO"];
-            $salida[] = $fila["PASSWORD"];
             $salida[] = $fila["NOMBREEMPLEADO"];
             $salida[] = $fila["PATERNOEMPLEADO"];
             $salida[] = $fila["MATERNOEMPLEADO"];
@@ -136,12 +135,12 @@ class Empleado{
      * @return [string]
      */
     public function borrarEmpleado(int $id_empleado) {
-        $sql = "DELETE FROM empleado WHERE `empleado`.`IDEMPLEADO` = '$id_empleado'";
+        $sql = "UPDATE empleado SET `PASSWORD` = NULL WHERE `empleado`.`IDEMPLEADO` = '$id_empleado'";
         $res = $this->db->execute($sql);
-        if ($res) {
+        if ($res == '1') {
             return "borrado";
         } else {
-            return "error";
+            return $res;
         }
     }
     
@@ -155,7 +154,7 @@ class Empleado{
      */
     public function editarEmpleado() {
 
-        $sql = "UPDATE `empleado` SET `RUNEMPLEADO` = '$this->run',`PASSWORD` = '$this->pw', `EMAILEMPLEADO` = '$this->email', `NOMBREEMPLEADO` = '$this->nombre', 
+        $sql = "UPDATE `empleado` SET `RUNEMPLEADO` = '$this->run', `EMAILEMPLEADO` = '$this->email', `NOMBREEMPLEADO` = '$this->nombre', 
         `PATERNOEMPLEADO` = '$this->apellido_paterno', `MATERNOEMPLEADO` = '$this->apellido_materno', `FECHANACIMIENTOEMPLEADO` = '$this->fecha_nacimiento', 
         `DIRECCIONEMPLEADO` = '$this->direccion', `TELEFONOEMPLEADO` = '$this->telefono', `CELULAREMPLEADO` = '$this->celular', 
         `ROLEMPLEADO` = '$this->rol', `PROFESORJEFE` = '$this->jefatura'  
@@ -188,7 +187,6 @@ class Empleado{
         foreach($res as $fila){
         
             $sub_array = array();
-            $sub_array[] = $fila["IDEMPLEADO"];
             $sub_array[] = $fila["RUNEMPLEADO"];
             $sub_array[] = $fila["NOMBREEMPLEADO"];
             $sub_array[] = $fila["PATERNOEMPLEADO"];
@@ -196,7 +194,7 @@ class Empleado{
             $sub_array[] = $fila["ROLEMPLEADO"];
             $sub_array[] = '<button type="button" name="detalles" id="'.$fila["IDEMPLEADO"].'" class="btn btn-success btn-sm detalles"><i class="fas fa-info"></i> Detalles</button>';
             $sub_array[] = '<button type="button" name="editar" id="'.$fila["IDEMPLEADO"].'" class="btn btn-warning btn-sm editar_empleado"><i class="fas fa-user-edit"></i> Editar</button> ';
-            $sub_array[] = '<button type="button" name="borrar" id="'.$fila["IDEMPLEADO"].'" class="btn btn-danger btn-sm borrar_empleado"><i class="fas fa-minus-circle"></i> Borrar</button> ';
+            $sub_array[] = '<button type="button" name="borrar" id="'.$fila["IDEMPLEADO"].'" class="btn btn-danger btn-sm borrar_empleado"><i class="fas fa-minus-circle"></i> Deshabilitar</button> ';
             $datos[] = $sub_array;
         }
         

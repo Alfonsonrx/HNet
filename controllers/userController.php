@@ -14,7 +14,7 @@ switch($do) {
             $r["message"] = "Alguno de los campos esta vacio";
         } else {
             $empleado->__set("run", $run);
-            $encryptpw = md5($pass);
+            $encryptpw = crypt($pass, 'st');
             $empleado->__set("pw", $encryptpw);
 
             $resul = $empleado->iniciarSesion();
@@ -62,7 +62,8 @@ switch($do) {
     case 'ingresar':
         $empleado->__set("id_empleado", $_POST["id_empleado"]);
         $empleado->__set("run", $_POST["run"]);
-        $empleado->__set("pw", md5($_POST["pw"]));
+        $empleado->__set("pw", crypt($_POST["pw"], 'st'));
+
         $empleado->__set("email", $_POST["email"]);
         $empleado->__set("nombre", $_POST["nombre"]);
         $empleado->__set("apellido_paterno", $_POST["apellido_paterno"]);
